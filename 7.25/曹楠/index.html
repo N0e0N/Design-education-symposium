@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在设计学院中创办人工智能专业 - 曹楠演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            background: #ffffff;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        /* 封面样式 - Notion风格 */
+        .cover {
+            background: #ffffff;
+            color: #37352f;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .cover-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .professor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 2px solid #e9e9e7;
+            overflow: hidden;
+        }
+
+        .professor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #37352f;
+            line-height: 1.2;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            margin-bottom: 1rem;
+            color: #787774;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .lecture-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cover-quote {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cover-quote blockquote {
+            font-size: 1.125rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .cover-quote cite {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        /* 内容区域样式 */
+        .content {
+            padding: 3rem;
+            max-width: none;
+            margin: 0 auto;
+        }
+
+        .chapter {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .chapter:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .chapter-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #4f46e5;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .time-range {
+            font-size: 0.875rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        /* 关键词标签 */
+        .keywords {
+            margin: 1.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword-tag {
+            background: #f0f9ff;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #93c5fd;
+        }
+
+        /* 正文段落样式 */
+        .content-text {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #37352f;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .content-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-text strong {
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        .content-text em {
+            font-style: italic;
+            color: #4a5568;
+        }
+
+        /* 重要引用样式 */
+        .important-quote {
+            background: #f0fff4;
+            border: 1px solid #38a169;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #2d3748;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .important-quote::before {
+            content: '💡';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .important-quote .quote-content {
+            margin-left: 2rem;
+        }
+
+        /* 关键数据高亮 */
+        .key-data {
+            background: #fffbeb;
+            border: 1px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #92400e;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .key-data::before {
+            content: '📊';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .key-data .data-content {
+            margin-left: 2rem;
+        }
+
+        /* 核心观点样式 */
+        .core-insight {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #dc2626;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .core-insight::before {
+            content: '🎯';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .core-insight .insight-content {
+            margin-left: 2rem;
+        }
+
+        /* 数据卡片样式 */
+        .data-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .data-card-title {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .data-card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-card-desc {
+            font-size: 0.875rem;
+            color: #4a5568;
+        }
+
+        /* 时间线样式 */
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #4f46e5;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #4f46e5;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* 成就展示 */
+        .achievement-box {
+            background: #fef7ff;
+            border: 1px solid #c084fc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .achievement-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #7c3aed;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .achievement-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #7c3aed;
+        }
+
+        .achievement-item-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-item-desc {
+            font-size: 0.875rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.125rem;
+            }
+
+            .speaker-name {
+                font-size: 1.25rem;
+            }
+
+            .lecture-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .content {
+                padding: 2rem 1.5rem 3rem;
+                max-width: none;
+                margin: 0;
+            }
+
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+
+            .content-text {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .important-quote,
+            .key-data,
+            .core-insight {
+                margin: 1.5rem 0;
+                padding: 1.25rem;
+                font-size: 1rem;
+            }
+
+            .keywords {
+                margin: 1rem 0;
+            }
+
+            .data-card-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="container">
+        <!-- 封面 -->
+        <div class="cover">
+            <div class="cover-content">
+                <div class="professor-avatar">
+                    <img src="曹楠.png" alt="曹楠教授">
+                </div>
+                
+                <h1 class="main-title">在设计学院中创办人工智能专业</h1>
+                <h2 class="subtitle">曹楠 演讲实录</h2>
+                
+                <div class="speaker-name">曹楠 · 同济大学设计创意学院副院长</div>
+                
+                <div class="lecture-info">
+                    <div class="info-item">
+                        📅 2025年7月25日
+                    </div>
+                    <div class="info-item">
+                        ⏱️ 31分钟38秒
+                    </div>
+                </div>
+                
+                <div class="cover-quote">
+                    <blockquote>
+                        "设计是各行各业的灵魂之所在，任何东西缺少了设计，它可能都不能成型"
+                    </blockquote>
+                    <cite>— 曹楠教授</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 第一章：个人背景与转型历程 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第1章</div>
+                    <h2 class="chapter-title">个人背景与转型历程</h2>
+                    <div class="time-range">⏱️ 00:00-01:49</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">计算机背景</span>
+                    <span class="keyword-tag">IBM工作经历</span>
+                    <span class="keyword-tag">纽约大学</span>
+                    <span class="keyword-tag">设计学院转型</span>
+                    <span class="keyword-tag">人工智能设计</span>
+                </div>
+
+                <div class="content-text">
+                    我是同济大学设计创意学院的副院长曹楠，同时我在这里面还有另外一个身份，就是，其实我从一开始来创立了我们学院的这个<strong>人工智能模型设计</strong>这么一个方向，这个也是我存在在这个学院的一个最主要的意义，甚至于超出有副院长的意义。
+                </div>
+
+                <div class="content-text">
+                    我自己是学计算机的，在我的人生当中，我从来没有想过有一天会来到一个设计学院，在设计学院当一个教授，甚至干到副院长。在过去的这几十年里面，我接受的是传统的计算机的教育，毕业博士毕业于<strong>香港科技大学</strong>，然后我又在<strong>IBM工作了将近十年的时间</strong>，在中国的IBM待过，在美国的IBM待过，所以我在业界，其实在工业界也做过很多相关的工作。
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        有一天，突然有一天我来到了同济大学，我决定离开工业界的时候，我其实去了纽约大学，先是去了美国的纽约大学，成为一名助理教授，后来跑到了上海纽约大学，成为那边的一名助理教授。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    后来有一天我决定来同济大学。这其实是中间有个非常有趣的故事，也就是2016年的时候，我们回国来到上海纽约大学，结果屁股还没坐热，在那个地方待了大概6个月左右的时候，遇到了卢校长，就是我们现在他已经成为上海工程技术大学的校长。当时他给我说了一个非常有趣的一个蓝图，当时当然我们也可以说，画了一张非常美妙的大饼，说是我们要自己创办这个<strong>人工智能设计相结合</strong>的这么一个专业方向，在这个方向里面可能也会有更广阔的舞台供你去折腾。
+                </div>
+            </div>
+
+            <!-- 第二章：专业创建的初心与愿景 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第2章</div>
+                    <h2 class="chapter-title">专业创建的初心与愿景</h2>
+                    <div class="time-range">⏱️ 01:49-04:22</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">设计灵魂</span>
+                    <span class="keyword-tag">技术手段缺失</span>
+                    <span class="keyword-tag">数据设计</span>
+                    <span class="keyword-tag">本硕博体系</span>
+                    <span class="keyword-tag">交叉人才培养</span>
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        设计是个非常非常重要的一个领域，它可能是各行各业的一个灵魂之所在。任何东西缺少了设计，它可能都不能成型。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    在这个过程当中，但是很可惜的是设计领域它缺少很多的技术手段和技术方法。也就是说在过去的几十年里面，我们所使用的这些人工智能技术也好，我们的制作化技术也好，绝大多数这些技术手段来自于西方国家，我们的设计软件，我们无论是工业设计软件，还是我们的信息设计软件，几乎都是如此。
+                </div>
+
+                <div class="content-text">
+                    离开了上海纽约大学，来到同济大学设计创意学院，那时候只是一名教授，然后加入之后，我们<strong>2017年的时候就成立了人工智能与数据设计</strong>这么一个方向。当时建设的时候，我们也思考，就是说到底什么是数据设计，到底什么是人工智能设计？这两个概念合在一起，它代表到底代表了一个什么样的意思？其实到今天我们仍然在探索这两个方向的交叉和融合。
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017年</div>
+                        <div class="timeline-text">成立人工智能与数据设计方向</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018年</div>
+                        <div class="timeline-text">获批人工智能和数据设计博士生方向</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019年</div>
+                        <div class="timeline-text">获批建设博士后流动站</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022年</div>
+                        <div class="timeline-text">创办视觉传达设计和人工智能双学位计划</div>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">人才培养体系</div>
+                    <div class="data-card-value">本硕博</div>
+                    <div class="data-card-desc">贯穿一体的AI+设计交叉人才培养</div>
+                </div>
+
+                <div class="content-text">
+                    至此就2022年截止2022年为止，我们就贯穿了<strong>本硕博为一体的人工智能加设计</strong>的这么一个交叉人才的培养体系。但是这个过程其实并不容易，我们还在继续前进，包括我们在2024年的时候，专业增加了智能算法与生成这么一个方向，同时2025年又有了一个新的中外合办学机构——中意设计学院里面我们开设了两个跟设计、人工智能设计相关的专业方向。
+                </div>
+            </div>
+
+            <!-- 第三章：办学初衷与定位思考 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第3章</div>
+                    <h2 class="chapter-title">办学初衷与定位思考</h2>
+                    <div class="time-range">⏱️ 04:22-05:19</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">人才培养定位</span>
+                    <span class="keyword-tag">艺术vs技术</span>
+                    <span class="keyword-tag">国家重大需求</span>
+                    <span class="keyword-tag">革命性创新</span>
+                    <span class="keyword-tag">交叉融合</span>
+                </div>
+
+                <div class="content-text">
+                    首先第一个问题，就是为什么要办这么一个方向？我们为什么非得要把这个人工智能和设计联合在一起？在刚开始之初，我们其实问自己一个问题，就是中国的设计教育的未来，是我们需要培养更多的偏向艺术的这种人才，就是偏向更多的这种艺术家，还是我们希望能够培养一些能够<strong>服务于国家重大需求，催生革命性创新的、开拓性的人才</strong>呢？
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        同济的选择当然是选择了后者，不是说艺术不重要，艺术非常非常重要，只是说我们在过去的设计教育里面已经在艺术方向做了很多很多前期的准备工作了，已经足够充足了，但是我们确实缺少了一个方向能够把设计学和我们的工程更紧密地交叉在一起。
+                    </div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        我们希望以国家的重大需求为导向，以数据为基础，智能技术为手段，围绕设计学及信息学的基础理论，探索人工智能与设计学交叉领域的方法与技术，推进设计学的信息化与智能化的转型，培养信息时代中具有设计思维及技术理论能力的跨学科创新人才。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    这是我们当时立下的一个很美好的愿望，在过去的十年以后，我们一直在想，我们到底有没有实现这么一个宗旨和愿望，在一定程度上实现了，但实际上路漫漫其修远，还有很多的工作还没有做到。
+                </div>
+            </div>
+
+            <!-- 第四章：教学体系的构建挑战 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第4章</div>
+                    <h2 class="chapter-title">教学体系的构建挑战</h2>
+                    <div class="time-range">⏱️ 05:19-08:40</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">AI1.0时代</span>
+                    <span class="keyword-tag">阿尔法狗</span>
+                    <span class="keyword-tag">三大问题</span>
+                    <span class="keyword-tag">知识体系</span>
+                    <span class="keyword-tag">师资队伍</span>
+                    <span class="keyword-tag">生源困惑</span>
+                </div>
+
+                <div class="content-text">
+                    有了这么一个基本的宗旨之后，在教学方面其实遇到了很多困难。2016年的时候，回国的时候，这是什么时代呢？就是大概<strong>阿尔法狗刚刚打败人类棋手</strong>，人工智能刚刚开始火热起来这么一个时代，我们还没有大模型的时候，我们仍然人工智能还是一个比较困难的技术，需要真正懂人工智能的人去做。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        在那个时候我们其实是面临了很多的问题，既然要办学，首先要面临的一个问题就是到底给学生教什么？这个专业方向下的学生，他到底应该学点什么？
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    他是不是应该脱离传统的设计，或者完全拥抱人工智能？或者是他要在延续传统设计教学的基础上，再加入一些人工智能，到底怎么加？所以我们就认为这新的人工智能与数据设计这个方向需要<strong>新的理论、新的方法、新的技术以及新的工具</strong>，所有东西都是新的。
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">新专业面临的三大挑战</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">1. 知识体系不完善</div>
+                            <div class="achievement-item-desc">到底给学生教点什么东西，这个事情我们其实心里并没有底</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">2. 师资队伍不健全</div>
+                            <div class="achievement-item-desc">又做技术又做人工智能，又做设计的老师其实屈指可数</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">3. 生源定位不清晰</div>
+                            <div class="achievement-item-desc">学生会问：我为什么要在设计学院来学人工智能？</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        有学生曾经亲自问过我，说我为什么要在一个设计学院来学人工智能？我干嘛不去计算机学院去学人工智能？这个问题我们自己不清楚的话，学生是不会信服的。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第五章：知识体系框架设计 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第5章</div>
+                    <h2 class="chapter-title">知识体系框架设计</h2>
+                    <div class="time-range">⏱️ 08:40-11:00</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">智能设计范畴</span>
+                    <span class="keyword-tag">四个层面</span>
+                    <span class="keyword-tag">AI化等级</span>
+                    <span class="keyword-tag">立体张量模型</span>
+                    <span class="keyword-tag">多维矩阵</span>
+                </div>
+
+                <div class="content-text">
+                    第一个问题就是知识体系不完善，所以我们就开始研究什么是智能设计？它到底在干什么？它的范围到底是什么？它的知识范畴到底是什么？有哪些知识可以被囊括在这个专业框架里面传授给学生？
+                </div>
+
+                <div class="content-text">
+                    我们大概画了两个象限的这么一个图，把设计划分为了<strong>面向符号的设计、面向物品的设计、面向行为的设计以及面向系统的设计</strong>。这样子可以把设计分为大致的四个层面，然后我们又从人工智能的角度来划分人工智能化的等级，那就是说全人工的设计，智能辅助的设计，我们所谓的一些CAD，比如数字化的设计，还有自主智能的设计和人机协作的设计。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        从这张图上可以看到，我们智能设计这个研究的范围其实非常广阔，它所涵盖的领域和范畴是非常广阔的，仍然有很多的东西没有涉及到，我们目前还没有涉及到。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    于是我们就开始说我们的课程到底应该怎么设置？我们建立了一个所谓的叫做<strong>立体张量的知识体系</strong>，张量的英文叫Tensor，大家知道谷歌的深度学习框架叫TensorFlow，它就是这个Tensor，Tensor的意思是一个多维度的矩阵。
+                </div>
+
+                <div class="content-text">
+                    我们的知识其实也是这样一个多维度的矩阵，我们从三个维度来理解我们希望给学生掌握的能力，从三个层次来构建这么一个知识体系。首先我们希望用<strong>设计思维去引导</strong>，我觉得这个是我们智能设计专业的灵魂，缺少了这个设计思维的话，其实是没有办法能够做出具有灵魂的，或者具有面向用户的这样的产品，或者我们的设计结果。
+                </div>
+            </div>
+
+            <!-- 第六章：课程设置与教学实践 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第6章</div>
+                    <h2 class="chapter-title">课程设置与教学实践</h2>
+                    <div class="time-range">⏱️ 11:00-14:42</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">设计思维</span>
+                    <span class="keyword-tag">理论基础</span>
+                    <span class="keyword-tag">数学课程</span>
+                    <span class="keyword-tag">技术能力</span>
+                    <span class="keyword-tag">Studio实践</span>
+                </div>
+
+                <div class="content-text">
+                    另外一个是理论基础的支撑，这里的理论基础指的不仅仅是人工智能的理论，更重要的还有设计学科的相关理论。所以在这里面就遇到另外一个问题，就是我们在刚开始做这个项目的时候，学院的绝大多数学生他其实是没有很好的数学基础的，在很多情况下他是不大可能给这些学生讲懂什么是人工智能，或者人工智能的神经网络的算法可能是什么。
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        这个专业的学生全部要求去上数学课，我们人工智能与数据设计专业方向的学生，是开设数学课，而且跟同济大学其他的理工科专业方向同步开设相同级别的数学课，不是降级的、更简单的数学课。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    这是我们一个核心的理念，就是说你必须要懂得人工智能的原理，你才有可能用得好，这也是我们希望能培养这样的人才，就是<strong>打造下一代智能化设计工具</strong>的这样一群人。
+                </div>
+
+                <div class="content-text">
+                    然后再一个就是我们的技术能力，就是我们实操的能力，技术能力的牵引。所以在这个基础上我们又开设了一系列的课程，当然我们没有把它提升到像胡老师那么高的境界，大概三门课就够了，我们觉得还是多上几门课还是挺好的，然后把这个知识稍微把它抽丝剥茧地讲细致。
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">课程体系设置</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">设计思维课程</div>
+                            <div class="achievement-item-desc">学生必须要学的核心课程</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">理论课程</div>
+                            <div class="achievement-item-desc">包括设计理论、数学理论以及人工智能理论</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">实践课程</div>
+                            <div class="achievement-item-desc">智能设计、产品设计、信息设计、交互设计</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">Studio课程</div>
+                            <div class="achievement-item-desc">与企业合作开设的实践课程</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    Studio课程也是我们在办学过程中的一个特色，我们尽可能地跟企业进行交互，把外面的企业引进学校，让他们跟我们共同开设这样的Studio课程。
+                </div>
+            </div>
+
+            <!-- 第七章：师资团队与实验室建设 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第7章</div>
+                    <h2 class="chapter-title">师资团队与实验室建设</h2>
+                    <div class="time-range">⏱️ 14:42-16:27</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">师资团队</span>
+                    <span class="keyword-tag">三大实验室</span>
+                    <span class="keyword-tag">科研带动教学</span>
+                    <span class="keyword-tag">招生困难</span>
+                    <span class="keyword-tag">小白鼠学生</span>
+                </div>
+
+                <div class="content-text">
+                    当然这个我们这个团队其实也很强，包括我们的吴志强院士在内，他选择的第一研究方向其实就是人工智能与数据设计，所以这构成了我们整个的师资团队。
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">三大核心实验室</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能与设计实验室</div>
+                            <div class="achievement-item-desc">范林老师领导，涵盖所有相关研究方向</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能与信息设计实验室</div>
+                            <div class="achievement-item-desc">曹楠教授负责，专注信息设计相关工作</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能与艺术实验室</div>
+                            <div class="achievement-item-desc">张周杰教授负责，专注艺术设计交叉工作</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    现在有一个问题，就是我刚才提到的到底给谁上课的问题，这个真的困扰了我们很长一段时间。如果我知道在设计学院要办这么一个专业有这么困难，也许当时我就不会那么鲁莽地放弃了在纽约大学的工作，哈哈哈。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        因为我们刚开始真的很惨，我们第一批招生的时候，大概只招到了两三个学生，只招了两三个学生，我们非常感谢这两三个学生愿意成为我们的第一批小白鼠，愿意跟着我们去尝试这么一个全新的领域。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    在这个过程当中我们也想了很多办法怎样吸引学生加入我们，所以我们就基本上是用<strong>科研带动教学</strong>的方法，我们是被动卷的，我们不卷的话，学生更卷不起来。我们希望我们做出世界一流的科研来吸引这样的学生能够更好地加入到我们。
+                </div>
+            </div>
+
+            <!-- 第八章：信息设计突破与成果 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第8章</div>
+                    <h2 class="chapter-title">信息设计突破与成果</h2>
+                    <div class="time-range">⏱️ 16:27-18:42</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">信息可视化</span>
+                    <span class="keyword-tag">世界前沿</span>
+                    <span class="keyword-tag">深挖一口井</span>
+                    <span class="keyword-tag">大数据分支</span>
+                    <span class="keyword-tag">数据信息设计</span>
+                </div>
+
+                <div class="content-text">
+                    我们找到了一个契机，就是我们用信息可视化，也就是我们用信息设计这一个方向，然后<strong>深挖一口井</strong>，希望把这个东西做到世界前沿，然后吸引所有的学生都知道我们这里有很好的有关信息设计方向的这样一支团队在这里。
+                </div>
+
+                <div class="content-text">
+                    为什么选信息设计呢？信息设计是牵扯到数据，它是一个大数据里面的一个分支，牵扯到信息它是整个信息学科里面非常重要的一环，同时还有设计，它是把设计技术和大数据紧密地融合在一起，我们还上升不到人工智能的程度。先把什么是数据、什么是信息、什么是设计，怎么融合先搞清楚再说。
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">世界排名成就</div>
+                    <div class="data-card-value">第3名</div>
+                    <div class="data-card-desc">2023年信息设计领域世界排名</div>
+                </div>
+
+                <div class="content-text">
+                    所以在这么一个背景下，我们做了很多工作，我们实际地在这个领域发表非常高质量的论文，我们在2023年的时候，在这个领域世界排名到<strong>世界第三名</strong>，这是根据计算机领域的权威排名CS Ranking给出的数据，我们做到了这么一个成果，并且在这个方向我们获得了很多很多的最佳论文奖、最佳论文提名奖这些很难获得的奖项。
+                </div>
+
+                <div class="content-text">
+                    所以慢慢的就是有很多的学生知道了我们，并且他知道在这个地方跟着我们学习能够取得很多的这样的成果。在这样的情况下，我们也拿到了很多的课题，大概有12项国家级的专项课题，从16年到现在大概有12项国家级专项课题。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        从我们看到刚开始的时候17年是四个人，我们到23年的数据，到23年的时候我们大概就是有213个同学来竞争8个名额，变成了我们学院的一个最火爆的专业方向，当然竞争也是最激烈的方向之一。
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">招生转变</div>
+                    <div class="data-card-value">4人 → 213:8</div>
+                    <div class="data-card-desc">从无人问津到最火爆专业</div>
+                </div>
+            </div>
+
+            <!-- 第九章：四大融合方向展示 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第9章</div>
+                    <h2 class="chapter-title">四大融合方向展示</h2>
+                    <div class="time-range">⏱️ 18:42-29:55</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">信息设计融合</span>
+                    <span class="keyword-tag">工业设计融合</span>
+                    <span class="keyword-tag">交互设计融合</span>
+                    <span class="keyword-tag">艺术设计融合</span>
+                    <span class="keyword-tag">学生作品</span>
+                </div>
+
+                <div class="content-text">
+                    今天我们到底做什么东西？新方向的学生到底在干啥？到底做一些什么东西？我们大概从四个方面来做这个人工智能和设计的交叉和融合：
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">四大融合方向</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能和信息设计的融合</div>
+                            <div class="achievement-item-desc">蒲公英田项目、科技树项目等</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能和工业设计的融合</div>
+                            <div class="achievement-item-desc">3D生成大模型、4D打印技术等</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能和交互设计的融合</div>
+                            <div class="achievement-item-desc">智能座舱、多模态交互技术等</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">人工智能和艺术设计的融合</div>
+                            <div class="achievement-item-desc">非物质文化遗产传承等</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        比如说我们做了智能和信息设计的融合，我们有一个目标就是信息设计要让呈现出来的内容看得懂、记得住、易传播，这不是一个口号，而这是一个人工智能里面的优化目标，我们把每一项目标进行了数学化的建模。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    比如这个蒲公英田项目，是在我们同济大学中法中心的楼下，我们做了一个蒲公英田，给我们同济大学的所有师生做了一个画像，每一个师生都把它画成一个蒲公英，它的成果就像蒲公英的花穗一样在它头顶摇曳，可以看到一个很美的呈现效果。这样别人看完就不再是枯燥的信息，所有人参观过以后会印象深刻。
+                </div>
+
+                <div class="content-text">
+                    第二个项目是我们跟腾讯合作做的，给他们做了一个科技树，跟腾讯还有中科院的研究员合作，中科院负责提供人类科学发展数据，我们负责来做这样的信息设计。这个项目做了三年时间，也在不断地迭代，这里面用到了大模型，用腾讯的混元大模型来分析人类科技发展的历史，把它提取出科技事件，把科技事件进行相互关联，最终我们把它构建成一个科技树。
+                </div>
+
+                <div class="content-text">
+                    在智能和工业设计里面，我们详细梳理了整个工业设计的完整流程，从定制方案到草图绘制到CAD以及到仿真这一个过程，梳理了人工智能到底是怎么样赋能工业设计的不同环节的。我们在研究构建可物理仿真的3D生成大模型的基础模型，然后打造融CAD、CAE以及CAM于一体的交互式设计工具，使得设计师实现所见即所得。
+                </div>
+
+                <div class="content-text">
+                    还有交互设计，我们跟商飞一起在研制下一代飞机的智能座舱，里面有各种各样的多模态交互的技术。大家知道我们现在的自动驾驶汽车的智能驾驶座舱已经非常先进了，但是飞机的其实还是很土，所以他们有这个需求。
+                </div>
+
+                <div class="content-text">
+                    最后是艺术部分，我们有一些老师做了一些尝试，比如做的非物质文化遗产的传承，这个老太太叫库淑兰，她是一个剪纸的民间艺术大师，但是她2000年出头的时候去世了，就意味着她的传承中断了。我们用人工智能延续它的文化传承，做了这样的一个库淑兰剪纸的服装设计案例。
+                </div>
+            </div>
+
+            <!-- 第十章：人才培养成果与展望 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第10章</div>
+                    <h2 class="chapter-title">人才培养成果与展望</h2>
+                    <div class="time-range">⏱️ 29:55-结束</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">学生构成</span>
+                    <span class="keyword-tag">跨专业背景</span>
+                    <span class="keyword-tag">交叉融合</span>
+                    <span class="keyword-tag">学生成就</span>
+                    <span class="keyword-tag">未来展望</span>
+                </div>
+
+                <div class="content-text">
+                    最后一点我想说的就是其实我们搞了这么多东西，到底现在我们这个专业是个什么情况？也就是说我们现在专业里面大概有<strong>55%的学生都是跨专业</strong>，比如英语专业过来的学生，另外大概有<strong>10%左右是数学和物理专业</strong>，他们负责算法，然后最后有<strong>35%左右是设计</strong>，就是我们传统的设计专业上来的同学，所以是非常交叉的一个专业。
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">学生构成比例</div>
+                    <div class="data-card-value">55% + 10% + 35%</div>
+                    <div class="data-card-desc">跨专业 + 理工科 + 设计专业</div>
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        我认为技术工程师为产品创造了生命，科研人员为产品构建了大脑，产品经理和设计师为产品注入了灵魂，这三个缺一不可，这也是一个健康的人工智能与数据设计方向的交叉方向应该有的样子。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    当然这些学生也取得了很多很多的成果，很多成绩也打破了很多个第一，比如说第一次获得学术先锋称号，第一次拿到国际会议的最佳论文奖等等等等一系列，非常为他们这些学生所骄傲。包括我们这个学生没有受过一天的西方教育，但是他最终毕业的时候直接被美国的Adobe研究院招去做研究员。
+                </div>
+
+                <div class="content-text">
+                    最后我们在搞各种活动，各种team building，留下来一些珍贵的影像。我也非常骄傲，这些同学大部分都是女生，这是设计学院的特点。这是我们最终的一个建设的历程，我的报告结束，谢谢大家。
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <div class="footer-content">
+                <h3>曹楠 · 同济大学设计创意学院副院长</h3>
+                <p>在设计学院中创办人工智能专业</p>
+                <p>2025年7月25日 · 31分钟38秒</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+    </script>
+</body>
+</html>
+

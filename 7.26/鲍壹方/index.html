@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代的人机协同思考：TRAE背后的设计故事 - 鲍壹方演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            background: #ffffff;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        .hero {
+            background: #ffffff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 2px solid #e9e9e7;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .speaker-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .speaker-title {
+            font-size: 1.1rem;
+            color: #718096;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .meta-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .keyword {
+            background: #3b82f6;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .chapter {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 0;
+            background: white;
+            position: relative;
+        }
+
+
+
+        .chapter-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            flex: 1;
+        }
+
+        .time-range {
+            font-size: 0.875rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .chapter-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .chapter-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .chapter-keyword {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .important {
+            background: #ffecd2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #f6ad55;
+            font-weight: 500;
+        }
+
+        .data-point {
+            background: #a8edea;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #4fd1c7;
+            font-weight: 500;
+        }
+
+        .quote {
+            background: #d299c2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #b794f6;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: #b794f6;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: serif;
+        }
+
+        /* 文本分段和视觉优化 */
+        .text-segment {
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 3px solid #e2e8f0;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .text-segment:hover {
+            background: #f5f5f5;
+            border-left-color: #3b82f6;
+        }
+        
+        .key-phrase {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .emphasis {
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .data-highlight {
+            background: #fff8e1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #f57f17;
+            border: 1px solid #ffecb3;
+        }
+        
+        /* 引用卡片 */
+        .quote-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 3rem;
+            color: #3b82f6;
+            opacity: 0.3;
+            font-weight: bold;
+        }
+        
+        .quote-content {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-attribution {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* 工具卡片网格 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .tool-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tool-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        /* 数据卡片网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* 统一hero部分样式类名 */
+                .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+        
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            color: #718096;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .chapter {
+                padding: 20px;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .speaker-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        /* 现代化样式 - Notion风格 */
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #37352f;
+            font-weight: 500;
+        }
+
+
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #37352f;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="container">
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="鲍壹方.png" alt="鲍壹方" onerror="this.style.display='none'">
+            </div>
+            <h1 class="main-title">AI时代的人机协同思考：TRAE背后的设计故事</h1>
+            <div class="subtitle">鲍壹方演讲实录</div>
+            <p class="speaker-name">鲍壹方 · 字节跳动TRAE产品设计师</p>
+            
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月26日</div>
+                <div class="meta-item">⏱️ 27分24秒</div>
+                <div class="meta-item">📍 下午1:34</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">1</div>
+                    <div class="chapter-title">🎯 产品概述与发展历程</div>
+                    <div class="time-range">03:07</div>
+                </div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p>字节跳动TRAE产品从<span class="key-phrase">2023年年底</span>开始设计开发，经历了从0到1，从1到2的完整过程。作为一款<span class="emphasis">AI IDE产品</span>，我们在<span class="key-phrase">2024年6月</span>发布第一版，到<span class="key-phrase">2025年6月</span>一年时间内获得了<span class="data-highlight">100万月活用户</span>的成绩。</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">100万</div>
+                            <div class="stat-label">月活跃用户</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1.5年</div>
+                            <div class="stat-label">从0到1发展历程</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">多次</div>
+                            <div class="stat-label">界面设计迭代</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-segment">
+                        <p>产品界面设计经历了多次重大迭代：从最初类似<span class="emphasis">VSCO风格</span>的界面，到2024年6月的第一版UI设计，再到2025年1月的<span class="key-phrase">本地端界面</span>，最后到7月份刚发布的最新版本。在短短一年半时间内，我们改了非常多版的界面设计和LOGO。</p>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            每一个版本都要思考我们要讲什么样的品牌故事，设计的色彩、字体、投影、尺寸和倒角等视觉元素都传达着我们的品牌故事。AI可能未来会帮我们生成界面，但设计界面表达的角色应该由人来做。
+                        </div>
+                        <div class="quote-attribution">— 关于AI时代设计师角色的思考</div>
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">产品发展</span>
+                    <span class="chapter-keyword">界面迭代</span>
+                    <span class="chapter-keyword">品牌故事</span>
+                    <span class="chapter-keyword">100万月活</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">2</div>
+                    <div class="chapter-title">🚀 品牌运营的关键决策</div>
+                    <div class="time-range">06:42</div>
+                </div>
+                <div class="chapter-content">
+                    <p>在去年6月份发布版本后，我们做了一个关键的决策节点：<span class="highlight">要去做品牌运营推广</span>，打造品牌知名度。因为我们是一个从零用户开始的产品，这个决策让我们能够在今年拿到100万月活用户的成绩。</p>
+                    
+                    <div class="quote">
+                        我之前会觉得做产品配置、做好产品体验是很重要的，但在经历这个过程后发现，去做运营推广，让别人知道我们的品牌故事，这也是一个很关键的节点。
+                    </div>
+                    
+                    <p>当然，我们可以用很多AI工具去帮我们提效，去做这些运营和宣传活动。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">品牌运营</span>
+                    <span class="chapter-keyword">推广策略</span>
+                    <span class="chapter-keyword">用户增长</span>
+                    <span class="chapter-keyword">AI提效</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">3</div>
+                    <div class="chapter-title">💻 第一阶段：AI辅助编码</div>
+                    <div class="time-range">07:35</div>
+                </div>
+                <div class="chapter-content">
+                    <p>2023年年底，产品处于<span class="highlight">AI辅助coding</span>阶段。我们用内部的字节coding数据训练了一个小模型，能够基于用户编码时自动推荐相关代码，用户只需按Tab键就能采纳建议。</p>
+                    
+                    <p>在这个阶段，我主要做了两件事：</p>
+                    <div class="important">
+                        🔍 <strong>用户访谈</strong>：与产品经理一起编写访谈大纲，亲自邀请用户，了解他们的体验和诉求。
+                    </div>
+                    <div class="important">
+                        📚 <strong>行业研究</strong>：阅读相关论文，发现加入AI补全交互后，程序员会有暂停判断和等待AI建议的新行为模式。
+                    </div>
+                    
+                    <p>通过分析用户在编码过程中的行为（写代码、写prompt、暂停等待、判断正确性），我们建立了用户行为数据，反哺给算法模型，让它能在更精准的时机推荐用户想要的代码。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">AI辅助编码</span>
+                    <span class="chapter-keyword">用户访谈</span>
+                    <span class="chapter-keyword">行为分析</span>
+                    <span class="chapter-keyword">Tab键交互</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">4</div>
+                    <div class="chapter-title">💬 会话能力的融入</div>
+                    <div class="time-range">10:01</div>
+                </div>
+                <div class="chapter-content">
+                    <p>跟大多数产品一样，我们将<span class="highlight">CHAT会话能力</span>融入产品：在IDE右侧加了AI会话区域，在主编码区域也加入了能快捷唤起的对话框，用户可以进行多轮交流和会话。</p>
+                    
+                    <p>由于是从0到1的产品，我在这个过程中主要做了两件核心事情：</p>
+                    <div class="data-point">
+                        📊 <strong>详细的竞品调研</strong>：了解行业生态，确定功能可以做到什么程度
+                    </div>
+                    <div class="data-point">
+                        🎨 <strong>原型设计</strong>：用Figma画了非常多的草图和原型，串联起第一版本的交互逻辑
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">会话能力</span>
+                    <span class="chapter-keyword">竞品调研</span>
+                    <span class="chapter-keyword">原型设计</span>
+                    <span class="chapter-keyword">Figma</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">5</div>
+                    <div class="chapter-title">🌳 第二阶段：AI结对编程</div>
+                    <div class="time-range">10:43</div>
+                </div>
+                <div class="chapter-content">
+                    <p>第二阶段我们称为<span class="highlight">AI Pair Programming</span>，采用tree的logo版本，更偏向于AI和人一起结对编程的状态。</p>
+                    
+                    <p>这个阶段的核心是<span class="highlight">Context（上下文）</span>。我们发现仅仅把AI会话嵌入还不够，需要在代码编辑器里给模型更精准的上下文，它才能给用户更精准的回复。</p>
+                    
+                    <div class="important">
+                        🎯 <strong>Rules规则</strong>：优先级非常高的上下文类型
+                        <br>• User规则：用户个人的兴趣和偏好，类似ChatGPT的memory
+                        <br>• 项目规则：基于不同项目创建的特定规则
+                    </div>
+                    
+                    <p>我们还封装了市面上常见的API文档、组件库、图表库等，帮助提升生产效率。同时支持用户自由选择代码或指令添加到输入框内。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">结对编程</span>
+                    <span class="chapter-keyword">上下文</span>
+                    <span class="chapter-keyword">规则系统</span>
+                    <span class="chapter-keyword">组件库</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">6</div>
+                    <div class="chapter-title">🤖 Agent代理能力</div>
+                    <div class="time-range">13:49</div>
+                </div>
+                <div class="chapter-content">
+                    <p>在这个阶段我们开发了<span class="highlight">Agent（AI代理）</span>能力，内置提供了Builder和MCP等官方agent，同时提供用户自定义agent的功能。</p>
+                    
+                    <div class="data-point">
+                        🛠️ <strong>自定义Agent</strong>：用户可以给agent设定prompt，定义它更擅长设计还是编码，配置不同工具来满足个性化诉求
+                    </div>
+                    
+                    <p>特别值得一提的是<span class="highlight">MCP市场</span>，通过MCP可以把各种外部工具与大模型连接，完成自动化任务：</p>
+                    
+                    <div class="important">
+                        🎨 <strong>Blender MCP</strong>：通过会话方式在3D建模软件中生成代码
+                        <br>🎯 <strong>Figma MCP</strong>：将Figma设计稿直接转换成代码，或用编码方式在Figma中生成设计稿
+                    </div>
+                    
+                    <p>通过MCP方式能够串联工具内部和外部的各种工具，这可能是未来工具发展的一个方向。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">AI代理</span>
+                    <span class="chapter-keyword">自定义Agent</span>
+                    <span class="chapter-keyword">MCP市场</span>
+                    <span class="chapter-keyword">工具连接</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">7</div>
+                    <div class="chapter-title">⚡ 三个核心快捷键</div>
+                    <div class="time-range">16:44</div>
+                </div>
+                <div class="chapter-content">
+                    <p>总结前两个阶段的关键功能，可以用<span class="highlight">三个快捷键</span>来表达：</p>
+                    
+                    <div class="data-point">
+                        🎯 <strong>@agent</strong>：找某一个代理
+                        <br>📝 <strong>#context</strong>：给他一些上下文  
+                        <br>⚡ <strong>/指令</strong>：给他一个指令去做事情
+                    </div>
+                    
+                    <p>这三个快捷键概括了我们在第一、二阶段做的核心功能。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">快捷键</span>
+                    <span class="chapter-keyword">@agent</span>
+                    <span class="chapter-keyword">#context</span>
+                    <span class="chapter-keyword">/指令</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">8</div>
+                    <div class="chapter-title">🚀 第三阶段：AI智能编程3.0</div>
+                    <div class="time-range">16:44</div>
+                </div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="key-phrase">7月21号</span>发布的版本代表<span class="emphasis">AI智能编程3.0</span>概念，类似<span class="data-highlight">ChatGPT的O3模型</span>，带有思维链并能使用工具。</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">🤖</div>
+                            <div class="stat-label">Auto Model<br>自动选择最适合的模型</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">📋</div>
+                            <div class="stat-label">Auto Context<br>自动管理上下文</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">🛠️</div>
+                            <div class="stat-label">Auto Tools<br>自动选择和使用工具</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon">💻</div>
+                            <div class="tool-title">终端</div>
+                            <div class="tool-desc">命令行操作和项目管理</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">📄</div>
+                            <div class="tool-title">文档</div>
+                            <div class="tool-desc">需求分析和设计文档</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">✏️</div>
+                            <div class="tool-title">编辑器</div>
+                            <div class="tool-desc">前端后端代码开发</div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon">🌐</div>
+                            <div class="tool-title">浏览器</div>
+                            <div class="tool-desc">项目部署和预览</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                        AI能够自己去solo，自己去自由地完成一些事情。
+                        </div>
+                        <div class="quote-attribution">— AI智能编程3.0的核心能力</div>
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">智能编程3.0</span>
+                    <span class="chapter-keyword">Auto模式</span>
+                    <span class="chapter-keyword">四种工具</span>
+                    <span class="chapter-keyword">完整流程</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">9</div>
+                    <div class="chapter-title">🎨 实际案例演示</div>
+                    <div class="time-range">20:37</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我真实地输入了一句query：<span class="highlight">"让它帮我生成一个冥想解压的APP，界面采用柔和的风格"</span>，它就会基于需求生成描述，然后运行终端指令。</p>
+                    
+                    <div class="data-point">
+                        ✨ <strong>完整流程</strong>：从需求描述 → 原型设计 → UI设计 → 开发实现 → 部署上线
+                    </div>
+                    
+                    <p>通过这样的能力，我们能够很轻松地去实现一些原型。在UI设计上，我们有更多的参与空间，因为很多时候AI生成的设计缺乏个性化。最后可以通过一个链接访问真实的产品。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">实际案例</span>
+                    <span class="chapter-keyword">冥想APP</span>
+                    <span class="chapter-keyword">完整流程</span>
+                    <span class="chapter-keyword">个性化设计</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">10</div>
+                    <div class="chapter-title">💡 设计师的核心能力</div>
+                    <div class="time-range">22:08</div>
+                </div>
+                <div class="chapter-content">
+                    <p>在做这件事情的过程中，我总结了设计师需要的一些核心能力：</p>
+                    
+                    <div class="important">
+                        🔍 <strong>洞察能力</strong>：做竞品分析、用户调研，理解用户背后的真实需求
+                    </div>
+                    
+                    <div class="important">
+                        ⚡ <strong>快速输出能力</strong>：快速输出原型，理清用户交互的业务逻辑，做视觉设计影响用户体验和情感
+                    </div>
+                    
+                    <div class="important">
+                        🤝 <strong>沟通管理能力</strong>：不仅是与人沟通，未来还要与AI进行协作对齐，告诉AI如何解决问题
+                    </div>
+                    
+                    <p>这些能力在AI时代变得更加重要，特别是与AI协作的能力。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">洞察能力</span>
+                    <span class="chapter-keyword">快速输出</span>
+                    <span class="chapter-keyword">沟通管理</span>
+                    <span class="chapter-keyword">AI协作</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">11</div>
+                    <div class="chapter-title">🎓 学术背景与思考</div>
+                    <div class="time-range">24:21</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我的硕士毕业论文研究的是<span class="highlight">在完成任务过程中人会花费的时间</span>这个话题。</p>
+                    
+                    <div class="quote">
+                        比如说前段时间学习其实是一个非常技术性的事情，也非常难，我要做好几天才能完成。但我愿意这样做，是因为我想要这样的结果。
+                    </div>
+                    
+                    <p>这样的概念对于我们的工作和人生选择都有很多影响，这也是我选择从事这个领域的原因之一。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">学术研究</span>
+                    <span class="chapter-keyword">时间投入</span>
+                    <span class="chapter-keyword">人生选择</span>
+                    <span class="chapter-keyword">价值思考</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">12</div>
+                    <div class="chapter-title">🙏 总结与感谢</div>
+                    <div class="time-range">25:39</div>
+                </div>
+                <div class="chapter-content">
+                    <p>感谢大家的聆听。通过TRAE产品的设计历程，我们看到了AI时代人机协同的巨大潜力。从最初的AI辅助编码，到结对编程，再到智能编程3.0，每个阶段都体现了技术与设计的深度融合。</p>
+                    
+                    <div class="important">
+                        🌟 作为设计师，我们不仅要掌握传统的设计技能，更要学会与AI协作，在AI时代找到自己独特的价值和定位。
+                    </div>
+                    
+                    <p>希望我的分享能给大家一些启发，谢谢大家！</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">总结</span>
+                    <span class="chapter-keyword">人机协同</span>
+                    <span class="chapter-keyword">设计价值</span>
+                    <span class="chapter-keyword">AI时代</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📝 演讲实录整理 | 🎯 AI时代的人机协同思考：TRAE背后的设计故事</p>
+            <p>演讲者：鲍壹方 · 字节跳动TRAE产品设计师</p>
+            <p>时间：2025年7月26日 | 时长：27分钟24秒</p>
+        </div>
+    </div>
+
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+    </script>
+</body>
+</html>
+

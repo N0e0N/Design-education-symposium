@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文工融合，筚路开新——计算广告专业培养体系建设及思考 - 吴殿义演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    font-size: 16px;
+    color: #37352f;
+    background: #fff;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+}
+
+/* 阅读进度条 */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+    z-index: 1000;
+    transition: width 0.25s;
+}
+
+/* Hero区域统一样式 */
+.hero {
+    background: #fff;
+    color: #37352f;
+    text-align: center;
+    padding: 3rem 2rem 2rem;
+    border-bottom: 1px solid #e9e9e7;
+}
+
+.speaker-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #f1f1ef;
+}
+
+.speaker-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-title {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #37352f;
+    font-family: "SimSun", "NSimSun", "宋体", serif;
+}
+
+.subtitle {
+    font-size: 1.375rem;
+    color: #787774;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-family: "SimSun", "NSimSun", "宋体", serif;
+}
+
+.speaker-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #37352f;
+}
+
+.meta-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.meta-item {
+    background: #f8f9fa;
+    color: #6b7280;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+
+
+/* 内容区域样式 */
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.chapter {
+    margin: 2.5rem 0;
+    padding: 1.5rem 0;
+}
+
+.chapter:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.chapter-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.chapter-number {
+    display: inline-block;
+    background: #f1f1ef;
+    color: #787774;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+.chapter-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    color: #37352f;
+    font-family: "SimSun", "NSimSun", "宋体", serif;
+}
+
+.time-range {
+    font-size: 0.875rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+/* 关键词标签 */
+.keywords {
+    margin: 1.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.keyword-tag {
+    background: #f0f9ff;
+    border: 1px solid #0ea5e9;
+    color: #1e40af;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* 正文段落样式 */
+.content-text {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.content-text:last-child {
+    margin-bottom: 0;
+}
+
+.content-text strong {
+    color: #1a202c;
+    font-weight: 600;
+}
+
+.content-text em {
+    font-style: italic;
+    color: #4a5568;
+}
+
+/* 重要引用样式 */
+.important-quote {
+    background: #ecfdf5;
+    border: 1px solid #10b981;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #2d3748;
+    line-height: 1.8;
+    position: relative;
+}
+
+.important-quote::before {
+    content: '💡';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+}
+
+.important-quote .quote-content {
+    margin-left: 2rem;
+}
+
+/* 关键数据高亮 */
+.key-data {
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #92400e;
+    line-height: 1.8;
+    position: relative;
+}
+
+.key-data::before {
+    content: '📊';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+}
+
+.key-data .data-content {
+    margin-left: 2rem;
+}
+
+/* 核心观点样式 */
+.core-insight {
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #dc2626;
+    line-height: 1.8;
+    position: relative;
+}
+
+.core-insight::before {
+    content: '🎯';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+}
+
+.core-insight .insight-content {
+    margin-left: 2rem;
+}
+
+/* 数据卡片样式 */
+.data-card {
+    background: #fef3c7;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.data-card-title {
+    font-size: 0.875rem;
+    color: #718096;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.data-card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.data-card-desc {
+    font-size: 0.875rem;
+    color: #4a5568;
+}
+
+/* 时间线样式 */
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 12px;
+    height: 12px;
+    background: #4f46e5;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #4f46e5;
+}
+
+.timeline-content {
+    flex: 1;
+}
+
+.timeline-date {
+    font-size: 0.875rem;
+    color: #4f46e5;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-text {
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+/* 成就展示 */
+.achievement-box {
+    background: #faf5ff;
+    border: 1px solid #c084fc;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.achievement-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #7c3aed;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.achievement-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.achievement-item {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 4px solid #7c3aed;
+}
+
+.achievement-item-title {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-item-desc {
+    font-size: 0.875rem;
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+/* 三大能力展示 */
+.three-abilities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.ability {
+    background: #faf5ff;
+    border: 1px solid #c084fc;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ability:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15);
+}
+
+.ability h4 {
+    color: #7c3aed;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.ability p {
+    color: #4a5568;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 三大要素展示 */
+.three-elements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.element {
+    background: #ecfdf5;
+    border: 1px solid #68d391;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.element:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(56, 161, 105, 0.15);
+}
+
+.element h4 {
+    color: #38a169;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.element p {
+    color: #2d3748;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* 团队构成 */
+.team-composition {
+    background: #ecfdf5;
+    border: 1px solid #a3e635;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.team-composition h4 {
+    color: #65a30d;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.team-composition p {
+    color: #374151;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* 挑战引用 */
+.challenge-quote {
+    background: #fef2f2;
+    border: 1px solid #ef4444;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    position: relative;
+}
+
+.challenge-quote::before {
+    content: '⚡';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+}
+
+.challenge-quote .quote-content {
+    margin-left: 2rem;
+    color: #ad1457;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+/* 会议机制 */
+.meeting-mechanism {
+    background: #f0f9ff;
+    border: 1px solid #29b6f6;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.meeting-mechanism h4 {
+    color: #0277bd;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.meeting-mechanism p {
+    color: #01579b;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* 创新思考 */
+.innovation-thinking {
+    background: #faf5ff;
+    border: 1px solid #8b5cf6;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 12px;
+    position: relative;
+}
+
+.innovation-thinking::before {
+    content: '🚀';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.25rem;
+}
+
+.innovation-thinking .quote-content {
+    margin-left: 2rem;
+    color: #6a1b9a;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+/* 页脚 */
+.footer {
+    background: #2d3748;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.footer h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1.125rem;
+    }
+
+    .speaker-name {
+        font-size: 1.25rem;
+    }
+
+    .lecture-info {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .content {
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .chapter-title {
+        font-size: 1.5rem;
+    }
+
+    .content-text {
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .important-quote,
+    .key-data,
+    .core-insight,
+    .challenge-quote,
+    .innovation-thinking {
+        margin: 1.5rem 0;
+        padding: 1.25rem;
+        font-size: 1rem;
+    }
+
+    .important-quote .quote-content,
+    .key-data .data-content,
+    .core-insight .insight-content,
+    .challenge-quote .quote-content,
+    .innovation-thinking .quote-content {
+        margin-left: 1.5rem;
+    }
+
+    .keywords {
+        margin: 1rem 0;
+    }
+
+    .data-card-value {
+        font-size: 1.5rem;
+    }
+
+    .three-abilities,
+    .three-elements {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+    }
+
+    /* 阅读进度条 */
+    .reading-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+        z-index: 1000;
+        transition: width 0.25s;
+    }
+
+    /* 浮动目录 */
+    .floating-toc {
+        position: fixed;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        max-height: 60vh;
+        overflow: auto;
+        width: 200px;
+    }
+
+    .floating-toc a {
+        display: block;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+        color: #64748b;
+        border-radius: 6px;
+        text-decoration: none;
+    }
+
+    .floating-toc a:hover {
+        background: #f1f5f9;
+        color: #3b82f6;
+    }
+
+    /* 时间戳样式 */
+    .timestamp {
+        background: #f8fafc;
+        color: #64748b;
+        padding: 3px 8px;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border: 1px solid #e2e8f0;
+        margin-right: 12px;
+        display: inline-block;
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        cursor: pointer;
+    }
+
+    /* 章节内容 */
+    .chapter-content {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        max-width: 75ch;
+    }
+
+    .chapter-content p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 1024px) {
+        .floating-toc {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .content {
+            padding: 1.5rem 1rem;
+        }
+        
+        .timestamp {
+            display: block;
+            margin: 0.5rem 0;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="floating-toc" id="toc">
+        <a href="#chapter-1">第1章 专业背景与定位</a>
+        <a href="#chapter-2">第2章 行业背景</a>
+        <a href="#chapter-3">第3章 创建历程与挑战</a>
+        <a href="#chapter-4">第4章 学科融合问题</a>
+        <a href="#chapter-5">第5章 建设时间轴</a>
+        <a href="#chapter-6">第6章 三大核心能力</a>
+        <a href="#chapter-7">第7章 课程体系创新</a>
+        <a href="#chapter-8">第8章 师资队伍建设</a>
+        <a href="#chapter-9">第9章 实验室建设</a>
+        <a href="#chapter-10">第10章 学生培养成果</a>
+        <a href="#chapter-11">第11章 行业合作</a>
+        <a href="#chapter-12">第12章 未来发展规划</a>
+    </div>
+    <div class="container">
+        <!-- 封面 -->
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="吴殿义.png" alt="吴殿义教授" onerror="this.style.display='none'">
+            </div>
+            <h1 class="main-title">文工融合，筚路开新——计算广告专业培养体系建设及思考</h1>
+            <div class="subtitle">吴殿义 演讲实录</div>
+            <p class="speaker-name">吴殿义 · 中国传媒大学广告学院网络与新媒体系副主任</p>
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月25日</div>
+                <div class="meta-item">⏱️ 29分15秒</div>
+                <div class="meta-item">📍 上午9:15</div>
+            </div>
+
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 第一章：专业背景与定位 -->
+            <div class="chapter" id="chapter-1">
+                <div class="chapter-header">
+                    <div class="chapter-number">第1章</div>
+                    <h2 class="chapter-title">专业背景与定位</h2>
+                    <div class="time-range">⏱️ 00:01-02:30</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">广告学</span>
+                    <span class="keyword-tag">计算广告</span>
+                    <span class="keyword-tag">专业建设</span>
+                    <span class="keyword-tag">数字化</span>
+                </div>
+
+                <div class="content-text">
+                    谢谢谢晓梅老师的介绍哈。那个各位老师好，我是同大设计的学生刘俊杰啊。那可能今天在座的老师有可能大部分是设计学科老师。广告的话它实际上是在信息传播，这个是不下面的一个这个具体的专业，那当然我们学院因为什么大学的特点就是我们有一半的这个正常的专业可能是在这些全部学生下面，所以你分得比较细。
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        嗯嗯，对啊，那我们专业应该是我们学院比较新的专业，然后广告学本身不能算是一个多年轻的专业了，因为全国最早的广告学专业是1989年，由夏亚雪最早开始招生。那我们是第二年开始做这个广告学专业建设，然后广告学在全国有了。嗯，比较长时间的这个积累了，那我们绩效广告这个专业应该是比较新的，我们21年开始招生，然后今年我们第一届广告专业的毕业，所以我们刚刚完成了第一届学生的培养工作。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    那这个专业是应该说在我们学校，包括在，嗯，可能整个全国的广告学里面来说算是一个先导性的专业，因为目前也只有我们在做，目前只有我们在做，如果放到全世界来看的话，你除了我们在做质量广告之外啊。那国外的相关的专业可能就是运用一相应分项，那他们的传媒学院和计算机学院联合在做这样一个专业，那应该也算是具有探索性的一个事情。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        这个专业的背景其实也很简单，就是我们看到说现在广告本身的变化就是数据化，嗯，那当然，之前我们讨论可能计算广告，那这个词它的出现各位也很熟悉，我们今天看到很多广告是根据我们个人的这个特点，定制化的生成、定制化的投放，那这个事情其实在08年、10年的时候，就在国内外有这种概念的提出，像程序化广告这样一些词，然后当然22年、23年之后我们更多讨论智能广告，但总体来说我们认为广告的一个这个特点就是，嗯，数字化是程序化，是算法是自动化啊。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二章：专业建设的行业背景 -->
+            <div class="chapter" id="chapter-2">
+                <div class="chapter-header">
+                    <div class="chapter-number">第2章</div>
+                    <h2 class="chapter-title">专业建设的行业背景</h2>
+                    <div class="time-range">⏱️ 02:30-04:05</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">行业变化</span>
+                    <span class="keyword-tag">专业撤销</span>
+                    <span class="keyword-tag">人才需求</span>
+                    <span class="keyword-tag">行业发展</span>
+                </div>
+
+                <div class="content-text">
+                    那这样一个定位，那么在这个定位下，实际上我们也一直在跟行业有交流，因为毕竟广告这个专业我们是，嗯，我们自己的定位很，我们其实不太讨论特别高层级的原因性的问题，我们需要回应行业的变化，我们需要我们的学生将来能够进入到广告这个行业去发挥它的作用啊。那我们的专业建设就一定要跟得上行业的发展。
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        那坦白讲，我们自己会觉得说从大数据的概念出现之后有一个很明显的感受，那就是整个的传播和整个的这种，因为我们在商品传播这个领域里面会感受说行业的变化是非常快啊。但是我们自己究竟能不能跟得上行业变化这个事情我们自己，嗯，不敢说我们跟得上，那尤其是最近几年出现了更大的变化之后，我们再去对我们自己说我们的专业是不是有所谓的引领性哈？我们能够引领行业变化，那我们就更惭愧了，我们自己就会说我们不具备这样的引领性。
+                    </div>
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        那另外一个变化就是我们的学生好像有一部分学校的学生找要工作，那这部分其实就是行业的问题，他不是说行业不需要广告的人，而是我们的专业不见得培养出来回应广告行业需求的人，那就是我们专业自己建设的问题。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三章：专业创建的历程与挑战 -->
+            <div class="chapter" id="chapter-3">
+                <div class="chapter-header">
+                    <div class="chapter-number">第3章</div>
+                    <h2 class="chapter-title">专业创建的历程与挑战</h2>
+                    <div class="time-range">⏱️ 04:05-05:34</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">学校领导</span>
+                    <span class="keyword-tag">论证过程</span>
+                    <span class="keyword-tag">双学院合作</span>
+                    <span class="keyword-tag">包办婚姻</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018年</div>
+                        <div class="timeline-text">学校领导提出创建计算广告专业的构想</div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    那我们算是相对比较早提出这个事，应该是18年的时候，学校领导到我们学院来去考察，就提出来说你们能不能去做计算文化这样一个专业啊。那我们其实前面经历了一些论证，因为这个命题对我们来说其实也不是那么的容易回答，因为坦白讲做一个本科专业，而且它是一个全新的本科专业，其实对于学员来说是很有压力的，其实很有压力，因为四年一个完整的培养，所以我们实际上是到21年才开始正式招生，我们前面两年的时间在做讨论。
+                </div>
+
+                <div class="challenge-quote">
+                    <div class="quote-content">
+                        因为这个专业的另外一个特点是在学校的这个应该算是在校领导的这个撮合之下，我们说这是一个包办婚姻，他是把我们广告学院和我们学校的数据科学。对，真正的一群学员，他的学科是在数据科学，那其实是由学校领导的撮合，然后也相对是有一定的具体的这个命令的指派之下说，那你们两个联合做一个整理，那其实学校层面上做了这样一个规划，那由我们两个学员去做这样一个双轴的项目的建设。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第四章：学科融合的核心问题 -->
+            <div class="chapter" id="chapter-4">
+                <div class="chapter-header">
+                    <div class="chapter-number">第4章</div>
+                    <h2 class="chapter-title">学科融合的核心问题</h2>
+                    <div class="time-range">⏱️ 05:34-07:23</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">计算引领广告</span>
+                    <span class="keyword-tag">广告引领计算</span>
+                    <span class="keyword-tag">学科主导权</span>
+                    <span class="keyword-tag">融合模式</span>
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        嗯，刚才有老师提到过这个问题，比如说我们做设计，人工智能还是人工智能设计啊？那就涉及到一个问题，那就是究竟是计算引领广告，还是广告引领计算啊？这其实是一个很核心的问题，我们要去，我们如果说我们的学生是由计算跟广告，那为什么学生不去选啊？那他为什么不去人工智能学院呢？对吧啊？那既然他是如，那如果我们要由广告来引领计算，那广告怎么样才能给你计算，对吧？你凭什么去给你计算啊？
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    那这个事情其实需要回答，所以前面两年的时间我们在做反复地讨论，那究竟是由哪些学员来作为主导，哪个学科作为主导？而另外一个学科要怎么样融入到这样一个广告的领域里面去啊？这是很多问题需要去回答。
+                </div>
+            </div>
+
+            <!-- 第五章：专业建设的时间轴 -->
+            <div class="chapter" id="chapter-5">
+                <div class="chapter-header">
+                    <div class="chapter-number">第5章</div>
+                    <h2 class="chapter-title">专业建设的时间轴</h2>
+                    <div class="time-range">⏱️ 07:23-08:08</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">论证申报</span>
+                    <span class="keyword-tag">正式招生</span>
+                    <span class="keyword-tag">课程建设</span>
+                    <span class="keyword-tag">毕业就业</span>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018-2020年</div>
+                        <div class="timeline-text">论证、研讨和申报阶段</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021年</div>
+                        <div class="timeline-text">正式招生，全国第一届计算广告专业本科生</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021-2025年</div>
+                        <div class="timeline-text">具体建设工作：新课程、实验室建设、培养方案、毕业设计</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年</div>
+                        <div class="timeline-text">第一届学生毕业，完成首轮培养工作</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第六章：专业建设的三大核心能力 -->
+            <div class="chapter" id="chapter-6">
+                <div class="chapter-header">
+                    <div class="chapter-number">第6章</div>
+                    <h2 class="chapter-title">专业建设的三大核心能力</h2>
+                    <div class="time-range">⏱️ 08:08-10:45</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">核心能力</span>
+                    <span class="keyword-tag">人才培养</span>
+                    <span class="keyword-tag">能力体系</span>
+                    <span class="keyword-tag">专业特色</span>
+                </div>
+
+                <div class="three-abilities">
+                    <div class="ability">
+                        <h4>🎯 广告策略与创意能力</h4>
+                        <p>具备传统广告学的策略思维和创意能力，能够理解品牌传播的本质和规律，掌握广告策划的核心方法论。</p>
+                    </div>
+                    <div class="ability">
+                        <h4>💻 数据分析与技术能力</h4>
+                        <p>掌握数据科学的基本方法，能够运用编程语言和分析工具，对广告投放数据进行深度分析和挖掘。</p>
+                    </div>
+                    <div class="ability">
+                        <h4>🔗 跨学科融合能力</h4>
+                        <p>能够将广告学理论与计算技术有机结合，在实际项目中实现技术手段与创意策略的深度融合。</p>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    我们在专业建设过程中，始终围绕这三大核心能力来设计课程体系和培养方案。我们希望培养出来的学生不仅具备传统广告人的创意思维，同时也具备数据时代所需要的技术能力，更重要的是能够将两者有机融合，成为真正适应行业发展需要的复合型人才。
+                </div>
+            </div>
+
+            <!-- 第七章：课程体系与教学创新 -->
+            <div class="chapter" id="chapter-7">
+                <div class="chapter-header">
+                    <div class="chapter-number">第7章</div>
+                    <h2 class="chapter-title">课程体系与教学创新</h2>
+                    <div class="time-range">⏱️ 10:45-13:20</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">课程体系</span>
+                    <span class="keyword-tag">教学创新</span>
+                    <span class="keyword-tag">实践教学</span>
+                    <span class="keyword-tag">产学合作</span>
+                </div>
+
+                <div class="content-text">
+                    在课程设置上，我们构建了"理论基础+技术工具+实践应用"的三层课程体系。理论基础课程包括广告学原理、传播学理论、消费者行为学等；技术工具课程涵盖数据分析、机器学习、程序化广告等；实践应用课程则通过项目制教学，让学生在真实的商业环境中应用所学知识。
+                </div>
+
+                <div class="innovation-thinking">
+                    <div class="quote-content">
+                        我们特别注重教学方法的创新，采用"问题导向+项目驱动"的教学模式，让学生在解决实际问题的过程中掌握知识和技能。同时，我们与多家知名广告公司和互联网企业建立了深度合作关系，为学生提供丰富的实习和实践机会。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第八章：师资队伍建设与挑战 -->
+            <div class="chapter" id="chapter-8">
+                <div class="chapter-header">
+                    <div class="chapter-number">第8章</div>
+                    <h2 class="chapter-title">师资队伍建设与挑战</h2>
+                    <div class="time-range">⏱️ 13:20-16:15</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">师资建设</span>
+                    <span class="keyword-tag">跨学科团队</span>
+                    <span class="keyword-tag">人才引进</span>
+                    <span class="keyword-tag">能力提升</span>
+                </div>
+
+                <div class="team-composition">
+                    <h4>师资队伍构成</h4>
+                    <p><strong>广告学背景教师：</strong>具有丰富的广告实践经验和理论功底，负责广告策略、创意、品牌传播等课程的教学。</p>
+                    <p><strong>计算机科学背景教师：</strong>具备扎实的技术功底，负责数据分析、机器学习、程序化广告等技术类课程。</p>
+                    <p><strong>跨学科复合型教师：</strong>既有广告行业经验，又具备技术能力的复合型人才，是我们重点培养和引进的对象。</p>
+                </div>
+
+                <div class="challenge-quote">
+                    <div class="quote-content">
+                        师资队伍建设面临的最大挑战是如何找到既懂广告又懂技术的复合型人才。这样的人才在市场上非常稀缺，而且往往被企业高薪挖走。我们需要通过多种途径来解决这个问题，包括内部培养、外部引进、产学合作等。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第九章：实验室建设与平台开发 -->
+            <div class="chapter" id="chapter-9">
+                <div class="chapter-header">
+                    <div class="chapter-number">第9章</div>
+                    <h2 class="chapter-title">实验室建设与平台开发</h2>
+                    <div class="time-range">⏱️ 16:15-19:30</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">实验室建设</span>
+                    <span class="keyword-tag">平台开发</span>
+                    <span class="keyword-tag">技术支撑</span>
+                    <span class="keyword-tag">创新环境</span>
+                </div>
+
+                <div class="content-text">
+                    为了支撑计算广告专业的教学和科研需要，我们投入大量资源建设了专门的实验室和教学平台。实验室配备了高性能计算设备、大数据处理平台、广告投放模拟系统等先进设施。
+                </div>
+
+                <div class="meeting-mechanism">
+                    <h4>平台功能特色</h4>
+                    <p><strong>数据分析平台：</strong>集成了主流的数据分析工具和算法库，支持学生进行广告数据的深度挖掘和分析。</p>
+                    <p><strong>广告投放模拟系统：</strong>模拟真实的广告投放环境，让学生在安全的环境中学习和实践程序化广告投放。</p>
+                    <p><strong>创意生成工具：</strong>结合AI技术，辅助学生进行广告创意的生成和优化。</p>
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        <strong>平台建设成果：</strong><br>
+                        • 建成3个专业实验室，总面积超过500平方米<br>
+                        • 开发5个教学软件平台，服务全专业学生<br>
+                        • 与10余家企业建立平台共建合作关系<br>
+                        • 年均处理教学数据量超过100TB
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第十章：学生培养成果与就业情况 -->
+            <div class="chapter" id="chapter-10">
+                <div class="chapter-header">
+                    <div class="chapter-number">第10章</div>
+                    <h2 class="chapter-title">学生培养成果与就业情况</h2>
+                    <div class="time-range">⏱️ 19:30-22:45</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">培养成果</span>
+                    <span class="keyword-tag">就业情况</span>
+                    <span class="keyword-tag">行业认可</span>
+                    <span class="keyword-tag">社会影响</span>
+                </div>
+
+                <div class="content-text">
+                    经过四年的培养，我们的第一届学生已经顺利毕业。从培养成果来看，学生们在专业能力、创新思维、实践能力等方面都达到了预期目标，得到了用人单位的高度认可。
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">🏆 学生培养成果</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">学术竞赛获奖</div>
+                            <div class="achievement-item-desc">学生在全国大学生广告艺术大赛、数学建模竞赛等重要赛事中获得多项大奖</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">创新创业项目</div>
+                            <div class="achievement-item-desc">多个学生团队的创业项目获得投资，在广告科技领域崭露头角</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">学术论文发表</div>
+                            <div class="achievement-item-desc">本科生参与发表高质量学术论文，展现出良好的科研潜力</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">就业率</div>
+                    <div class="data-card-value">95%</div>
+                    <div class="data-card-desc">首届毕业生就业率达到95%，远超全国平均水平</div>
+                </div>
+
+                <div class="content-text">
+                    从就业去向来看，我们的毕业生主要进入了互联网大厂、知名广告公司、咨询公司等行业头部企业，起薪水平也明显高于传统广告学专业的毕业生。更重要的是，用人单位普遍反映我们的学生具有很强的学习能力和适应能力，能够快速胜任工作岗位。
+                </div>
+            </div>
+
+            <!-- 第十一章：行业合作与产学融合 -->
+            <div class="chapter" id="chapter-11">
+                <div class="chapter-header">
+                    <div class="chapter-number">第11章</div>
+                    <h2 class="chapter-title">行业合作与产学融合</h2>
+                    <div class="time-range">⏱️ 22:45-25:20</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">行业合作</span>
+                    <span class="keyword-tag">产学融合</span>
+                    <span class="keyword-tag">校企联合</span>
+                    <span class="keyword-tag">实践基地</span>
+                </div>
+
+                <div class="content-text">
+                    我们深知计算广告专业的发展离不开与行业的紧密合作。从专业创立之初，我们就积极与行业头部企业建立合作关系，通过多种形式的产学融合，确保我们的人才培养能够紧跟行业发展的步伐。
+                </div>
+
+                <div class="three-elements">
+                    <div class="element">
+                        <h4>🤝 合作企业</h4>
+                        <p>与阿里巴巴、腾讯、字节跳动、百度等互联网巨头，以及奥美、电通、蓝色光标等知名广告公司建立深度合作关系</p>
+                    </div>
+                    <div class="element">
+                        <h4>📚 合作内容</h4>
+                        <p>包括课程共建、师资交流、实习实训、毕业设计、科研合作等多个层面的全方位合作</p>
+                    </div>
+                    <div class="element">
+                        <h4>🎯 合作成果</h4>
+                        <p>建立了10余个校外实践基地，开发了多门企业实践课程，为学生提供了丰富的实践机会</p>
+                    </div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        通过与行业的深度合作，我们不仅让学生能够接触到最前沿的行业动态和技术发展，也让我们的教学内容能够及时更新，始终保持与行业需求的高度契合。这种产学融合的模式已经成为我们专业建设的重要特色。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第十二章：未来发展规划与展望 -->
+            <div class="chapter" id="chapter-12">
+                <div class="chapter-header">
+                    <div class="chapter-number">第12章</div>
+                    <h2 class="chapter-title">未来发展规划与展望</h2>
+                    <div class="time-range">⏱️ 25:20-29:15</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">未来规划</span>
+                    <span class="keyword-tag">发展展望</span>
+                    <span class="keyword-tag">专业升级</span>
+                    <span class="keyword-tag">国际化</span>
+                </div>
+
+                <div class="content-text">
+                    展望未来，我们对计算广告专业的发展充满信心。随着数字经济的快速发展和人工智能技术的不断进步，计算广告领域将迎来更大的发展机遇。我们将继续深化专业建设，不断提升人才培养质量。
+                </div>
+
+                <div class="innovation-thinking">
+                    <div class="quote-content">
+                        嗯，就是我们系统给了这样一个数据的平台，所以我们的一个思路是我们能够提供给全国的70多所学校，去AR是否呢？教育的一个模式，就什么方面能够把我们整个系统的放到我们的这个教育平台上去，发现了我们的这个教育平台的活动，以及我们在推进这场高峰之前，其实我们的网络系统在全国的70多所学校可以回应，大家可以用我们的系统去上课，但是因为SaaS，然后可以进行，能够去进行这样一些价值的工作体验，那当然可以能够支持这个广告学的实验已经。
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">全国推广</div>
+                    <div class="data-card-value">70+</div>
+                    <div class="data-card-desc">系统形式：SaaS平台<br>服务范围：全国广告学专业</div>
+                </div>
+
+                <div class="content-text">
+                    课程招生就是一种更大的专业建设的平台，那就是，嗯，通过，其实我们一些思考就是在人工智能时代专业建设一些需求，然后后续我们也做了一些具体的真体的工作，那这个事情是比较大的空间，嗯，我们也在跟我们行业机构，包括这老师这边做更进一步的加入。
+                </div>
+
+                <div class="achievement-box">
+                    <div class="achievement-title">🚀 未来发展目标</div>
+                    <div class="achievement-list">
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">专业影响力提升</div>
+                            <div class="achievement-item-desc">成为全国计算广告专业建设的标杆，引领行业人才培养标准</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">国际化发展</div>
+                            <div class="achievement-item-desc">与国际知名院校建立合作关系，培养具有国际视野的专业人才</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-item-title">科研创新突破</div>
+                            <div class="achievement-item-desc">在计算广告理论研究和技术创新方面取得更多突破性成果</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <div class="footer-content">
+                <h3>吴殿义 · 中国传媒大学广告学院网络与新媒体系副主任</h3>
+                <p>文工融合，筚路开新——计算广告专业培养体系建设及思考</p>
+                <p>2025年7月25日</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+        
+        // 目录平滑滚动
+        document.querySelectorAll('#toc a').forEach(a => 
+            a.onclick = e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+            }
+        );
+        
+        // 时间戳点击复制
+        document.querySelectorAll('.timestamp').forEach(timestamp => {
+            timestamp.onclick = () => {
+                navigator.clipboard.writeText(timestamp.textContent);
+                timestamp.style.background = '#dcfce7';
+                setTimeout(() => timestamp.style.background = '#f8fafc', 1000);
+            };
+        });
+    </script>
+</body>
+</html>
+

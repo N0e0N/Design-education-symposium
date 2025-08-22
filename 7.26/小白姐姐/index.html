@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计师如何玩转AI - 小白姐姐演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            background: #ffffff;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        .hero {
+            background: #ffffff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .speaker-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 2px solid #e9e9e7;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .speaker-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .speaker-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .speaker-title {
+            font-size: 1.125rem;
+            color: #37352f;
+            background: #f1f1ef;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .meta-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #4a5568;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .keyword {
+            background: #3b82f6;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .chapter {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 0;
+            background: white;
+            position: relative;
+        }
+
+
+
+        .chapter-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3748;
+            flex: 1;
+        }
+
+        .time-range {
+            font-size: 0.875rem;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .chapter-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        .chapter-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .chapter-keyword {
+            background: #e2e8f0;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #92400e;
+        }
+
+        .important {
+            background: #ffecd2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #f6ad55;
+            font-weight: 500;
+        }
+
+        .data-point {
+            background: #a8edea;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #4fd1c7;
+            font-weight: 500;
+        }
+
+        .quote {
+            background: #d299c2;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #b794f6;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: #b794f6;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-family: serif;
+        }
+
+        .achievement {
+            background: #84fab0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #38b2ac;
+            font-weight: 500;
+        }
+
+        .warning {
+            background: #ffeaa7;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #e17055;
+            font-weight: 500;
+        }
+
+        /* 文本分段和视觉优化 */
+        .text-segment {
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 3px solid #e2e8f0;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .text-segment:hover {
+            background: #f5f5f5;
+            border-left-color: #3b82f6;
+        }
+        
+        .key-phrase {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .emphasis {
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .data-highlight {
+            background: #fff8e1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #f57f17;
+            border: 1px solid #ffecb3;
+        }
+        
+        /* 引用卡片 */
+        .quote-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 3rem;
+            color: #3b82f6;
+            opacity: 0.3;
+            font-weight: bold;
+        }
+        
+        .quote-content {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-attribution {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* 数据卡片网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* 平台卡片网格 */
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .platform-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .platform-icon {
+            width: 48px;
+            height: 48px;
+            background: #3b82f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .platform-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        /* 对比表格 */
+        .comparison-table {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .comparison-header {
+            background: #f9fafb;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .comparison-cell {
+            padding: 1.5rem;
+            border-right: 1px solid #e5e7eb;
+        }
+        
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+        
+        .comparison-cell h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-cell p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .stats-grid, .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+        }
+
+        /* 统一hero部分样式类名 */
+        .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+        
+        .subtitle {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+        
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            color: #718096;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .chapter {
+                padding: 20px;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .speaker-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        /* 现代化样式 - Notion风格 */
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #37352f;
+            font-weight: 500;
+        }
+
+
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #37352f;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="container">
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="小白姐姐.png" alt="小白姐姐" onerror="this.style.display='none'">
+            </div>
+            <h1 class="main-title">设计师如何玩转AI</h1>
+            <div class="subtitle">小白姐姐演讲实录</div>
+            <p class="speaker-name">小白姐姐 · AI头部自媒体</p>
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月26日</div>
+                <div class="meta-item">⏱️ 28分5秒</div>
+                <div class="meta-item">📍 下午3:19</div>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">1</div>
+                    <div class="chapter-title">👋 个人经历与转型之路</div>
+                    <div class="time-range">00:00</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我做了<span class="highlight">15年的产品设计师</span>，主要专注于UI/UX方向，涉及游戏、金融等多个领域。我的设计生涯始于2008年，当时在交大，老师告诉我们有一个新平台叫<span class="highlight">App Store</span>。</p>
+                    
+                    <div class="achievement">
+                        🎮 <strong>早期成功</strong>：我们做的一个简单小游戏，上线一周后每天能收入2万美金
+                    </div>
+                    
+                    <p>但游戏的生命周期很短，在不会运营的情况下，大概只能持续一到两个星期。当时没有好的孵化器，我们也不知道要补充什么样的人才，最后决定进入传统平台型公司。</p>
+                    
+                    <p>我在<span class="highlight">搜狗做输入法</span>，覆盖了全球大概5亿用户，也拿了设计领域的一些奖项。我的职业经历可以总结为三个阶段：<span class="highlight">产品研发、产品体验设计师、科技IP内容制作</span>。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">15年设计师</span>
+                    <span class="chapter-keyword">App Store</span>
+                    <span class="chapter-keyword">搜狗输入法</span>
+                    <span class="chapter-keyword">5亿用户</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">2</div>
+                    <div class="chapter-title">🔄 职业瓶颈与内容创作转型</div>
+                    <div class="time-range">03:57</div>
+                </div>
+                <div class="chapter-content">
+                    <p>到2022年，我感觉职业已经到了瓶颈，升不上去了。同时整个互联网进入了运营驱动的阶段，产品设计变得不那么重要。在企业内部，不管是做产品总监还是运营总监，作为设计师的价值都比较有限。</p>
+                    
+                    <div class="important">
+                        💭 <strong>转型思考</strong>：我觉得自己还能做其他事情，于是在22年决定去做内容，因为确实非常喜欢内容创作
+                    </div>
+                    
+                    <p>到2023年，我决定出来做<span class="highlight">科技自媒体</span>，专注AI方向的内容创作。很幸运地赶上了整个AI爆发的浪潮，顺利转型成为了内容创作者。</p>
+                    
+                    <div class="achievement">
+                        🎬 <strong>创作成果</strong>：
+                        <br>• 制作了很多高级别的TVC宣传片
+                        <br>• 制作了AI电影和AI广告
+                        <br>• 服务于各大媒体
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">职业瓶颈</span>
+                    <span class="chapter-keyword">运营驱动</span>
+                    <span class="chapter-keyword">科技自媒体</span>
+                    <span class="chapter-keyword">AI浪潮</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">3</div>
+                    <div class="chapter-title">🤖 AI时代的机遇与挑战</div>
+                    <div class="time-range">06:10</div>
+                </div>
+                <div class="chapter-content">
+                    <p>在AI时代，我有非常切身的体会。当年做移动应用是因为iPhone等智能设备的崛起，现在因为AI的崛起，又有了新的机会。</p>
+                    
+                    <div class="quote">
+                        AI时代就像当年的移动互联网时代一样，为我们提供了全新的机会赛场
+                    </div>
+                    
+                    <p>今天我主要分享三个方面：</p>
+                    <div class="data-point">
+                        🎯 <strong>分享重点</strong>：
+                        <br>1. 如何熟悉AI，设计师如何更好地承接AI
+                        <br>2. 建立一个模型框架
+                        <br>3. 结合实际案例分析
+                    </div>
+                    
+                    <p>我目前在设计相关院校做一些工作，同时与业界有很多联系，包括招聘一些希望往AI方向转型的人才。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">AI时代</span>
+                    <span class="chapter-keyword">移动互联网</span>
+                    <span class="chapter-keyword">新机会</span>
+                    <span class="chapter-keyword">人才转型</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">4</div>
+                    <div class="chapter-title">🛠️ AI工具生态全景</div>
+                    <div class="time-range">07:06</div>
+                </div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p>我展示的这些AI工具，我都是付过费的，每个月大概付<span class="data-highlight">2000-5000美金</span>不等。很多工具已经被淘汰，很多工具其实作用不大，但这说明了一个问题：<span class="emphasis">不是所有东西都有用</span>。</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">$2k-5k</div>
+                            <div class="stat-label">月付费金额</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">多个</div>
+                            <div class="stat-label">已淘汰工具</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">全领域</div>
+                            <div class="stat-label">应用覆盖范围</div>
+                        </div>
+                    </div>
+                    
+                    <div class="platforms-grid">
+                        <div class="platform-card">
+                            <div class="platform-icon">📝</div>
+                            <div class="platform-title">文字生成</div>
+                            <div class="platform-desc">内容写作、文案优化、翻译等应用已经非常成熟</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-icon">🎵</div>
+                            <div class="platform-title">音频制作</div>
+                            <div class="platform-desc">语音合成、音乐创作、音效生成技术成熟</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-icon">🎨</div>
+                            <div class="platform-title">图像设计</div>
+                            <div class="platform-desc">图片生成、设计辅助、风格转换应用广泛</div>
+                        </div>
+                        <div class="platform-card">
+                            <div class="platform-icon">🎬</div>
+                            <div class="platform-title">视频创作</div>
+                            <div class="platform-desc">Sora等工具实现真实视频生成，带声音音效</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            比如用刀切开物体的声音，正常配音师也不知道是什么声音，但AI有自己的想象力。现在整个内容创作领域，尤其是视频领域，会面临非常大的挑战，同时也有巨大的AI赋能机会。
+                        </div>
+                        <div class="quote-attribution">— AI创造力的独特表现</div>
+                    </div>
+                    
+                    <div class="text-segment">
+                        <p>经常有人跟我说要一起做<span class="key-phrase">AI视频内容</span>，因为<span class="emphasis">传统商业提升太难了</span>。</p>
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">AI工具付费</span>
+                    <span class="chapter-keyword">Sora</span>
+                    <span class="chapter-keyword">视频生成</span>
+                    <span class="chapter-keyword">内容创作</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">5</div>
+                    <div class="chapter-title">🎨 AI在设计领域的广泛应用</div>
+                    <div class="time-range">08:48</div>
+                </div>
+                <div class="chapter-content">
+                    <p>具有人格的虚拟形象在这个时代变得更加可能。我经常在高铁站仔细看路牌，发现很多都是AI做的。</p>
+                    
+                    <div class="data-point">
+                        🚄 <strong>AI应用观察</strong>：不管走到哪个高铁站或地铁站，仔细看会发现AI应用非常广泛，虽然没人说，但都在用
+                    </div>
+                    
+                    <p>在AI设计工具这一块，增长最快的应用场景包括：</p>
+                    <div class="achievement">
+                        📱 <strong>快速增长领域</strong>：
+                        <br>• 社交媒体设计
+                        <br>• 快速原型设计
+                        <br>• 视觉资产生成
+                        <br>• 设计系统优化
+                    </div>
+                    
+                    <p>今年很多工具如Figma、Framer等都很火，然后又出现了各种新工具。从交互设计师到UI设计师，可能一定程度上都被覆盖了。</p>
+                    
+                    <div class="warning">
+                        ⚠️ <strong>行业变化</strong>：团队工具应用、人员优化、能力提升已经成为各大公司都在面临的问题，包括阿里等新设计团队都在用大模型重新训练组件
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">虚拟形象</span>
+                    <span class="chapter-keyword">高铁站AI</span>
+                    <span class="chapter-keyword">Figma</span>
+                    <span class="chapter-keyword">大模型训练</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">6</div>
+                    <div class="chapter-title">📊 AI工具分类矩阵</div>
+                    <div class="time-range">11:20</div>
+                </div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p>我把AI工具分成了两个维度：<span class="key-phrase">专业化程度</span>和<span class="emphasis">自动化程度</span>。在这个象限中，我们可以看到目前的情况很有意思。</p>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-header">AI工具分类矩阵</div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>🎯 高专业化 + 低自动化</h4>
+                                <p>需要专业技能的精细化工具<br>专业设计师使用的传统工具</p>
+                            </div>
+                            <div class="comparison-cell">
+                                <h4>🚀 高专业化 + 高自动化</h4>
+                                <p>专业级自动化工具<br>AI辅助的专业设计平台</p>
+                            </div>
+                        </div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>🔧 低专业化 + 低自动化</h4>
+                                <p>基础工具<br>简单的设计软件</p>
+                            </div>
+                            <div class="comparison-cell">
+                                <h4>✨ 低专业化 + 高自动化</h4>
+                                <p>普通人也能使用的自动化工具<br>一键生成设计的AI平台</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-segment">
+                        <p>现在<span class="emphasis">设计这个概念</span>已经不局限于专业人士了。街头小店如果不做局部性精细化工作，也能做出不错的设计。我经常遇到<span class="key-phrase">物业管理人员</span>说想转行做设计。</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">$20万</div>
+                            <div class="stat-label">海外广告片制作成本</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">¥300</div>
+                            <div class="stat-label">国内每分钟制作成本</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">版权限制</div>
+                            <div class="stat-label">海外AI工具使用障碍</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            Adobe的工具在专业应用上仍然很强，主要原因是在海外商业应用中，很多AI工具因为版权问题几乎被禁用。
+                        </div>
+                        <div class="quote-attribution">— 专业工具vs AI工具的现状分析</div>
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">专业化程度</span>
+                    <span class="chapter-keyword">自动化程度</span>
+                    <span class="chapter-keyword">Adobe工具</span>
+                    <span class="chapter-keyword">版权问题</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">7</div>
+                    <div class="chapter-title">🚀 3D结合与未来趋势</div>
+                    <div class="time-range">14:14</div>
+                </div>
+                <div class="chapter-content">
+                    <p>还有一类工具我个人觉得明年会爆发，或者今年年底就会爆发，就是<span class="highlight">3D结合</span>。现在AI产品都是解决2D问题，但3D结合的问题AI算法还没法很好解决。</p>
+                    
+                    <div class="data-point">
+                        🎯 <strong>3D+AI前景</strong>：
+                        <br>• 自动化程度相对偏低
+                        <br>• 专业化程度会更高
+                        <br>• 是整个技能创造的重要发展方向
+                        <br>• 技术正在集中解决这一套问题
+                    </div>
+                    
+                    <p>从发展趋势来看，有几个明显的趋势：</p>
+                    <div class="achievement">
+                        📈 <strong>工具发展趋势</strong>：
+                        <br>• 专业化工具会变得越来越普适
+                        <br>• 普适性工具会越来越专业
+                        <br>• 出现了工具融合的趋势
+                        <br>• 职能边界越来越模糊
+                    </div>
+                    
+                    <div class="important">
+                        🔄 <strong>行业变化</strong>：AI已经成为标配，现在还有哪个工具说不带AI能力？工具越来越智能，差异化会拉得越来越明显
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">3D结合</span>
+                    <span class="chapter-keyword">工具融合</span>
+                    <span class="chapter-keyword">职能边界</span>
+                    <span class="chapter-keyword">AI标配</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">8</div>
+                    <div class="chapter-title">💬 提示词工程的重要性</div>
+                    <div class="time-range">17:17</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我不知道大家对提示词怎么看？提示词现在还挺重要的。我经常看到社交媒体上几万点赞的爆炸效果，实际上这在过往是非常复杂的特效。</p>
+                    
+                    <div class="achievement">
+                        💥 <strong>提示词威力</strong>：通过简单的提示词就能做出爆炸房间变成漫威宇宙这样的复杂特效
+                    </div>
+                    
+                    <p>提示词工程在AI这一块，市场需求增长非常快。但我们要理解模型的边界，这对设计师来说是必备技能。</p>
+                    
+                    <div class="important">
+                        🎯 <strong>核心能力要求</strong>：
+                        <br>• 理解模型边界是设计师必备技能
+                        <br>• 提示词工程市场需求增长很快
+                        <br>• 需要掌握AI工具的使用技巧
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">提示词工程</span>
+                    <span class="chapter-keyword">模型边界</span>
+                    <span class="chapter-keyword">特效制作</span>
+                    <span class="chapter-keyword">市场需求</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">9</div>
+                    <div class="chapter-title">📊 数据驱动设计的转变</div>
+                    <div class="time-range">18:46</div>
+                </div>
+                <div class="chapter-content">
+                    <p>数据驱动设计是我从设计师转到数据总监的一个重要经历。当时老板要我设置权限，我说为什么设计师需要数据权限？</p>
+                    
+                    <div class="quote">
+                        有了数据权限，你就可以干产品经理的活，也可以干运营的活
+                    </div>
+                    
+                    <p>前几天一个朋友跟我说，淘宝现在有一个叫<span class="highlight">"商业策略设计师"</span>的岗位，让设计师去做投放。为什么？</p>
+                    
+                    <div class="data-point">
+                        💡 <strong>商业策略设计师</strong>：
+                        <br>• 设计师懂数据
+                        <br>• 投放过程中唯一不可预测的因素是创意
+                        <br>• 素材创意决定投放效率
+                        <br>• 其他所有东西都已经标准化
+                    </div>
+                    
+                    <p>听上去非常有道理，设计师在商业策略方面已经变得非常可行了。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">数据驱动</span>
+                    <span class="chapter-keyword">商业策略设计师</span>
+                    <span class="chapter-keyword">投放效率</span>
+                    <span class="chapter-keyword">创意因素</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">10</div>
+                    <div class="chapter-title">🔄 设计师能力模型重构</div>
+                    <div class="time-range">20:06</div>
+                </div>
+                <div class="chapter-content">
+                    <p>现在有几个重要变化：</p>
+                    
+                    <div class="warning">
+                        ⚠️ <strong>行业变化</strong>：
+                        <br>• 跨领域学习，持续学习变得重要
+                        <br>• 现在一年的变化相当于过去一个月的变化
+                        <br>• 纯手工制作确实太慢了
+                        <br>• 重复性设计基本被自动化替代
+                    </div>
+                    
+                    <p>以前做一个活动商详页需要大量营销设计师，现在这种偏静态化的工作基本可以自动化完成。</p>
+                    
+                    <div class="important">
+                        🎯 <strong>新能力要求</strong>：
+                        <br>• 单一软件技能要求越来越少
+                        <br>• 需要掌握多种工具和技能
+                        <br>• 专业能力和管理能力并重
+                    </div>
+                    
+                    <p>我从设计师到设计管理者的经历中发现，AI时代的设计师能力模型基本上要求设计师具备更全面的能力，包括底层设计战略、工具应用等。</p>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">跨领域学习</span>
+                    <span class="chapter-keyword">自动化替代</span>
+                    <span class="chapter-keyword">能力模型</span>
+                    <span class="chapter-keyword">设计战略</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">11</div>
+                    <div class="chapter-title">💎 人类核心能力与AI的边界</div>
+                    <div class="time-range">22:54</div>
+                </div>
+                <div class="chapter-content">
+                    <p>现在经常有人问：设计师是不是要完蛋了？但挡不住AI工具确实能做很多事情。那怎么办？</p>
+                    
+                    <div class="data-point">
+                        📈 <strong>价值分析模型</strong>：我画了一条线，分为两个维度：
+                        <br>• 横轴：离AI/模型越来越近 vs 越来越远
+                        <br>• 纵轴：掌握能力的复制难度（学习时间长短）
+                    </div>
+                    
+                    <p>在黄金区域，是人类核心能力与AI结合的地方。我问了ChatGPT什么是人类核心能力，它说：</p>
+                    
+                    <div class="quote">
+                        人类的核心能力还是情感、沟通、即兴创作等，这些是AI难以替代的
+                    </div>
+                    
+                    <div class="important">
+                        💡 <strong>核心洞察</strong>：
+                        <br>• 离模型越近，越容易被复制，越不值钱
+                        <br>• 要把时间放在具有核心能力优势的地方
+                        <br>• 不能把自己的能力完全嫁接在模型上
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">人类核心能力</span>
+                    <span class="chapter-keyword">情感沟通</span>
+                    <span class="chapter-keyword">即兴创作</span>
+                    <span class="chapter-keyword">价值边界</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">12</div>
+                    <div class="chapter-title">🤔 工具与人的关系思考</div>
+                    <div class="time-range">24:55</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我学的是新闻专业，后来转行当了设计师。有一句话一直在思考：</p>
+                    
+                    <div class="quote">
+                        我们塑造工具，工具反过来又塑造我们
+                    </div>
+                    
+                    <p>当我在画前面那个价值分析线的时候，我问AI：如果麦克卢汉还在世，他会怎么看待这个分析？</p>
+                    
+                    <div class="important">
+                        🧠 <strong>麦克卢汉的观点</strong>：他一定会说，不要用这么简单粗暴的方式去划分人与AI的关系，不要这么武断
+                    </div>
+                    
+                    <p>本质上，如果我们把AI当工具，工具确实会影响用户思维。真正应该警惕的是：在AI和人力竞争的大环境下，我们究竟应该如何提升？</p>
+                    
+                    <div class="achievement">
+                        🎯 <strong>设计师的核心价值</strong>：最重要的是去挑选、去筛选、去选出最好的方案，这也是一种设计能力的体现
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">麦克卢汉</span>
+                    <span class="chapter-keyword">工具塑造</span>
+                    <span class="chapter-keyword">用户思维</span>
+                    <span class="chapter-keyword">筛选能力</span>
+                </div>
+            </div>
+
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">13</div>
+                    <div class="chapter-title">🎬 内容创作的未来</div>
+                    <div class="time-range">26:35</div>
+                </div>
+                <div class="chapter-content">
+                    <p>我到现在还没有厌倦做内容这件事，我觉得做内容挺有意思的。现在是属于创作者的时代。</p>
+                    
+                    <div class="achievement">
+                        🎥 <strong>创作感悟</strong>：深入挖掘新的表达方式，比如AI电影制作，这个领域还有很多可能性
+                    </div>
+                    
+                    <p>欢迎大家跟我沟通探讨，各位都是设计领域的专家，也期待向各位学习。</p>
+                    
+                    <div class="quote">
+                        现在是属于创作者的最好时代，AI为我们提供了前所未有的创作可能性
+                    </div>
+                </div>
+                <div class="chapter-keywords">
+                    <span class="chapter-keyword">内容创作</span>
+                    <span class="chapter-keyword">AI电影</span>
+                    <span class="chapter-keyword">创作者时代</span>
+                    <span class="chapter-keyword">表达方式</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📝 演讲实录整理 | 🎨 设计师如何玩转AI</p>
+            <p>演讲者：小白姐姐 · AI头部自媒体</p>
+            <p>时间：2025年7月26日 | 时长：28分钟5秒</p>
+        </div>
+    </div>
+
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+    </script>
+</body>
+</html>
+
+

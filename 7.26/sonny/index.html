@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面对人工智能，设计的回答和提问 - Sonny演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #37352f;
+            background: #ffffff;
+        }
+
+        .container {
+            width: 100%;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        /* 封面样式 - Notion风格 */
+        .hero {
+            background: #ffffff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #37352f;
+            line-height: 1.2;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            margin-bottom: 1rem;
+            color: #787774;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            color: #37352f;
+        }
+
+        /* 内容区域 */
+        .content {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 章节样式 - Notion风格 */
+        .chapter {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 0;
+            background: white;
+            position: relative;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-time {
+            color: #787774;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #f1f1ef;
+            color: #787774;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #37352f;
+            max-width: 75ch; /* 控制行长度，提升可读性 */
+        }
+
+        .chapter-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify; /* 两端对齐，更整齐 */
+        }
+
+        /* 时间戳样式优化 */
+        .timestamp {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #64748b;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 12px;
+            display: inline-block;
+            border: 1px solid #e2e8f0;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        }
+
+        /* 增强段落间的视觉分隔 */
+        .chapter-content p + p {
+            margin-top: 1.25rem;
+        }
+
+        /* 优化引用文本的样式 */
+        .chapter-content strong {
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        /* 高亮内容块样式 */
+        .highlight-box {
+            background: #f8f9fa;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+
+        .highlight-box:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+        }
+
+        .quote-box {
+            background: #f0f9ff;
+            border-color: #0ea5e9;
+        }
+
+        .data-box {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+
+        .case-box {
+            background: #faf5ff;
+            border-color: #8b5cf6;
+        }
+
+        .structured-box {
+            background: #f8fafc;
+            border-color: #64748b;
+        }
+
+        .structured-box h4 {
+            color: #334155;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .structured-box ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .structured-box li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            padding-left: 0.5rem;
+        }
+
+        .structured-box li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 改进章节间的分隔 */
+        .chapter {
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: white;
+            position: relative;
+        }
+
+        .chapter:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #37352f;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .footer p {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s ease-out;
+        }
+
+        /* 浮动目录 */
+        .floating-toc {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-height: 60vh;
+            overflow-y: auto;
+            width: 200px;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-toc:hover {
+            opacity: 1;
+        }
+
+        .floating-toc h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .toc-item {
+            display: block;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            line-height: 1.3;
+        }
+
+        .toc-item:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        .toc-item.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .floating-toc {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .meta-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .content {
+                padding: 1.5rem 1rem;
+            }
+
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+
+            .chapter-content {
+                max-width: none;
+            }
+
+            .timestamp {
+                display: block;
+                margin-bottom: 0.5rem;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 阅读进度条 -->
+    <div class="reading-progress" id="reading-progress"></div>
+    
+    <!-- 浮动目录 -->
+    <div class="floating-toc" id="floating-toc">
+        <h4>📖 章节导航</h4>
+        <a href="#chapter-1" class="toc-item">第1章 TikTok设计部门介绍</a>
+        <a href="#chapter-2" class="toc-item">第2章 四大核心命题</a>
+        <a href="#chapter-3" class="toc-item">第3章 AI提效场景</a>
+        <a href="#chapter-4" class="toc-item">第4章 直播设计提效</a>
+        <a href="#chapter-5" class="toc-item">第5章 全球化文案工作流</a>
+        <a href="#chapter-6" class="toc-item">第6章 单位资产工作流</a>
+        <a href="#chapter-7" class="toc-item">第7章 AI洞察顾问</a>
+        <a href="#chapter-8" class="toc-item">第8章 设计师的未来</a>
+        <a href="#chapter-9" class="toc-item">第9章 人文内核价值</a>
+    </div>
+    
+    <div class="container">
+        <!-- 封面 -->
+        <div class="hero">
+            <h1 class="main-title">面对人工智能，设计的回答和提问</h1>
+            <div class="subtitle">Sonny</div>
+            <p class="speaker-name">资深设计管理者</p>
+            <div class="meta-info">
+                <div class="meta-item">
+                    <span>📅</span>
+                    <span>2025年7月26日 下午 2:02</span>
+                </div>
+                <div class="meta-item">
+                    <span>⏱️</span>
+                    <span>34分钟</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 第1章 -->
+            <div class="chapter" id="chapter-1">
+                <div class="chapter-number">第1章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">TikTok设计部门介绍</h2>
+                    <div class="chapter-time">🕐 00:05 - 02:28</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">TikTok</span>
+                    <span class="tag">全球化团队</span>
+                    <span class="tag">20亿用户</span>
+                    <span class="tag">设计职能</span>
+                    <span class="tag">本地化</span>
+                </div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">00:05</span>OK，先介绍一下，就是 TikTok 设计部门，我们的一些 AI 相关的一些时点吧。就是我先介绍一下TikTok，可能大部分人都还是比较熟悉的，就是一句话就是海外版的抖音啊。这么理解也没有错，就是我们现在应该是全球最大的，然后以及包括增长速度最快的一个短视频的创作跟分享的平台嗯。我们现在的这个整个的产品的它的愿景就是连接人和内容，然后去激发创作，去丰富的那个生活。</p>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>产品数据：</strong>目前的话我们应该全球差不多有 20 亿的活跃的用户，他们都是在国内对本土的差不多 1/4，然后每一天差不多有 3,400 多个短视频可以创造出来，然后被分享出来。
+                    </div>
+                    
+                    <p><span class="timestamp">00:49</span>现在每一天人均的这个用户的使用时长差不多在一个小时，对比的话就是比如说Facebook，然后包括 Instagram 他们过去在时长上面是更少的，现在的话只是说整个的就，也就说是咱们在消费视频的这一部分的那个已经是 top 得越来越占优势了。所以说就是我们这个产品已经是很大的程度去影响了人们如何去创作，如何去表达，以及包括文化潮流是怎么背书的啊。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>团队特征：</strong><br>
+                        <strong>01:18</strong> 我也再介绍一下，就是我负责的这一个团队，就是 TikTok 设计团队，就是几个特征，第一个它是一个全球化的团队，我们差不多有 50 多个公司，就是包括各种一些专业技能的一些专家，然后分布在全球八个国家，然后不同的时区，同时它是一个很符合的一个设计职能的部门，因为它有除了产品设计，也包括文案的设计、创意的设计、多媒体本地化的一些专家设计运营等等。
+                    </div>
+                    
+                    <p>然后我们负责的这一个业务就是TikTok，它其实是具有高度的业务复杂性，比如说是它一部分是，就大家可能更多地看到的是它是一个面向 c 端用户的，其实我们也连接了很多的，比如说一些商家，比如这些直播的公会，我们里面有很多的什么偏成熟的业务，但是也会不断地去做一些新的一些设计体系过程创新。然后另外这些业务里面有一些是全球性 localization 的，然后也有一些是我们需要去升职本地的，就是去做 localization 的，很重的本地运营的。所以说综合来讲的话，就说这个业务它是有不同维度的。</p>
+                </div>
+            </div>
+
+            <!-- 第2章 -->
+            <div class="chapter" id="chapter-2">
+                <div class="chapter-number">第2章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">设计部门的四大核心命题</h2>
+                    <div class="chapter-time">🕐 02:28 - 03:43</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">效率</span>
+                    <span class="tag">洞察</span>
+                    <span class="tag">创新突破</span>
+                    <span class="tag">业务价值</span>
+                    <span class="tag">AI赋能</span>
+                </div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">02:28</span>OK，那我是作为设计部门的负责人的话，我应该是会关注几个大的命题：</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🎯 设计管理的四大核心命题：</h4>
+                        <ul>
+                            <li><strong>效率最大化：</strong>就是说白了就是我们公司有这么些资源，那怎么能够把这个资源最大化？怎么能够尽可能地去保证设计能够支持我们快速增长的业务</li>
+                            <li><strong>洞察准确性：</strong>对于设计来说，一方面是你要设计出来一个方案，第二个说你来找对一个正确的问题。我们是要为全球的用户去做设计，那怎么保证你的设计洞察都足够的准确</li>
+                            <li><strong>创新突破：</strong>我们还需要不断地去做一些创新突破，不管是做体验方面的创新、交互换四方面的创新，或者是产品层面</li>
+                            <li><strong>业务价值转化：</strong>所有的设计团队都会面临的一个问题，就是设计能否被直接的量化，转化成一个业务的价值</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box quote-box">
+                        <strong>AI时代的转变：</strong>然后现在有了 AI 了以后，就是这四个命题都变成了我怎么去通过 AI 去提交，怎么去通过 AI 去帮助设计师获得更好的洞察力，更好地去理解用户的需求？怎么去通过 AI 去加速创新，以及 AI 能保障设计更好地产生业务的价值？我后面我就可能就有几个 case 跟大家分享一下。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3章 -->
+            <div class="chapter">
+                <div class="chapter-number">第3章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">AI提效的三大应用场景</h2>
+                    <div class="chapter-time">🕐 03:43 - 05:44</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">AI提效</span>
+                    <span class="tag">设计资产生成</span>
+                    <span class="tag">自动化工作流</span>
+                    <span class="tag">部门指标</span>
+                </div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">03:43</span>我先说一下效率这一块的话，因为大家应该都知道这个 AI 去做设计的提效已经是一个行业的共识了，这个是完全不可控，我们的思路其实就是梳理所有的团队的所有的业务场景，里面的所有的工作，然后在里面识别哪些其实是 AI 是更有优势的。</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>📊 部门AI化指标体系：</h4>
+                        <ul>
+                            <li><strong>AI化产出比例：</strong>你现在百分之多少的产出是 AI 化</li>
+                            <li><strong>提效幅度指标：</strong>你通过这一个 AI 化的这个过程，你可以对整个的产出提效有百分之多少</li>
+                        </ul>
+                    </div>
+                    
+                    <p>然后我们可以看到这个 AI 其实是有几个明显的优势的维度的，就比如说是设计资产的生成，对吧？然后比如说这批数据你就会发现一些自动化的一些工作流，而明显的就是说是这种优势的能力可以应用在几个场景里面。</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🎯 AI提效的三大应用场景：</h4>
+                        <ul>
+                            <li><strong>设计师非常花时间的工作：</strong>比如说我们可能设计师要批量地去做大量的一些可能涉及资产的申请，很多的一些运营活动，我们可能需要去做针对某一个命题做，这是宽非常广的这种设计方向的探，或者说是我们去做一些，找一些设计的一些参考，找一些相关的一些信息等</li>
+                            <li><strong>对设计师技术门槛比较高的事：</strong>比如说设计师可能也会涉及到做数据的分析，你说我们会去做 A/B 实验，然后你再去看懂数据报告，设计师可能会去自己去设计做一些自动化的工具的开发。或者说是大家如果熟悉一些影视特效的制作，里面有一个 3D 渲染的一个脚本的编辑等等</li>
+                            <li><strong>低成长性工作：</strong>很多事情大家都不太愿意去干，就是对于设计师来说是低成长性的工作。比如说是去反复地去修改些小的东西，或者说是去验收一些 UI 等等，就这些事其实都是可以很好地去通过 AI 去做</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>04:33</strong> 那我有几个case。</p>
+                </div>
+            </div>
+
+            <!-- 第4章 -->
+            <div class="chapter">
+                <div class="chapter-number">第4章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">案例一：全球直播活动设计提效</h2>
+                    <div class="chapter-time">🕐 05:44 - 07:49</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">全球直播</span>
+                    <span class="tag">斋月活动</span>
+                    <span class="tag">8倍提效</span>
+                    <span class="tag">ChatGPT</span>
+                    <span class="tag">Stable Diffusion</span>
+                </div>
+                <div class="chapter-content">
+                    <p><strong>05:44</strong> 第一个是我们是通过这个 AI 去提效，做我们全球的直播的这个设计就 TikTok 的直播，我不知道有多少人看直播，就大家都知道在中直播，在中国已经非常火了，但是在海外的话三点半很多人都不知道什么，我不知道为什么要看这个东西，所以我们需要做非常非常多的教育的工作，包括社会的工作，就是告诉所有两位用户看是什么一个产品的形态，告诉创作者我们可以通过全国来建立一些我们的粉丝关系。</p>
+                    
+                    <p><strong>06:12</strong> 你们可以通过直播甚至获得更好的一些财务上面的回报，所以我们是需要做大量的运营的工作，而且这些运营它在针对不同的国家、不同的地区。微博最好的一些节点是在一些大的一些重点的节日里面，我们做这件事，比如说不像是圣诞节，比如说是像是伊斯兰的斋月，它是面向整个伊斯兰世界的啊。然后我们最近是针对斋月做了一系列的，这个涉及到就确实是工作量是非常的大，然后资源就是不够多，那 AI 呢？只是有效地帮助我们解决的这些问题，比如说我们去识别，就是我们要交付的这一个运营的活动里边最耗时的一个数据信息登录了。比如说我们的 TV 就是那个重点视觉图，以及比如说头像方案等等，我们就把每一个这个重点的这些设计素材，就是以往的这些历史的设计素材训练。然后设计师只需要去输入一个参考图，然后 AI 可以迅速地给出多个备选的方案，让设计师去筛选出来。OK，哪一些比较合适？</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>具体AI工具应用：</strong>嗯，也比如说我们是通过这个菜 GPT 跟 stable diffusion，然后去做各种各样的本地化的这些自己标题的生产，比如说阿语的、西班牙语的，然后日语的等等啊。然后我们也是用那个 Web coding，就是放前面地方提到的类似这种 AI 编程的一些工具，就快速地实现一些非代码的插件，帮助我们去快速地生产不同格式的一个一个资产。
+                    </div>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>提效成果：</strong>所以说最终的话我们基本上是通过几个工作流差不多做到了 8 倍的提交，就是两个设计师两周的时间和时间可以交付达线上30。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5章 -->
+            <div class="chapter">
+                <div class="chapter-number">第5章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">案例二：全球化文案工作流优化</h2>
+                    <div class="chapter-time">🕐 07:49 - 09:54</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">文案设计</span>
+                    <span class="tag">多语言翻译</span>
+                    <span class="tag">Coze平台</span>
+                    <span class="tag">视觉识别</span>
+                </div>
+                <div class="chapter-content">
+                    <p><strong>07:49</strong> 另外一个 case 是在做一些文案相关的工作，因为我前面提到了有TikTok，它是一个全球的产品，所以说我们里面有非常多的涉及到文案的设计，然后翻译，然后相关的一个编辑转化成三个办法。举个例子就是说，诶，对，一个功能可能在中国叫什么？真的他们快速票，或者说是这样，猜一猜这个他的日本的东西，看一下他的西班牙语做过去的话，比如说生产这边还有一些类似这样的一些，嗯。产品的一些帮助文档，比如说用户的这个功能不会用了，他可能要去查一查。你给我解释一下，这里面有很多的这种文案的基础的动作，过去是非常非常的耗时的。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>AI文案解决方案：</strong>我们现在就是会去，比如说在字节内部的这个 cost 平台，然后去你过往的所有的这些文案，已有的这些资料基于他们去做一些报啊。比如说设定每一个报它的功能，你是一个阿里的专家，然后你对直播的行业有深入的理解，然后现在你可能会去设计直播相关的一些文案可以怎么做？然后我们会把大量的过往一些饮料，然后好的翻译的case，不好的翻译的case，一些行业的一个标准，然后都作为新人去输入给他们，这样的话他们就可以很快地去帮助我们解决大量的文案申请的工作，而且都还是需要有很多人工的干预的过程。
+                    </div>
+                    
+                    <p><strong>09:11</strong> 就我们现有那个文案的团队，他就会不断地去看这个 AI 生成的文案，他们的翻译的标准是不是达标，然后增最终的话就不断地去，不在就保证在指定的场景里面，指定的人群，我们的 AI 的翻译，它的准确率、数据把控更有意义啊。我们也通过，就是比如说一个视觉的识别跟能力去帮我们去查这个 UI 展示的一个多语言，对吧？所以特别的长会很容易被截断，或者说有一些可能容易被漏翻。因为就是这一次他也不一定都是语言，所以说过去的话他和人工识别是产品的地方。</p>
+                </div>
+            </div>
+
+            <!-- 第6章 -->
+            <div class="chapter">
+                <div class="chapter-number">第6章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">单位资产工作流与复杂交互创新</h2>
+                    <div class="chapter-time">🕐 09:54 - 11:49</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">单位资产工作流</span>
+                    <span class="tag">160个工作流</span>
+                    <span class="tag">数字人生成</span>
+                    <span class="tag">社区热词</span>
+                    <span class="tag">直播礼物</span>
+                </div>
+                <div class="chapter-content">
+                    <p><strong>09:54</strong> 所以说我们整个的团队就是过去这一年多，就是不断地去在沉淀这种基于单位资产工作的，单位资产就是很简单，就是生成某一种格式的自己去啊。</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🔧 单位资产工作流示例：</h4>
+                        <ul>
+                            <li><strong>线稿上色：</strong>我们有一个线稿平台的一个线稿，然后它可以生成一个完成度非常高的一个上色</li>
+                            <li><strong>IP形象渲染：</strong>我们有一个IP，就是 IP 形象的一个设定图，然后它可以生成，比如说完整的这种 3D 渲染这个视觉，甚至把它生成一张海报</li>
+                            <li><strong>文字描述生图：</strong>我们可以通过一个文字文字的描述会形成对应的主题的画画等等</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>工作流规模：</strong>所以说我们整个团队差不多是沉淀了有 160 多个工作流，就是时效性其实基本上达到了 1.5 倍提高。
+                    </div>
+                    
+                    <p><strong>10:40</strong> 当然这种单位的资产的工作流是不够的，因为很多时候我们要交付的这个设计，它是有符合的这种环节，或者符合的这种格式的，所以我们还是需要去把刚才说的那些单位的资产的工作流，再把它跟其他的这些自动化的工具，微信组这些组件到一起，就像搭积木一样把它搭到一块，这样的话可以完成一些更复杂的这么个交互。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>虚拟主播数字人：</strong><br>
+                        <strong>11:04</strong> 就比如说我们现在是在做这种主播的口播的数字人生成你可以理解就是一个虚拟的主播，就假如说你有一个大v，他可能是有 3,000 万的粉，但是他没时间参加这个搞，那我们就基于他的形象就生成一个虚拟的数字，而且就是说是他的所有的一些台词、口型词都是完全可以。这一个其实极大地去降低了他们的开播的成本，然后也可以提升我们开播的时长。
+                    </div>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>社区热词转直播礼物：</strong>然后比如说做这个叫社区的热词转直播的礼物，这个也挺有意思，就是我们如果平时刷抖音，你会发现，诶大家抖音的这个评论区里面有很多的梗，很多有意思的一些东西，那我们就自动化地去把高频出现的这些词把它抽出来，然后自动地基于这些词义去生成 3D 的礼物。
+                    </div>
+                    
+                    <p><strong>11:49</strong> OK，这样的话就是直播，他们其实直播的开直播的内容他们是很愿意去收到这种有具有时效性的，这些有互动性的一个用户，这个生产的流程通过直播的话整个就提交回访，我们最终也是差不多在做，有 60 多个主播，对吧？最高提效能够有 20 个，但这一块的话还是还没有覆盖我们完整的这个应用场景，还是有非常多的这个场景我们需要进一步地去探索，看看怎么能够把它这个我再讲一下，就是刚才前面提到的洞察的部分，因为我们习惯于就是把 AI 当做一个设计生产的提交的过程，但是设计本身很重要的部分就是在于洞察本身，就是我怎么去做这么一个设计的判断，我到底是解决什么样的问题？以及说是我对于这个用户的需求的理解是不是精准？所以说我们不应该只是把 AI 当做一个，嗯，设计助理，对吧？打杂的实习生，这个应该把它当做一个顾问，他可以解决几个重点的一个领域的知识。</p>
+                </div>
+            </div>
+
+            <!-- 第7章 -->
+            <div class="chapter">
+                <div class="chapter-number">第7章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">AI洞察：从助理到顾问的转变</h2>
+                    <div class="chapter-time">🕐 12:51 - 15:47</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">本地化洞察</span>
+                    <span class="tag">虚拟Persona</span>
+                    <span class="tag">韩国用户研究</span>
+                    <span class="tag">风格模型</span>
+                </div>
+                <div class="chapter-content">
+                    <div class="highlight-box structured-box">
+                        <h4>🧠 AI作为顾问的三个重点领域：</h4>
+                        <ul>
+                            <li><strong>本地化洞察：</strong>比如说你是一个新加坡的设计师，那你就设计一个关于巴西的用户增长的一个活动，你怎么去理解巴西的这个？他们的行为，对吧？举个例子，为什么日本的用户他们很喜欢去攒优惠券？哪怕这个人很有钱，但是他实际上都是你，你打开他的，是你发现他返得非常非常多的这样子，这个是怎么去理解的呀？</li>
+                            <li><strong>行业认知填补：</strong>我们的业务里面还是会碰到很多非常垂直的问题，一些时间的沉淀的话，就没法对于这个行业建立起来完整的认识，而这里面的话 AI 是可以很好地帮助你去填补这一块认知的空白的</li>
+                            <li><strong>虚拟用户研究：</strong>我们可以用 AI 去训练一些虚拟的一些persona，然后用这些 persona 我们去做一些用户的话，去做一些可用性的分析</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>12:51</strong> 第一个就是我前面提到的本地化的部分...</p>
+                    
+                    <p><strong>13:36</strong> 然后还有一个 case 就比较有意思：</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>韩国虚拟用户研究案例：</strong>比如说我们一个case，就是，嗯，我们那个韩国的，韩国的用户增长的设计团队，然后他其实就是基于韩国我们过往的这些实际的调研的这些用户的画像，从里面抽象出来一些具体的特征，然后用这个去写上，然后去形成一个虚拟的管控的。比如说是我们想去访谈一个韩国的妈妈，35 岁，大学毕业，然后家庭的平均收入可能住在首尔，不是 7,000 多万，可能就咱们就四五十万左右啊。然后互联网的使用情况可能就是平均通过几套，我没有用过，我们设定了这么一个虚拟的过程，那以后我们再把关于韩国的增长的一个活动的设计再发给，然后呢？他就看看。
+                    </div>
+                    
+                    <p><strong>14:43</strong> 你觉得这个交互是不是？你觉得这一个文案是不是表达得清晰？我们给到的这一个奖励、激励是不是对你来讲有定义的？还有哪个地方可以再去别的啊？我们通过这一个虚拟的课程可以去解决设计，就难以去接触本地的真实的用户，是这么一个难题，他确实他没法去替代真实的用户，但是我觉得他已经很大程度地去解决了一些真实的概念。然后我们也通过这个建立一系列的本地化的一些风格的模型，去帮助设计师更好地做一些区域的一些审美的判断，比如说前面提到的这种，按巴西的一些审美风格是怎么样的，日本是什么样的，西班牙是什么样的？然后，嗯，包括像素更具体的一些像素，比如说，诶这一个国家代表这个国家文化的重点的一些视觉符号，它会怎么样的方式去呈现出来？我们就会把过往的一些历史的一些设计，然后再加上一些外部的一个设计的一个素材视觉的资产。</p>
+                    
+                    <p><strong>15:47</strong> 这个一起去训练一个就是不同的，就基于本地的区域化的视觉方面的模型，然后再通过这些模型去帮助我们去纠偏，帮助我们去生成某一些设计的资产，从而去支持，这也是能够做更好的更符合本地能审美的事。</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🌍 AI驱动的本地化设计体系：</h4>
+                        <ul>
+                            <li><strong>用户行为洞察：</strong>理解不同地区用户的文化背景和行为习惯，如日本用户攒优惠券的文化特征</li>
+                            <li><strong>虚拟Persona构建：</strong>基于真实调研数据抽象用户特征，形成可交互的虚拟用户代表</li>
+                            <li><strong>区域审美模型：</strong>训练基于不同地区的视觉风格模型，帮助生成符合本地审美的设计资产</li>
+                            <li><strong>文化符号识别：</strong>理解各国代表性文化的重点视觉符号及其呈现方式</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第8章 - 设计师的未来发展 -->
+            <div class="chapter">
+                <div class="chapter-number">第8章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">设计师的未来：边界重构与能力进化</h2>
+                    <div class="chapter-time">🕐 27:28 - 30:57</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">职能边界</span>
+                    <span class="tag">工具改造</span>
+                    <span class="tag">技术民主化</span>
+                    <span class="tag">T型设计师</span>
+                </div>
+                <div class="chapter-content">
+                    <p><strong>27:28</strong> 我也想再聊一下，就是说是关于咱设计师边界的问题，因为确实很多同事什么朋友也跟我聊过。就是诶，现在有了 AI 了以后是不是设计师就是空间被压缩了啊？或者说是我们就。嗯嗯，是不没那么多事干了，我自己感觉就是很简单，就是面对AI，就是一切众生平等，就是设计的边界跟其实跟工程的边界，比如 data science，然后包括 data marketing strategy，就是这战略，他们其实边界是一起，是被 AI 这个宏观的上下文做演化，这边界更多的是一些历史的上下文给大家的一个定义，我觉得是大家可以少思考这种职能的边界，可以多思考我们 AI 以后我可以多做什么。</p>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🚀 AI时代设计师的三大核心变化：</h4>
+                        <ul>
+                            <li><strong>工具改造能力：</strong>AI 它带来的这一个基础的红利，就是第一次地让设计师真正可以查看你去主动改造自己的工具，你把东西过去的话，就所有的这种，比如说设计师我去改一个新的一个，我用一个新的工具，它其实是外部的一些东西在，比如说是资本的介入，对吧？或者技术的事件。但现在的话自己是自己会有能力做</li>
+                            <li><strong>无限趋近创新：</strong>现在 AI 我自己看，也就是 AI 弄设计这件事本身就无限地趋近于创新，就是过去的设计里面有非常多的跟创新没关系的，对吧？一些重复性的一些东西，或者一些纯粹的一些技术性的东西实现，但现在的话，你们设计师真的就是这一趴这一类的工作，全部都可以把它自动化研发</li>
+                            <li><strong>技术民主化：</strong>AI，它并不仅仅是把设计民主化，它其实也把技术民主化，我跟公司里面一些比较研发的一些同事聊，他们也很支持，现在在琢磨这件事情。过去的话可能的交付可能是设计图、设计方案，对吧？现在的话其实我们可以交付更，也可以交付一个能够很好地体现你的设计意图的产品，或者更完整的方案</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box structured-box">
+                        <h4>🎯 设计师能力模型的演进：</h4>
+                        <ul>
+                            <li><strong>传统T型设计师：</strong>过去大家会说我是一个梯形的设计师，对吧？梯形的设计师就是我有一个特别擅长的一个长版或者什么视觉设计，我其他的也月别人，对吧？就整个流程是可以理解</li>
+                            <li><strong>新T型设计师：</strong>现在的话就是我觉得我们是有机会变成一个新的提醒的事，就这个长板就是设计本身里面的一些内核的，一些一个审美，一个人文的洞察和逻辑思考的。然后我们可以很快地用 AI 去搭建起来其他领域的一些来计算，比如说商业的洞察，对吧？比如说工程技术实现的能力、战略分析等等</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第9章 - 人文内核的价值 -->
+            <div class="chapter">
+                <div class="chapter-number">第9章</div>
+                <div class="chapter-header">
+                    <h2 class="chapter-title">人文内核：设计的永恒价值</h2>
+                    <div class="chapter-time">🕐 33:30 - 34:53</div>
+                </div>
+                <div class="chapter-tags">
+                    <span class="tag">人文内核</span>
+                    <span class="tag">设计建议</span>
+                    <span class="tag">情绪化进食</span>
+                    <span class="tag">用户关怀</span>
+                </div>
+                <div class="chapter-content">
+                    <div class="highlight-box structured-box">
+                        <h4>💡 给设计师的建议与思考：</h4>
+                        <ul>
+                            <li><strong>全力拥抱新技术：</strong>在这个阶段，就是还是大力地去，全力地去拥抱新的技术，可以勇敢地去跨越职能的边界、跨越领域</li>
+                            <li><strong>避免过度依赖：</strong>避免了就是因为对于 AI 过度的依赖，会导致自己的一些分类品位方面的一些尺度</li>
+                            <li><strong>回归人文内核：</strong>最终还是在回归到一些人文的内核上，就让自己保持鲜活，就是说是让自己更加的纠正定义</li>
+                            <li><strong>坚持个人感知：</strong>很多时候就最终的设计这个东西，它最终才能回归到你，你，你是谁？你作为一个人，你怎么去感知这个世界？而这些东西你没法问，被 AI 给代替</li>
+                        </ul>
+                    </div>
+                    
+                    <p><strong>34:05</strong> 因为就很多时候就最终的设计这个东西，它最终才能回归到你，你，你是谁？你作为一个人，你怎么去感知这个世界？而这些东西你没法问，被 AI 给代替，就说到 AI 告诉我我应该怎么去感受这个世界，这样我觉得就本末倒置了啊。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>人文关怀设计案例：</strong><br>
+                        <strong>34:05</strong> 对，我最后就是可能分享一个，就是一个很小的设计的项目，这个是我们应该是两年前一个一个，一个一个用户在跟经营方面分享一个很小的一个 TikTok 的设计，就是用户在搜一个词叫 emotional eating，它是青少年，欧美的青少年经常会发生的一点这种情绪化的进食，它对一种就是因为自己压抑了，抑郁了，所以说我要多说说这东西，这种类型的视频它是很容易让人看上去成瘾的，有点像看吃播一样。<br><br>
+                        <strong>34:53</strong> 就是就是我们当用户发现在搜这个时候，我们就不给他看这些视频了。因为很可能他是一个受害者，那我们就给他提供一个帮助的热线，然后给一个很温馨的一个草稿，然后很温馨的很温暖的一段话，其实就让用户感受到，就是说他在这个点，他作为一个可能的脆弱的人，他是被这个很大的一个产品看到就关注到了。
+                    </div>
+                    
+                    <div class="highlight-box quote-box">
+                        <strong>设计的永恒价值：</strong>所以我觉得这个是在 AI 之前做的设计，但是哪怕在 AI 之后，它仍然是一个可以打开用户的设计，比如这个。就是我设计师就是在完成了你，丰富了你所有的这些技术的语义之后，你还是要去监视的一个那内核。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <h3>面对人工智能，设计的回答和提问</h3>
+            <p>Sonny · 资深设计管理者 | 2025年7月26日演讲实录</p>
+            <p>完整记录了TikTok设计团队在AI时代的探索与思考</p>
+        </div>
+    </div>
+
+    <script>
+        // 阅读进度条
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('reading-progress').style.width = scrollPercent + '%';
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('.toc-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 时间戳点击复制功能
+        document.querySelectorAll('.timestamp').forEach(timestamp => {
+            timestamp.style.cursor = 'pointer';
+            timestamp.title = '点击复制时间戳';
+            
+            timestamp.addEventListener('click', function() {
+                const text = this.textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    this.style.background = '#10b981';
+                    this.style.color = 'white';
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.style.color = '';
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

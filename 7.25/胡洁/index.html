@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人工智能时代的高端装备创新设计 - 胡洁演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            color: #37352f;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        /* Hero区域统一样式 */
+        .hero {
+            background: #fff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f1f1ef;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .meta-item {
+            background: #f8f9fa;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* 内容区域样式 */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .chapter {
+            margin: 2.5rem 0;
+            padding: 1.5rem 0;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-time {
+            color: #787774;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 章节内容 */
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            max-width: 75ch;
+        }
+
+        .chapter-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* 时间戳样式 */
+        .timestamp {
+            background: #f8fafc;
+            color: #64748b;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            margin-right: 12px;
+            display: inline-block;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            cursor: pointer;
+        }
+
+        /* 高亮盒样式 */
+        .highlight-box {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .quote-box {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+        }
+
+        .data-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+        }
+
+        .insight-box {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+        }
+
+        .innovation-box {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+        }
+
+        .case-box {
+            background: #faf5ff;
+            border: 1px solid #8b5cf6;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        /* 浮动目录 */
+        .floating-toc {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-height: 60vh;
+            overflow: auto;
+            width: 200px;
+        }
+
+        .floating-toc a {
+            display: block;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .floating-toc a:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        /* 数据卡片网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* 工具技术展示 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tool-item {
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tool-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .tool-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6, #ef4444);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+
+        .timeline-year {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* 引用框增强 */
+        .modern-quote {
+            position: relative;
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .modern-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 3rem;
+            color: #3b82f6;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.125rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+        }
+
+        .quote-author {
+            text-align: right;
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* 比较表格 */
+        .comparison-table {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #64748b;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* 两栏布局 */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .column {
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .column h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        /* 思维导图样式 */
+        .mind-map {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .mind-map-center {
+            background: #3b82f6;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.125rem;
+            position: relative;
+            margin: 2rem;
+        }
+
+        .mind-map-branches {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .mind-map-branch {
+            background: #e0f2fe;
+            border: 2px solid #0ea5e9;
+            color: #0c4a6e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        /* 结构化列表 */
+        .structured-list {
+            background: #fafafa;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .structured-list h4 {
+            color: #374151;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .structured-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .structured-list li {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .structured-list li::before {
+            content: counter(list-counter);
+            counter-increment: list-counter;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #3b82f6;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .structured-list ol {
+            counter-reset: list-counter;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 1024px) {
+            .floating-toc {
+                display: none;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .mind-map-branches {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .timestamp {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            
+            .timeline-item {
+                margin-left: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="floating-toc" id="toc">
+        <a href="#chapter-1">第1章 开场介绍</a>
+        <a href="#chapter-2">第2章 交大教学成就</a>
+        <a href="#chapter-3">第3章 1996年AI启蒙</a>
+        <a href="#chapter-4">第4章 磨削工艺智能化</a>
+        <a href="#chapter-5">第5章 工厂实践经历</a>
+        <a href="#chapter-6">第6章 深度学习发展</a>
+        <a href="#chapter-7">第7章 宝钢生产线项目</a>
+        <a href="#chapter-8">第8章 信息化系统开发</a>
+        <a href="#chapter-9">第9章 智能化应用</a>
+        <a href="#chapter-10">第10章 Transformer革命</a>
+        <a href="#chapter-11">第11章 上汽通用项目</a>
+        <a href="#chapter-12">第12章 不确定环境研究</a>
+        <a href="#chapter-13">第13章 三一重工合作</a>
+        <a href="#chapter-14">第14章 教学理念与实践</a>
+    </div>
+    <div class="container">
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="胡洁.png" alt="胡洁教授" onerror="this.style.display='none'">
+                </div>
+            <h1 class="main-title">人工智能时代的高端装备创新设计</h1>
+            <div class="subtitle">胡洁 演讲实录</div>
+            <p class="speaker-name">胡洁 · 上海交通大学特聘教授</p>
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月25日</div>
+                <div class="meta-item">⏱️ 37分30秒</div>
+                <div class="meta-item">📍 上午11:25</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 第1章 -->
+            <div class="chapter" id="chapter-1">
+                    <div class="chapter-number">第1章</div>
+                <h2 class="chapter-title">开场：29年人工智能实践经验</h2>
+                <div class="chapter-time">⏱️ 00:00-00:35</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">00:00</span>人工智能时代这样的一个创新设计，那么给的时间不多，因为也是快到饭点，所以这个给大家快速去过一下啊。其实我做人工智能做了29年啊。如果说你站在讲台上，你连自己都没做过人工智能，你却侃侃而谈说你要教给学生人工智能，这简直是无稽之谈啊。所以我做人工智能做了很多的一个领域，今天只给了半小时，所以只能给大家分享这个高端装备，所以更多的是我自己亲身做的啊。</p>
+                </div>
+            </div>
+
+            <!-- 第2章 -->
+            <div class="chapter" id="chapter-2">
+                    <div class="chapter-number">第2章</div>
+                <h2 class="chapter-title">交大凯源十佳教师的实干精神</h2>
+                <div class="chapter-time">⏱️ 00:35-01:27</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">00:35</span>我是交大的凯源十佳教师，排第三名，是投票投出来的啊。为什么能够在交大能够讲课讲到这个第三名，是因为自己实干了29年啊。那么人工智能是什么？很多人都在匪夷所思，人工智能时代来了，我们老师应该何去何从啊？我在硕士就开始做人工智能，1996年，遥远的1996，那时候那个导师做的是模学，用一个模具将一个平面可以模学到一定的精度。我突然举手跟导师说，我想做人工智能，我导师吓坏了，居然有一个学生冒出来跟他说要做人工智能，然后导师根本不知道什么是人工智能，因为在1996年我是他的关门弟子，他60岁准备带完我以后就退休躺平人生。</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">29</span>
+                            <span class="stat-label">年AI实践经验</span>
+                    </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">交大十佳教师排名</span>
+                </div>
+                        <div class="stat-card">
+                            <span class="stat-number">1996</span>
+                            <span class="stat-label">开始AI研究年份</span>
+                </div>
+                    </div>
+
+                    <div class="highlight-box data-box">
+                        <strong>关键数据：</strong>交大凯源十佳教师排名第三，通过师生投票产生，体现了29年实干精神的教学成果。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3章 -->
+            <div class="chapter" id="chapter-3">
+                    <div class="chapter-number">第3章</div>
+                <h2 class="chapter-title">1996年的人工智能启蒙时刻</h2>
+                <div class="chapter-time">⏱️ 01:27-02:05</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">01:27</span>结果发现带了一个哪吒，告诉他要做人工智能，他问了我一句经典的话，你为什么要做人工智啊？我们的生活过得多么美好，用磨靴去把平面磨到这么高的一个精度，我们干嘛要做人工智能啊？我只用一分钟就说服了我的导师，我说你做了40年的磨削，你能告诉我我要把这个平面磨削到一定的精度，我的磨削的速度和进体量应该怎么调才能保证达到这个级？那可是干了40年，他说目前没有一个公式能够表示它们之间的映射关系啊。</p>
+
+                    <div class="highlight-box quote-box">
+                        <strong>重要观点：</strong>"你做了40年的磨削，你能告诉我要把这个平面磨削到一定的精度，我的磨削速度和进给量应该怎么调才能保证达到这个精度？"——用一分钟说服导师的经典问题。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第4章 -->
+            <div class="chapter" id="chapter-4">
+                    <div class="chapter-number">第4章</div>
+                <h2 class="chapter-title">人工神经网络解决磨削工艺难题</h2>
+                <div class="chapter-time">⏱️ 02:05-02:58</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">02:05</span>我说我看了一篇论文叫人工神经网络，只要有足够的数据去训练它，就可以揭示它的规律，所以我在给本格赛上课。我一般来说人工智能在干什么？大千世界是有规律的，我们需要去揭示它，说干就干，自从导师让我去做人工智能，我再也没有让导师操心了啊。我将我口袋所有零花钱全掏出来，买了两条烟啊。到工厂干什么？找师傅帮我去加工。数据我们都知道人工智能三大要素，算法、算力，还有什么数据没有？数据无所谓，人工智能这个师傅拿了两条烟，泡了一杯茶，在旁边抽着烟，喝着茶。这个小伙子两条烟我只能把这个磨床让给你，我不可能给你加工的，所以社会是最好的一所大学。</p>
+
+                    <div class="highlight-box innovation-box">
+                        <strong>技术创新：</strong>1996年即运用人工神经网络解决实际工业问题，揭示磨削工艺参数与精度之间的映射关系，体现了理论与实践结合的重要性。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第5章 -->
+            <div class="chapter" id="chapter-5">
+                <div class="章-number">第5章</div>
+                <h2 class="chapter-title">工厂实践：社会是最好的大学</h2>
+                <div class="chapter-time">⏱️ 02:58-04:16</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">02:58</span>什么叫做人情淡薄？好，那好，我学会了一个新的手艺，叫磨，学自己就开始磨。我经常用这个故事教育我们的硕士、博士成长，买了飞机票让你去做实验，你却说我要在空调房间里面去享受，我要去做模拟和仿真啊。这时候我们可以看到加工的数据训练了，这样一个四层架构的一个模型，训练完了以后，诶交给了这个师傅一个垂类大模型，我告诉这个师傅我走了，但是留给了一个宝贵的知识库。以后你再也不用靠经验去调你的所谓的摩学速度进行量，只要你告诉我摩学，最终的摩学的一个精度可以反向传播给你算出我写的速度和进阶的，这是在遥远1996年，当时是486586的那个时代，那时候的数据叫小数据，它不叫大数据啊。我们都知道2006年来了，伟大的新的偶像级的人物提出了这个叫深度学习，将我当年的四层架构做到了多少呢？196层，对上一下发了一篇文章，先写了深度学习啊。</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1996年</div>
+                            <div class="timeline-content">四层架构的人工神经网络，解决磨削工艺参数优化问题</div>
+                    </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2006年</div>
+                            <div class="timeline-content">深度学习概念提出，架构从4层扩展到196层</div>
+                </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2017年</div>
+                            <div class="timeline-content">Transformer架构发布，人工智能进入新纪元</div>
+                </div>
+                    </div>
+
+                    <div class="highlight-box case-box">
+                        <strong>实践案例：</strong>用两条烟换取工厂师傅的磨床使用权，亲自动手收集数据，最终为师傅留下宝贵的知识库——这种"垂类大模型"在1996年就已经实现，体现了实践出真知的道理。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第6章 -->
+            <div class="chapter" id="chapter-6">
+                    <div class="chapter-number">第6章</div>
+                <h2 class="chapter-title">深度学习时代的到来</h2>
+                <div class="chapter-time">⏱️ 04:16-05:43</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">04:16</span>同样在2007年，这位小伙写了一本书叫KP，以及在产品设计中的正式将人工智能开启。在高端装备设计里面，我们经常在给学生上设计课，你都没干过人工智能，你咋告诉他怎么做人工智能啊？这是我的开篇第一个作品，给宝干去做了一个这个生产线。干什么呢？宝干很简单，说。郭老师，我给你的要求很简单，这是一个单板，请你给我设计一个装备，把它卷成一个圆管。哎，就这么简单啊。这个干设计的都知道怎么把它卷一个圆管，北方都有个擀面杖，把它慢慢慢慢赶出来的，所以有几十个滚子可以把它卷成一个圆管啊。我但是跟保单说我不但可以给你做设备，我还给你做信息化，给你做智能化。他说。你是个骗子，我只要翻倍，别跟我谈什么信息化和人工智能和智能化，那我只能让他多么痛地领悟。是啊，那我就直接给你这个我还没开始讲，后面复盘的还有20分钟。哈哈哈，好，我给他做了一个装备，做完了以后我拿了我的合同的钱我就走，我在等电话，我在等他给我做，让我给他做信息化。</p>
+
+                    <div class="highlight-box insight-box">
+                        <strong>核心洞察：</strong>宝钢项目体现了从工业化到信息化再到智能化的完整升级路径。客户起初只要设备，但最终会认识到信息化和智能化的价值。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第7章 -->
+            <div class="chapter" id="chapter-7">
+                    <div class="chapter-number">第7章</div>
+                <h2 class="chapter-title">宝钢项目：从设备到信息化的痛点</h2>
+                <div class="chapter-time">⏱️ 05:43-07:25</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">05:43</span>诶，果然没过多久，郭老师你当着我们面把管子卷起来，但是我现在又有一个新的情况，我不会卷，我们都知道装备，还有一个叫工艺，我没告诉你啊。那我告诉他，我已经拿了钱，不好意思，我不能再给你做事了，但是我告诉你一个方法叫试错法。哎，几千年来人类一个最好的一个办法叫试错法。诶，他说那挺好，拿了代码试呗，反正他财大气粗，天天试试到了第七天忍无可忍说郭老师再试下去保证用破产。我还试不出来，但是我给他做了一个信息化数字男生系统，我们都知道郭英在1994年花了十几年的时间去做了信息化。信息化在干什么？我讲过一门本科课叫企业信息化，这门课我只给学生讲，改了四个字叫多快好省整个信息化在干什么？用最快的速度、最低的成本去生产，告诉他做了一个数字完成系统。我说这就是我当年想让你做的信息化，你偏不愿意给钱，给我，先让我给你做了，做完了以后你就不用实际的这个钢板去试了，你可以用数字男生系统试，就像打游戏一样的，不花你一分钱。哇，懂得什么叫信息化，现在懂得什么叫售后服务好，拿了第二个合同的钱又跟他说拜拜了，我在等他的第三个电话智能化，在座各位可能所有人都不会相信，还有第三个电话要做什么？人工智能，这个就是一个骗子。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>商业策略：</strong>通过"试错法的痛点"让客户认识到信息化的价值。数字孪生系统让客户可以像"打游戏一样"进行工艺试验，不花一分钱。这种循序渐进的销售策略展现了技术价值的逐步释放。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第8章 -->
+            <div class="chapter" id="chapter-8">
+                    <div class="chapter-number">第8章</div>
+                <h2 class="chapter-title">智能化应用：垂类大模型的早期实践</h2>
+                <div class="chapter-time">⏱️ 07:25-09:46</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">07:25</span>第三个电话来了，胡老师，我接到一个订单很急，要三天，必须要交货，但是我用你的速度完成也试不出来，时间来不及，我说给你做智能化，我已经做好了啊。是什么？你在试的过程中间有大量的中间数据和这个中间数据揭示了或者说的参数和最终的成型质量。想到了1996年的硕士论文，好给他做了这样一个垂类的一个大模型，那时候还没有什么什么这个大语言模型，是吧？还没有transform，但是用了数据挖掘给他做，所以一张图给所有人知道什么叫做工业化，什么叫做信息化，什么叫做智能化。好，看完了，接着去做了这个小动物多模态分析项目，今天给的时间太短，没法给大家详细讲，每一页都是可以给大家讲半小时，我害怕后面又附牌子，还有10分钟啊。好，又做了这个高端装备，法拉科一起做了，用机器人去装配法拉科机器人告诉大家什么是能做完了，做了小物件的一个抓取，柔性的这个抓取东西是咱们规范的，像人一样地去把它抓取好。这4个案例做完了，我们都知道2017年，一个伟大的时刻来了，他疯狂支付啊。如果说人工智能历史有多少天？有多少年，其实只有8年。2017年之前都不叫人工智能，我原来我以前做了硕士博士做到2017年，哼哧哼哧做完了，结果发现清零了。因为2017年我的父母会有问题，Google八位同事叫Google八子，这八个人不是一个部门的，在喝咖啡的时候写的这篇文章，所以这叫无组织的科研创新。是无组织的，这8个人从来没有说拿了一个工信部的指南，说我一定要去做一个什么东西。不是的，八个人就是随便写了一个。这个标题很有意思，真是一语双关。</p>
+
+                    <div class="mind-map">
+                        <div class="mind-map-center">智能制造三步走</div>
+                        <div class="mind-map-branches">
+                            <div class="mind-map-branch">工业化<br>物理设备制造</div>
+                            <div class="mind-map-branch">信息化<br>数字孪生系统</div>
+                            <div class="mind-map-branch">智能化<br>垂类大模型</div>
+                    </div>
+                    </div>
+
+                    <div class="highlight-box innovation-box">
+                        <strong>技术突破：</strong>早在Transformer之前就实现了垂类大模型，通过数据挖掘技术解决紧急订单问题。体现了工业化→信息化→智能化的完整技术演进路径。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第9章 -->
+            <div class="chapter" id="chapter-9">
+                    <div class="chapter-number">第9章</div>
+                <h2 class="chapter-title">2017年Transformer革命：Attention is All You Need</h2>
+                <div class="chapter-time">⏱️ 09:46-10:47</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">09:46</span>哇，客厅，那我怎么是这个标题呢？不是应该基于什么什么什么面跑了一个attention，一个OOB，出了这么一个诡异的名字，是因为第三位是一位女性，特别喜欢1967年那首歌叫OOB的意思，所以觉得那是不是可以把love换成attention？因为他讲的是attention注意力机制，从而造就了一个叫并行计算，从而出现了英伟达腾空出世GPU。</p>
+                    
+                    <p><span class="timestamp">10:20</span>所以这个时代光辉的时代，至今没有人能颠覆这样错误的一个观点，连后面的GPT也是GPT。那t也是传说，所以2017辉煌的时代造就了另一个辉煌的古杰，那就再也不用前面的这个小打小闹，开始去做新的设计，这也是我自己拿了一个上海市技术发明一轮的。</p>
+
+                    <div class="highlight-box data-box">
+                        <strong>历史节点：</strong>2017年是人工智能的分水岭，Transformer架构的出现让之前的工作"清零"。论文标题"Attention is All You Need"来源于1967年的歌曲，体现了科研创新的偶然性和无组织特征。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第10章 -->
+            <div class="chapter" id="chapter-10">
+                    <div class="chapter-number">第10章</div>
+                <h2 class="chapter-title">上汽通用项目：智能体概念的产业应用</h2>
+                <div class="chapter-time">⏱️ 10:47-11:43</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">10:47</span>这个很有意思，用户需求驱动，上汽通用说原来一条生产线只能生产一个车型，我要换一个车型，又要换一条生产线，胡老师怎么干啊？我们所有干设计的天天在那里去讲三大构成，却从来不解决实际的问题啊。这实际问题是什么？我换一条线，我还要生产，我一条线能不能生产多个车型？那很简单，这不就智能体嘛，对吧？人不就解决了，我们家厨房从来不会做10个厨房，这个厨房做宫保鸡丁，那个厨房做番茄炒蛋，一个厨房做100道菜，1,000道菜，机器为什么不能用，对吧？做了最小的功能单元，18个最小的功能单元接到订单可以自由组合，然后去生产不同的事情，这条线可以生产8个或者更多的事情，所以你当之无愧拿到上海是自己部门的人啊。</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <span class="tool-icon">🏭</span>
+                            <div class="tool-name">智能生产线</div>
+                    </div>
+                        <div class="tool-item">
+                            <span class="tool-icon">🤖</span>
+                            <div class="tool-name">智能体系统</div>
+                </div>
+                        <div class="tool-item">
+                            <span class="tool-icon">🔧</span>
+                            <div class="tool-name">功能单元</div>
+                </div>
+                        <div class="tool-item">
+                            <span class="tool-icon">🎯</span>
+                            <div class="tool-name">动态组合</div>
+                    </div>
+                        <div class="tool-item">
+                            <span class="tool-icon">🚗</span>
+                            <div class="tool-name">多车型生产</div>
+                        </div>
+                        <div class="tool-item">
+                            <span class="tool-icon">📊</span>
+                            <div class="tool-name">效率优化</div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box innovation-box">
+                        <strong>创新理念：</strong>将厨房类比应用到生产线设计，一个厨房能做1000道菜，一条生产线为什么不能生产多个车型？通过18个最小功能单元的自由组合，实现了真正的智能体概念。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第11章 -->
+            <div class="chapter" id="chapter-11">
+                    <div class="chapter-number">第11章</div>
+                <h2 class="chapter-title">小管子项目：基于Transformer的新突破</h2>
+                <div class="chapter-time">⏱️ 11:43-12:14</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">11:43</span>晓阳刚才做大管子骗了3笔钱，现在又做小管子，对空调在维通道管。那日本垄断了。你做得再细做不过日本，那我想我一定要超越日本。那同样做了一个工业化、信息化和智能化，这个你大管子做得更厉害，是因为我们有了一个新的大模型transform，对吧？我们基于整个transform构架去做新的管子的智能化。</p>
+
+                    <div class="highlight-box case-box">
+                        <strong>技术升级：</strong>从大管子到小管子，挑战日本的技术垄断。基于Transformer架构的新智能化系统，体现了技术迭代对产业突破的重要作用。
+                    </div>
+                </div>
+                </div>
+
+            <!-- 第12章 -->
+            <div class="chapter" id="chapter-12">
+                    <div class="chapter-number">第12章</div>
+                <h2 class="chapter-title">不确定环境下的装备智能决策</h2>
+                <div class="chapter-time">⏱️ 12:14-13:03</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">12:14</span>好，做完了以后这个小胡同学开始进军不确定环境，原来设计都是在封闭的空调房间里去干的，但实际上装备是在露天环境，恶劣的环境。不确定环境怎么办？拿了国家重点研发首席。同学刚才介绍还没介绍。对啊，我既拿了国家重点研发首席，又拿了涉及重大的首席文科理工作啊。那我们看看这个就是什么不确定环境下一个决定机在决定过程中间环境极度恶劣怎么办啊？端倍的性能下降了，去用AI，这个AI就是不但要考虑装备自身，还考虑到恶劣的一个环境啊。</p>
+
+                    <div class="highlight-box data-box">
+                        <strong>研究成果：</strong>获得国家重点研发项目首席科学家，研究不确定环境下的装备智能决策，将AI应用从理想的实验室环境扩展到真实的恶劣工况。
+                    </div>
+                </div>
+                    </div>
+
+            <!-- 第13章 -->
+            <div class="chapter" id="chapter-13">
+                <div class="chapter-number">第13章</div>
+                <h2 class="chapter-title">三一重工合作：挖掘机的真正智能化</h2>
+                <div class="chapter-time">⏱️ 13:03-14:30</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">13:03</span>这是在三一去请我去做了一场报告啊。今天也是这个大范老师这个邀请我过来，我一般喜欢去企业去做，2023年3月31号三一一个科技节请我去做了这个报告，我做完了就拿了一个订单，嗯，在我告诉他三一的未来了，无人挖掘，跟他讲了GPT算法和DT算法。那这不就跟你挖掘机一样的嘛，现在人家用到了语言大模型叫ChatGPT。</p>
+                    
+                    <p><span class="timestamp">13:36</span>那你应该做挖掘机，对吧？立刻来了，他马上拉着我说，唉，郭老师，你快来看吧，我们已经无人挖掘了，我用了两个字，呵呵，对，你都不用挖掘，是什么？在指定的地方跑过去咵挖了一场，然后放在潘美车站。我说你这些小孩子过家，所有东西都事先约定好了，跑过去挖这个第一场，然后放到这，你当你挖第一场的时候，你知道旁边土是怎么掉下来的，人的厉害在于什么？我每一次挖完了，我要去看现在的状态，再决定我下一场应该很多，所以根本就不是智能。哇，一下子脸红了，等等我再给你做啊。</p>
+
+                    <div class="comparison-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>对比维度</th>
+                                    <th>伪智能挖掘</th>
+                                    <th>真正智能挖掘</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>工作模式</td>
+                                    <td>预设程序，固定路径</td>
+                                    <td>实时感知，动态决策</td>
+                                </tr>
+                                <tr>
+                                    <td>环境适应</td>
+                                    <td>只能在约定环境工作</td>
+                                    <td>适应复杂多变环境</td>
+                                </tr>
+                                <tr>
+                                    <td>决策依据</td>
+                                    <td>事先设定的指令</td>
+                                    <td>实时观察的状态变化</td>
+                                </tr>
+                                <tr>
+                                    <td>学习能力</td>
+                                    <td>无法从经验中学习</td>
+                                    <td>每次操作都积累经验</td>
+                                </tr>
+                            </tbody>
+                        </table>
+            </div>
+
+                                        <div class="highlight-box insight-box">
+                        <strong>深度思考：</strong>真正的智能挖掘不是预设程序的执行，而是要能感知环境变化并实时调整策略。每挖一铲都要观察土质变化，动态决策下一步行动，这才是智能的本质。
+                    </div>
+                </div>
+                </div>
+
+            <!-- 第14章 -->
+            <div class="chapter" id="chapter-14">
+                <div class="chapter-number">第14章</div>
+                <h2 class="chapter-title">教学理念：实践先行的人工智能教育</h2>
+                <div class="chapter-time">⏱️ 14:30-37:30</div>
+                <div class="chapter-content">
+                    <p>胡洁教授在演讲的后半部分详细展示了更多项目案例，包括多模态分析、机器人抓取、柔性制造等前沿技术应用。每个项目都体现了从理论到实践的完整路径，强调了"没做过就别教"的教学理念。</p>
+
+                    <div class="highlight-box quote-box">
+                        <strong>教育理念：</strong>"如果说你站在讲台上，你连自己都没做过人工智能，你却侃侃而谈说你要教给学生人工智能，这简直是无稽之谈。"这句话贯穿整个演讲，体现了实践先行的教育理念。
+                    </div>
+
+                                        <div class="structured-list">
+                        <h4>🎯 胡洁教授教学理念核心要点</h4>
+                        <ol>
+                            <li>人工智能教育必须以实践为基础，"没做过就别教"是铁律</li>
+                            <li>工业化→信息化→智能化是技术发展的必然路径</li>
+                            <li>真正的智能是环境感知与动态决策的结合</li>
+                            <li>技术创新往往来源于实际问题的解决需求</li>
+                            <li>社会是最好的大学，实践出真知</li>
+                            <li>每个项目都要从用户痛点出发，而非技术炫技</li>
+                        </ol>
+                    </div>
+
+                    <div class="modern-quote">
+                        <div class="quote-text">如果说你站在讲台上，你连自己都没做过人工智能，你却侃侃而谈说你要教给学生人工智能，这简直是无稽之谈。</div>
+                        <div class="quote-author">— 胡洁教授</div>
+                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+        <div class="footer" style="text-align:center;padding:2rem;color:#a3a3a3">
+            <div>人工智能时代的高端装备创新设计</div>
+            <div>胡洁 · 2025年7月25日</div>
+            </div>
+        </div>
+
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+        
+        // 目录平滑滚动
+        document.querySelectorAll('#toc a').forEach(a => 
+            a.onclick = e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+            }
+        );
+        
+        // 时间戳点击复制
+        document.querySelectorAll('.timestamp').forEach(timestamp => {
+            timestamp.onclick = () => {
+                navigator.clipboard.writeText(timestamp.textContent);
+                timestamp.style.background = '#dcfce7';
+                setTimeout(() => timestamp.style.background = '#f8fafc', 1000);
+            };
+        });
+    </script>
+</body>
+</html>

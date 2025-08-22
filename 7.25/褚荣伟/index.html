@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>构建未来营销教育：人工智能融合的实践探索 - 褚荣伟演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            color: #37352f;
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #fff;
+        }
+
+        /* Hero区域统一样式 */
+        .hero {
+            background: #fff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #f1f1ef;
+        }
+
+        .speaker-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .meta-item {
+            background: #f8f9fa;
+            color: #6b7280;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* 内容区域样式 */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .chapter {
+            margin: 2.5rem 0;
+            padding: 1.5rem 0;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-time {
+            color: #787774;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 章节内容 */
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            max-width: 75ch;
+        }
+
+        .chapter-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* 时间戳样式 */
+        .timestamp {
+            background: #f8fafc;
+            color: #64748b;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            margin-right: 12px;
+            display: inline-block;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            cursor: pointer;
+        }
+
+        /* 高亮盒样式 */
+        .highlight-box {
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .quote-box {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+        }
+
+        .data-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+        }
+
+        .insight-box {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+        }
+
+        .innovation-box {
+            background: #ecfdf5;
+            border: 1px solid #10b981;
+        }
+
+        .case-box {
+            background: #faf5ff;
+            border: 1px solid #8b5cf6;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+
+        /* 浮动目录 */
+        .floating-toc {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-height: 60vh;
+            overflow: auto;
+            width: 200px;
+        }
+
+        .floating-toc a {
+            display: block;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .floating-toc a:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        /* 数据卡片网格 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* 概念卡片网格 */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .concept-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .concept-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .concept-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* 对比表格 */
+        .comparison-table {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .comparison-header {
+            background: #f9fafb;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .comparison-cell {
+            padding: 1.5rem;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .comparison-cell h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .comparison-cell p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #8b5cf6, #ef4444);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3b82f6;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* 思维导图样式 */
+        .mind-map {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .mind-map-center {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 1.125rem;
+            position: relative;
+            margin: 2rem;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .mind-map-branches {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .mind-map-branch {
+            background: #e0f2fe;
+            border: 2px solid #0ea5e9;
+            color: #0c4a6e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .mind-map-branch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 1024px) {
+            .floating-toc {
+                display: none;
+            }
+            
+            .mind-map-branches {
+            gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .timestamp {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            .stats-grid, .concept-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            
+            .timeline-item {
+                margin-left: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="floating-toc" id="toc">
+        <a href="#chapter-1">第1章 开场介绍</a>
+        <a href="#chapter-2">第2章 AI教育的时代焦虑</a>
+        <a href="#chapter-3">第3章 商学院的实践挑战</a>
+        <a href="#chapter-4">第4章 AI在营销教育中的价值</a>
+        <a href="#chapter-5">第5章 商学教育的独特性</a>
+        <a href="#chapter-6">第6章 行动科学的教育理念</a>
+        <a href="#chapter-7">第7章 营销教育的核心使命</a>
+        <a href="#chapter-8">第8章 案例教学与AI的碰撞</a>
+        <a href="#chapter-9">第9章 教师角色的挑战</a>
+        <a href="#chapter-10">第10章 未来教育框架构建</a>
+    </div>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="褚荣伟.png" alt="褚荣伟教授" onerror="this.style.display='none'">
+                </div>
+            <h1 class="main-title">构建未来营销教育：人工智能融合的实践探索</h1>
+            <div class="subtitle">褚荣伟 演讲实录</div>
+            <p class="speaker-name">褚荣伟 · 复旦大学管理学院市场营销系副主任</p>
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月25日</div>
+                <div class="meta-item">⏱️ 33分13秒</div>
+                <div class="meta-item">📍 上午10:51</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- 第1章 -->
+            <div class="chapter" id="chapter-1">
+                    <div class="chapter-number">第1章</div>
+                <h2 class="chapter-title">开场：商学院AI教育的思考背景</h2>
+                <div class="chapter-time">⏱️ 00:00-01:18</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">00:00</span>其实是属于管理学，所以刚才范老师是隔壁的系，但咱们是隔壁，好像还离得有点远。那么事实上我今天来，我其实对设计的关于教育的一个生态，我今天主要分享一下在商学院当中，我们现在对于人工智能在商学的教育当中的一些思考。</p>
+                    
+                    <div class="highlight-box insight-box">
+                        <strong>核心洞察：</strong>商学院在AI教育方面并没有想象中那么快，也没有那么新。这并不是我们现在系在做的，而是我们想要未来在整个商学，尤其在营销学科当中构建的加入人工智能赋能的思路。
+                    </div>
+
+                    <p><span class="timestamp">01:00</span>那么事实上我们回过头来看今天为什么我们会那么热烈地讨论AI加教育这一件事情？因为整个的AI已经开始渗入到每一个的行业、每一个领域。</p>
+                </div>
+            </div>
+
+            <!-- 第2章 -->
+            <div class="chapter" id="chapter-2">
+                    <div class="chapter-number">第2章</div>
+                <h2 class="chapter-title">AI教育的时代焦虑与现实挑战</h2>
+                <div class="chapter-time">⏱️ 01:18-03:06</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">01:18</span>今天就像我们做科研也好，我们做教学也好，如果我们今天在课程当中，如果没有人工智能这四个字的话，你就会觉得你跟不上时代，你会觉得你今天好像又在干什么，然后所有的学生也会觉得，如果我今天不学点人工智能的技能，我到了就业上面估计就没有竞争力。</p>
+
+                    <div class="highlight-box quote-box">
+                        <strong>焦虑现象：</strong>老师也会觉得我今天如果还不去用一下人工智能，你就是上一代的人了。这种焦虑在学院和系里都存在。
+                    </div>
+
+                    <p><span class="timestamp">02:15</span>复旦已经全面地走向了，大概在去年还是前年，一下子开出100门以上的AI加的课程，然后我们都疯了，谁来教？教什么？但是这就是我们说的趋势。</p>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">AI+课程数量</span>
+                    </div>
+                        <div class="stat-card">
+                            <span class="stat-number">师资短缺</span>
+                            <span class="stat-label">核心挑战</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">内容定位</span>
+                            <span class="stat-label">教学困惑</span>
+                </div>
+            </div>
+
+                    <div class="highlight-box data-box">
+                        <strong>关键数据：</strong>复旦大学一次性开出100门以上的AI+课程，体现了高校对AI教育的急切需求和师资准备不足的矛盾。
+                    </div>
+                </div>
+                </div>
+
+            <!-- 第3章 -->
+            <div class="chapter" id="chapter-3">
+                <div class="chapter-number">第3章</div>
+                <h2 class="chapter-title">双学位项目的实践困境</h2>
+                <div class="chapter-time">⏱️ 03:06-04:58</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">03:39</span>比如说我们学院，我们现说我们要开人工智能，因为我们现在开了一个叫人工智能加市场营销双学位，从今年的9月份就会有新生，这是我们今年的招生的整个复旦大学招生计划当中出现的一个专业。</p>
+
+                    <div class="highlight-box case-box">
+                        <strong>实践案例：</strong>复旦开设"人工智能+市场营销"双学位项目，但按照上一年"财务金融+人工智能"双学位的情况来看，并不理想。原因是学生会有优化选择的考虑。
+                    </div>
+
+                    <p><span class="timestamp">04:20</span>我如果但凡要去学个人工智能，我干嘛要来学人工智能加这个呢？复旦是一个很卷的大学，我像北京师范都很卷，所以他唯一要卷的是绩点？但是我选两个学位，我的绩点如果它很高，那你想想有多难？</p>
+                </div>
+            </div>
+
+            <!-- 第4章 -->
+            <div class="chapter" id="chapter-4">
+                    <div class="chapter-number">第4章</div>
+                <h2 class="chapter-title">AI在营销教育中的三大价值收益</h2>
+                <div class="chapter-time">⏱️ 04:58-08:17</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">04:58</span>但是大家也在讨论，全球也在会讨论人工智能对于营销的教育叫marketing education，它所带来的影响普遍正面，这都是这样提高教学效率，然后就能够培养未来的营销人才。</p>
+
+                    <div class="highlight-box data-box">
+                        <strong>三大收益点：</strong>
+                        <br>1. <strong>成本效率</strong>：面对更广泛的学生，用有限的老师和时间完成教学任务
+                        <br>2. <strong>个性化</strong>：定制化地了解每个学生的学习情况和诉求
+                        <br>3. <strong>相关性</strong>：AI作为系统搜索工具，快速整理产业相关信息
+                    </div>
+
+                    <p><span class="timestamp">06:50</span>理想当中的个性化，虽然我们会觉得说我们可以有办法让你知道每一个学生的学习情况，每一个学生的诉求，每一个学生的问题，我都能够定制化地去反映。</p>
+
+                    <p><span class="timestamp">07:52</span>如果你今天有一个问题，有一个决策的挑战，你可以让AI去帮你讲，你模拟一个商业场景，这个场景当中其实会凸显出在进行决策时刻的挑战。</p>
+                </div>
+            </div>
+
+            <!-- 第5章 -->
+            <div class="chapter" id="chapter-5">
+                    <div class="chapter-number">第5章</div>
+                <h2 class="chapter-title">商学教育的独特性与差异化</h2>
+                <div class="chapter-time">⏱️ 08:17-11:33</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">08:49</span>因为可能有些在座的人不太明白管理教育或者是business的这些education，它其实是一种应用型的社会科学，那么它它的知识特性还有它的教学目标，还有它的价值取向，以及它的应用场景，其实会跟其他的传统的社会学、经济学、政治学、人类学即使存在着显著的差异。</p>
+
+                    <div class="highlight-box insight-box">
+                        <strong>商学教育特点：</strong>
+                        <br>• 关注微观决策和组织特性
+                        <br>• 重视可操作性方案
+                        <br>• 强调case by case分析
+                        <br>• 注重效能和工具应用
+                        <br>• 人心和人性难以计算
+                    </div>
+
+                    <p><span class="timestamp">10:20</span>我们很关注微观决策，我们很关注组织特性，我们很关注可操作性方案。我们很看重叫case by case，我们非常的关注效能，我们非常的关注所谓的工具。</p>
+
+                    <p><span class="timestamp">10:50</span>我们其实从来都没有提什么叫计算管理对不对？因为我们都知道人心和人性是难以计算的，但是我们整个的商学教育当中，他不得不让学生去练和理解这两件事情。</p>
+                </div>
+            </div>
+
+            <!-- 第6章 -->
+            <div class="chapter" id="chapter-6">
+                    <div class="chapter-number">第6章</div>
+                <h2 class="chapter-title">行动科学：to do something vs to know something</h2>
+                <div class="chapter-time">⏱️ 11:33-15:04</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">11:33</span>所以商学是一个行动的科学，它不是一个解释的科学，所以我们所有教学生最重要的是你要去做行动，就to do something，不是to know something。</p>
+
+                    <div class="highlight-box quote-box">
+                        <strong>核心理念：</strong>"商学是一个行动的科学，不是解释的科学。我们教学生最重要的是to do something，不是to know something。"
+                    </div>
+
+                    <p><span class="timestamp">12:12</span>好，这件事情都懂，但是遇到不同的国家、不同的行业、不同的组织，事实上你做的具体的东西都是不一样。那么在这件事情当中你就去变成你的属性，就你的专有属性特别的重要。</p>
+
+                    <p><span class="timestamp">13:44</span>我们所有在决策当中做到的东西，有可能都不是确定，都不是说你AI做出来之后我就真的去能够做，他有非常强的模糊性，而且做的这个决策往往不完全只关注经济最优化和经济理性，在这个当中因为你面对的是人，所以你不得不面临伦理的问题。</p>
+
+                    <div class="highlight-box innovation-box">
+                        <strong>商学决策特点：</strong>模糊性风险和伦理张力并存，不能仅仅追求经济最优化，必须考虑伦理问题。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第7章 -->
+            <div class="chapter" id="chapter-7">
+                    <div class="chapter-number">第7章</div>
+                <h2 class="chapter-title">营销教育的核心使命：培养三种力</h2>
+                <div class="chapter-time">⏱️ 15:04-17:49</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">15:04</span>第二，我们真的需要当我们把所有的人工智能引入教育这件事情的时候，重点是人工智能吗？我觉得重点不是人工智能，重点应该是教育吧。</p>
+
+                    <p><span class="timestamp">19:17</span>所以今天我们是对于我们人工智能加营销教育，我们的使命，我们是培养三种力。</p>
+
+                    <div class="concept-grid">
+                        <div class="concept-card">
+                            <div class="concept-icon">🔬</div>
+                            <div class="concept-title">科学力</div>
+                            <div class="concept-desc">用数据驱动的方法去理解需求，培养科学决策思维和量化分析能力</div>
+                    </div>
+                        <div class="concept-card">
+                            <div class="concept-icon">🎨</div>
+                            <div class="concept-title">艺术力</div>
+                            <div class="concept-desc">情感共鸣、创意洞察、品牌构建，培养营销中的创意和审美能力</div>
+                </div>
+                        <div class="concept-card">
+                            <div class="concept-icon">⚖️</div>
+                            <div class="concept-title">伦理力</div>
+                            <div class="concept-desc">平衡利润、社群、国家和环境的关系，培养负责任的商业决策能力</div>
+                </div>
+                    </div>
+
+                    <div class="highlight-box data-box">
+                        <strong>三种力培养目标：</strong>这是我们在AI时代营销教育的核心使命，不管人工智能何时出现，这三种能力都是商学教育的根本方向。
+                    </div>
+
+                    <p><span class="timestamp">20:36</span>最后其实我们一直在强调，但我觉得在人工智能的时代可能更加重要的就是伦理力，你怎么平衡？利润、社群、国家，还有这些这个我们的环境，我们叫DRI也好，ESG也好，这些东西的整个的平衡。</p>
+
+                    <p><span class="timestamp">21:01</span>如果人工智能再晚10年出现，我们可能对于我们的营销的来说，我们还是会朝着这样的方向去努力，只是今天人工智能来就会让这件事有的方面变得更容易了，有的方面变得更复杂。</p>
+                </div>
+            </div>
+
+            <!-- 第8章 -->
+            <div class="chapter" id="chapter-8">
+                    <div class="chapter-number">第8章</div>
+                <h2 class="chapter-title">案例教学与AI工具的实践碰撞</h2>
+                <div class="chapter-time">⏱️ 17:49-24:55</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">21:48</span>比如说我在给MBA上课的时候，我们就会有一个练习小组，就是做一个海报，但是我们会要求他做什么呢？我不管你海报生成怎么样，要打印出来挂在这个教室，但是我更重要的是用你们几个人花了多长时间完成这个海报？</p>
+
+                    <div class="highlight-box case-box">
+                        <strong>教学案例：</strong>MBA海报制作练习，重点不是海报质量，而是制作过程中的时间、工具选择、讨论起点、纠结点等决策过程的分析。
+                    </div>
+
+                    <p><span class="timestamp">23:00</span>原来我们在课上会做案例分析，案例分析就是其实不会用电脑，我们都要求我们是白板纸，然后手写，然后有一，我前三次案例分析都是他们小组讨论出来，然后写到这个黑板上。后来最后一次我说我允许你们用大语言模型。</p>
+
+                    <div class="comparison-table">
+                        <div class="comparison-header">传统案例分析 vs AI辅助案例分析</div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>📝 传统手写模式</h4>
+                                <p>• 小组充分讨论交流<br>
+                                • 每组都有独特亮点<br>
+                                • 创新思路层出不穷<br>
+                                • 水平有差异但都有特色</p>
+                    </div>
+                            <div class="comparison-cell">
+                                <h4>🤖 AI辅助模式</h4>
+                                <p>• 成员各自使用AI，缺乏沟通<br>
+                                • 答案趋于普通和相似<br>
+                                • 快速分工但缺乏讨论<br>
+                                • 四个小组结果几乎一样</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box insight-box">
+                        <strong>重要发现：</strong>AI工具虽然提高了效率，但可能削弱了团队协作和创新思维。这提醒我们需要在AI辅助下仍然保持人与人之间的深度交流与碰撞。
+                    </div>
+
+                    <p><span class="timestamp">23:56</span>你就会发现大约模型在给出答案的时候好普通，他们就会明显发现三相较于前三次的时候他们会有很多创新的东西，就你想不到的东西，但是每个小组的水平其实还是有差别，但都有一些亮点，但是都用了大云模型之后，四个小组长得都好一样。</p>
+                </div>
+            </div>
+
+            <!-- 第9章 -->
+            <div class="chapter" id="chapter-9">
+                    <div class="chapter-number">第9章</div>
+                <h2 class="chapter-title">教师角色的多维挑战与进化</h2>
+                <div class="chapter-time">⏱️ 24:55-27:42</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">24:55</span>我其实今天可能要讲，大家都在讲的，我觉得教师的角色我自己在做的时候，我就会发现教师越来越难了。很多人会觉得说，哎呀，有的人工有了这个工具之后，教师的工作轻松了。后来我发现不是教师的工作其实更难了。</p>
+
+                    <div class="highlight-box quote-box">
+                        <strong>角色转变：</strong>原来老师是课堂的掌控者，现在要变成多维角色：既做导演还要表演，而且还有一个躲在幕后的演员——人工智能，随时可能出幺蛾子打乱教学节奏。
+                    </div>
+
+                    <p><span class="timestamp">25:46</span>人工智能在那边，你看不见摸不着，你天天不知道它什么时候会出幺蛾子，它一出幺蛾子之后你就很尴尬，它会打乱你整个的教学的节奏。</p>
+
+                    <p><span class="timestamp">26:44</span>如果这个老师是computer science的，比如像我们吴老师，他自己搭一个东西，那我啥也不会，他画得挺好啊，可是我啥也不会，这就会牵扯到教学的评估。</p>
+
+                    <div class="highlight-box data-box">
+                        <strong>系统性挑战：</strong>
+                        <br>• 时间精力分配受到挑战
+                        <br>• 评价体系落后
+                        <br>• 心理适应不协调
+                        <br>• 资源不平衡
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第10章 -->
+            <div class="chapter" id="chapter-10">
+                    <div class="chapter-number">第10章</div>
+                <h2 class="chapter-title">未来教育框架的系统性构建</h2>
+                <div class="chapter-time">⏱️ 27:42-32:32</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">27:42</span>因为你原来你只是传递学生，你传给他，解释给他，现在不是，现在你也不在，学生也不在，中间还有个AI，所有的东西你要不要用它？所以我自己个人的观点是有限的，有边界的使用。</p>
+
+                    <div class="highlight-box innovation-box">
+                        <strong>建构主义原则：</strong>从传递知识的角色转变为建构知识的系统，难度和复杂度呈指数上升，需要改变教案、流程等所有环节。
+                    </div>
+
+                    <p><span class="timestamp">29:28</span>构建未来的这个营销系统，事实上我刚才说为什么很难？第一你首先得有一个教育框架，你在小点上优化是可以的，但是如果你没有框架，它的优化就是有限的。</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">传统商学教育</div>
+                            <div class="timeline-content">以案例教学为核心，强调面对面讨论，知识传递模式，教师为主导</div>
+                    </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">信息化阶段</div>
+                            <div class="timeline-content">引入多媒体教学，在线学习平台，数字化案例库，但仍以教师为中心</div>
+                    </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">AI时代转型</div>
+                            <div class="timeline-content">知识建构模式，师生AI三方协作，个性化学习，教师成为学习设计师</div>
+                </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">未来愿景</div>
+                            <div class="timeline-content">人机协同决策，伦理驱动创新，全球化本土化并重的智能商学教育</div>
+            </div>
+                    </div>
+
+                    <div class="highlight-box data-box">
+                        <strong>构建要素：</strong>
+                        <br>1. 教育框架构建 - 系统性设计而非单点优化
+                        <br>2. 师资能力建设 - 从知识传递者到学习建构者
+                        <br>3. 软硬件支持 - 技术基础设施完善
+                        <br>4. 中国特色路径 - 结合本土商业环境
+                        <br>5. 学术诚信与伦理 - AI时代的新挑战
+                        <br>6. 评估方式重构 - 适应新教学模式的评价体系
+                    </div>
+
+                    <p><span class="timestamp">30:29</span>所有的商业企业将面临着什么样的挑战？它的企业的逻辑会发生什么样的变化？而我们现在的管理学的理论到底能不能够解释和去帮助他们更好地去理解和应对这种变化？所以这是我们学院的使命。</p>
+
+                    <p><span class="timestamp">31:51</span>因为这个部分才有可能是不可期待的，才是我们作为教育者要去在尤其这样充满着金钱味道的这个教育的课堂里边，我们是需要去做的来强化，尤其是这个叫什么？当你做到高管的时候，那么这个规范的决策会影响的不仅是一个企业，可能会影响一个行业和一个国家跟社会。</p>
+                    
+                    <div class="mind-map">
+                        <div class="mind-map-center">AI+商学教育的核心思考</div>
+                        <div class="mind-map-branches">
+                            <div class="mind-map-branch">重点是教育<br>不是AI</div>
+                            <div class="mind-map-branch">行动科学<br>to do something</div>
+                            <div class="mind-map-branch">三种力培养<br>科学·艺术·伦理</div>
+                            <div class="mind-map-branch">建构主义<br>共同建构知识</div>
+                            <div class="mind-map-branch">有限边界<br>使用AI</div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+                </div>
+
+        <div class="footer" style="text-align:center;padding:2rem;color:#a3a3a3">
+            <div>构建未来营销教育：人工智能融合的实践探索</div>
+            <div>褚荣伟 · 2025年7月25日</div>
+                    </div>
+                    </div>
+
+    <script>
+        // 阅读进度
+        addEventListener('scroll', () => {
+            const s = pageYOffset;
+            const h = document.documentElement.scrollHeight - innerHeight;
+            document.getElementById('reading-progress').style.width = (s / h * 100) + '%';
+        });
+        
+        // 目录平滑滚动
+        document.querySelectorAll('#toc a').forEach(a => 
+            a.onclick = e => {
+                e.preventDefault();
+                document.querySelector(a.getAttribute('href')).scrollIntoView({behavior: 'smooth'});
+            }
+        );
+        
+        // 时间戳点击复制
+        document.querySelectorAll('.timestamp').forEach(timestamp => {
+            timestamp.onclick = () => {
+                navigator.clipboard.writeText(timestamp.textContent);
+                timestamp.style.background = '#dcfce7';
+                setTimeout(() => timestamp.style.background = '#f8fafc', 1000);
+            };
+        });
+    </script>
+</body>
+</html>

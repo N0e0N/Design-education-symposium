@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代的投资思考与机遇 - 郑庆生演讲实录</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            color: #37352f;
+            background: #ffffff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #ffffff;
+        }
+
+        /* 阅读进度条 */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s;
+        }
+        
+        .hero {
+            background: #ffffff;
+            color: #37352f;
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+        
+        .main-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #37352f;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+        
+        .subtitle {
+            font-size: 1.375rem;
+            color: #787774;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宍体", serif;
+        }
+        
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+        
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            color: #787774;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .chapter {
+            margin: 2.5rem 0;
+            padding: 1.5rem 0;
+            position: relative;
+        }
+        
+        .chapter::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e9e9e7 20%, #e9e9e7 80%, transparent);
+        }
+        
+        .chapter:last-child::after {
+            display: none;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #37352f;
+            line-height: 1.3;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .chapter-time {
+            color: #787774;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-content {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            max-width: 75ch;
+            color: #37352f;
+        }
+
+        .chapter-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .timestamp {
+            background: #f8fafc;
+            color: #64748b;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            margin-right: 12px;
+            display: inline-block;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            cursor: pointer;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .highlight-box:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .quote-box {
+            background: #f0f9ff;
+            border-color: #0ea5e9;
+        }
+
+        .data-box {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        
+        .insight-box {
+            background: #fef2f2;
+            border-color: #ef4444;
+        }
+        
+        .innovation-box {
+            background: #ecfdf5;
+            border-color: #10b981;
+        }
+        
+        .case-box {
+            background: #faf5ff;
+            border-color: #8b5cf6;
+        }
+        
+        .structured-box {
+            background: #f8fafc;
+            border: 1px solid #64748b;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .structured-box h4 {
+            margin: 0 0 1rem 0;
+            color: #374151;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .structured-box ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+        
+        .structured-box li {
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+        
+        /* 文本分段和视觉优化 */
+        .text-segment {
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 3px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .text-segment:hover {
+            background: #f5f5f5;
+            border-left-color: #3b82f6;
+            transition: all 0.2s ease;
+        }
+        
+        .key-phrase {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        
+        .emphasis {
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .data-highlight {
+            background: #fff8e1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #f57f17;
+            border: 1px solid #ffecb3;
+        }
+        
+        /* 引用卡片 */
+        .quote-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        
+        .quote-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 3rem;
+            color: #3b82f6;
+            opacity: 0.3;
+            font-weight: bold;
+        }
+        
+        .quote-content {
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .quote-attribution {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* 数据卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        /* 时间轴样式 */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-left: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.2rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+        
+        .timeline-year {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content {
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        /* 思维导图样式 */
+        .mind-map {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .mind-map-center {
+            text-align: center;
+            background: #3b82f6;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        
+        .mind-map-branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .mind-map-branch {
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .mind-map-branch::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #d1d5db;
+        }
+        
+        .branch-title {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .branch-content {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        
+        /* 对比表格 */
+        .comparison-table {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 2rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .comparison-header {
+            background: #f9fafb;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            text-align: center;
+            color: #374151;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .comparison-cell {
+            padding: 1.5rem;
+            border-right: 1px solid #e5e7eb;
+        }
+        
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+        
+        .comparison-cell h4 {
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .comparison-cell p {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        /* 进度指示器 */
+        .progress-indicator {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .progress-bar-container {
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mind-map-branches {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-cell {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                margin-left: 1rem;
+            }
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ef4444);
+            z-index: 1000;
+            transition: width 0.25s ease;
+        }
+        
+        .floating-toc {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-height: 60vh;
+            overflow: auto;
+            width: 200px;
+            z-index: 999;
+        }
+        
+        .floating-toc a {
+            display: block;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .floating-toc a:hover,
+        .floating-toc a.active {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #a3a3a3;
+            border-top: 1px solid #e9e9e7;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .floating-toc {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 1.5rem 1rem;
+            }
+            
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .meta-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .timestamp {
+                display: block;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="reading-progress"></div>
+    
+    <div class="floating-toc" id="floating-toc">
+        <a href="#chapter-1">第1章 开场与分享背景</a>
+        <a href="#chapter-2">第2章 非线性科技革命</a>
+        <a href="#chapter-3">第3章 底层模型的变化</a>
+        <a href="#chapter-4">第4章 AI的幽默挑战</a>
+        <a href="#chapter-5">第5章 信息节点革命</a>
+        <a href="#chapter-6">第6章 科技周期规律</a>
+        <a href="#chapter-7">第7章 历史演进分析</a>
+        <a href="#chapter-8">第8章 美国科技发展</a>
+        <a href="#chapter-9">第9章 信息成本变化</a>
+        <a href="#chapter-10">第10章 投资壁垒分析</a>
+        <a href="#chapter-11">第11章 ToC投资机会</a>
+        <a href="#chapter-12">第12章 中美人才差异</a>
+        <a href="#chapter-13">第13章 ToB发展思考</a>
+        <a href="#chapter-14">第14章 全球化展望</a>
+        <a href="#chapter-15">第15章 教育变革思考</a>
+    </div>
+    
+    <div class="container">
+        <div class="hero">
+            <div class="speaker-avatar">
+                <img src="郑庆生.png" alt="郑庆生" onerror="this.style.display='none'">
+            </div>
+            <h1 class="main-title">AI时代的投资思考与机遇</h1>
+            <div class="subtitle">郑庆生演讲实录</div>
+            <p class="speaker-name">郑庆生 · 红杉投资人</p>
+            
+            <div class="meta-info">
+                <div class="meta-item">📅 2025年7月26日</div>
+                <div class="meta-item">⏱️ 44分19秒</div>
+                <div class="meta-item">📍 下午3:48</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="chapter" id="chapter-1">
+                    <div class="chapter-number">第1章</div>
+                <h2 class="chapter-title">开场与分享背景</h2>
+                <div class="chapter-time">🕐 00:00-00:34</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">00:00</span>的确，我也没注意，我给你看那个，今天我给大家就分享一个，就是在我们今年这个同城中国做的，我们和我们所有的这个 CEO 开这个峰会的时候，我们做的一个一个分享。但是基于今天的这个情况，有一点这个小的改动。嗯，因为今天主要咱们都是做这个设计方面，所以这个我也尽量就按照咱们这个能够把这个投资人的观点能够分享给大家这个目的来做一个定。</p>
+                    </div>
+                </div>
+            
+            <div class="chapter" id="chapter-2">
+                <div class="chapter-number">第2章</div>
+                <h2 class="chapter-title">AI：人类首次非线性科技革命</h2>
+                <div class="chapter-time">🕐 00:34-01:20</div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="timestamp">00:34</span>就是就是我的一个观点，就是我觉得可能整个人工智能可能是人类第一次有<span class="key-phrase">非线性的一个科技革命</span>，因为在这个科技革命里面有这个邮件的产生。</p>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            从人类历史上所有科技革命里面，大家都是确定无疑地知道发生了什么，从科技的逻辑推演里只知道确定无疑发生，但是在整个大模型里面还是有人力到目前为止无法解释的部分。
+                        </div>
+                        <div class="quote-attribution">— 郑庆生对AI革命独特性的洞察</div>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-header">AI革命 vs 传统科技革命</div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>🔄 传统科技革命</h4>
+                                <p>• 线性发展，可预测<br>• 逻辑推演明确<br>• 发展路径清晰<br>• 递进式演化</p>
+                            </div>
+                            <div class="comparison-cell">
+                                <h4>🚀 AI革命</h4>
+                                <p>• <span class="emphasis">非线性跳跃</span><br>• <span class="data-highlight">人力无法解释</span><br>• 发展难以预测<br>• 直接针对结果</p>
+                            </div>
+                </div>
+            </div>
+
+                    <div class="text-segment">
+                        <p>就看大家可以看今天实际在<span class="key-phrase">应用层的竞争</span>很接近于当年<span class="emphasis">移动互联网时期</span>，是非常接近的，因为有很多的<span class="data-highlight">商业模式的革命</span>，或者有场景的革命，这是接近的。</p>
+                    </div>
+                </div>
+                </div>
+            
+            <div class="chapter" id="chapter-3">
+                <div class="chapter-number">第3章</div>
+                <h2 class="chapter-title">底层模型的难以预测性</h2>
+                <div class="chapter-time">🕐 01:20-02:11</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">01:20</span>但是到今天为止，作为这次科学革命最底层的这个大模型之间的词小比这件事情会变得变化非常快，就大家包括这个，你看这个，除了这个当年的这个崛起，也包括像这个DeepSeek，是吧？嗯，它其实中间充斥着一些，好像大家很难解释清楚，有些特别小的团队，然后看上去可能这个背景也不光鲜的团队，或者诶有一天像前段时间我们投的这个 K0K two，然后一下子又这个在这个非非，这个 thinking 的那些模型，你又说他了，这几天千万有事，对，这反而在底层模型这个显得更加这个难以琢磨。</p>
+                    
+                    <div class="highlight-box quote-box">
+                        <strong>历史对比：</strong>所以这就我们也解决了一些，就是历史上这些革命很多都是比较递进式的低预测和整个的这个人工智能，目前看了这边很跳跃，难以预测，而且它是直接针对结果。
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-4">
+                <div class="chapter-number">第4章</div>
+                <h2 class="chapter-title">AI的幽默挑战与人类优势</h2>
+                        <div class="chapter-time">🕐 02:11-02:39</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">02:11</span>你刚才这位老师讲这个，比如说哪些是人力擅长的，哪些是人力不擅长？我也想了一个段子，就实际上脱口秀和这个讲段子就幽默，就是我就有一天我们在一个小会上讨论说，就说这个可能还是因为擅长，就为什么呢？</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>技术局限分析：</strong>因为这个大模型在这个训练的时候，实际上他不知道什么是好笑，是不好笑，因为你在那个语料里面，你没有告诉他那个是好笑还是好笑，你只是告诉他这可能是一个好笑的部队。对，明显的段子，但是他到底讲到哪个句笑，或者哪个句是大笑呢？句中笑或者小笑其实他是不知道的。所以到目前为止大模型讲段子还是不是好好。
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-5">
+                <div class="chapter-number">第5章</div>
+                <h2 class="chapter-title">信息节点的革命性增长</h2>
+                        <div class="chapter-time">🕐 02:39-03:44</div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="timestamp">02:39</span>嗯，这是在这个 ad 崛起之后，我们看到的一个事情，就说原来在人工智能发展到抖音的时代，我们认为可能还没有看上去像今天看上去整个 <span class="key-phrase">AI 所带来的市场</span>这么大，就为什么这个市场会变大？</p>
+                    </div>
+                    
+                    <div class="mind-map">
+                        <div style="text-align: center;">
+                            <div class="mind-map-center">信息节点革命</div>
+                </div>
+                        <div class="mind-map-branches">
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🌐 传统信息节点</div>
+                                <div class="branch-content">人、网站、手机、APP等工具性存在</div>
+                </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🤖 AI Agent节点</div>
+                                <div class="branch-content">类人存在，有灵性，能推动事情解决</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🔗 交互升维</div>
+                                <div class="branch-content">人↔人 → 人↔Agent → Agent↔Agent</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🎯 专用工具</div>
+                                <div class="branch-content">为Agent设计的网站和工具</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box innovation-box">
+                        <strong>信息节点变化机制：</strong>因为它本质上导致人类的整个<span class="data-highlight">信息节点变多了</span>，因为原来你这个信息节点变多的方式，因为每个人肯定是个信息节点，一个网站是信息，那么原来的这种信息节点的方式主要是因为有一些<span class="emphasis">工具性的东西</span>，就网站是一个工具性的东西，然后手机是工具性的东西， APP 是工具。
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            历史上第一次，AI的这些agent变成了一个一个类人的存在。这相当于在信息层面增加一层，原来是人与人之间的交互，变成人和agent要交互，可能agent和agent之间会再交互。未来会有一些网站、一些工具，它只是给agent使用，不是给人使用。
+                    </div>
+                        <div class="quote-attribution">— 关于AI Agent历史性突破的思考</div>
+                    </div>
+                    
+                    <div class="progress-indicator">
+                        <div class="progress-label">
+                            <span>信息维度升级</span>
+                            <span>+1层</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-6">
+                <div class="chapter-number">第6章</div>
+                <h2 class="chapter-title">科技周期的价值创造规律</h2>
+                        <div class="chapter-time">🕐 03:44-04:55</div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="timestamp">03:44</span>所以这是可能是我一观点，就是说每一次<span class="key-phrase">商业价值的产生</span>，但这只是其中的一部分。</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">节点数↑</div>
+                            <div class="stat-label">信息节点增加</div>
+                </div>
+                        <div class="stat-card">
+                            <div class="stat-number">信息↗</div>
+                            <div class="stat-label">信息优化升级</div>
+                </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100-1000x</div>
+                            <div class="stat-label">市值增长机会</div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>价值创造公式：</strong>我认为每次科技周期很大一部分的价值产生是在于你的<span class="data-highlight">节点数比原来增加</span>，然后第二这些<span class="emphasis">信息被优化，被大幅优化</span>，因为你信息又被优化，你信息的节点又增加。
+                    </div>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">PC互联网时代</div>
+                            <div class="timeline-content">信息节点成长 + 信息优化 = 第一次革命</div>
+                    </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">移动互联网时代</div>
+                            <div class="timeline-content">信息节点成长 + 信息优化 = 第二次革命</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">人工智能时代</div>
+                            <div class="timeline-content">信息节点成长 + 信息优化 = 第三次革命</div>
+                </div>
+            </div>
+
+                    <div class="text-segment">
+                        <p><span class="timestamp">04:55</span>当然这个优化分两点，最简单的优化就你<span class="key-phrase">信息速度变得更快了</span>，这是最简单优化，那最复杂的优化，就像现在这样，就说这个大模型给你输出了一些你从来不知道的一些信息，然后中间也有像<span class="emphasis">字节这样的推荐算法</span>。</p>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            节点数大幅度上升，这乘10表示升维了。节点数大幅度上升，信息优化诱导了信息力度大幅上升，所以这些伟大公司产生的时候，为什么市值狂涨？每次都有一个100倍、1000倍的机会。
+                </div>
+                        <div class="quote-attribution">— 升维效应与价值创造的关系</div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="chapter" id="chapter-7">
+                <div class="chapter-number">第7章</div>
+                <h2 class="chapter-title">历史演进：从PC到AI的信息节点爆发</h2>
+                <div class="chapter-time">🕐 05:15-06:14</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">05:15</span>我后面会稍微我有一页好像放错了，问一下，我要先放另一页，然后我让麦纳斯总结了一下，那个就我让 Minus 总结了一下，我们也，我觉得还可以把这贴上去。</p>
+                    
+                    <p><span class="timestamp">05:45</span>就你看 PC 时代这个信息节点爆发，移动时代这个原场路全在线，这是 Minus 自己写，对吧？进 minus 也是我们的，然后他人人场景也是信息节点的增加的，然后怎么最后一个就这个智能节点这个重要，所以历史是这样演进的，所以我认为每次这个信息优化的基本情况都导致了 case 怎么没发生？OK，退回去，不好意思。</p>
+                    
+                    <div class="structured-box">
+                        <h4>历史演进总结：</h4>
+                        <ul>
+                            <li>PC时代：信息节点爆发</li>
+                            <li>移动时代：人人场景在线</li>
+                            <li>AI时代：智能节点重构</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-8">
+                <div class="chapter-number">第8章</div>
+                <h2 class="chapter-title">美国科技发明的周期性规律</h2>
+                        <div class="chapter-time">🕐 06:14-07:13</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">06:14</span>嗯，所以我刚才这个观点我们可以反观一下历史是不是这样？历史其实我觉得很大程度上也是这样的，比如说因为中国在过去 200 年可能并不算一个特别现代的渐进式的现代说，所以我们拿美国为例，你看这个美国从 1860 年，这是它主要的这个科技发明的渗透率。从这个冲水马桶到这个自来水到这个空调，然后冰箱，那这个看上去就很复杂，对吧？也看不出什么规律。</p>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>周期性发现：</strong>但是如果我们把所有跟信息节点相关的这个数据放在一起，其实大家可以看见这个周期性就很强了，这是跟信息节点相关的，因为电力的普及导致这个收音机、电视、固定电话，然后计算机、互联网和智能手机，大家可以看一下，基本是每过这个差不多二三十年，然后会有一次信息节点的这个爆发，然后在这个过程当中会有这个信息的这个优化。
+                    </div>
+                </div>
+                    </div>
+                    
+            <div class="chapter" id="chapter-9">
+                <div class="chapter-number">第9章</div>
+                <h2 class="chapter-title">信息成本的历史性下降</h2>
+                <div class="chapter-time">🕐 07:13-08:43</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">07:13</span>信息优化我们也可以看最简单的信息优化。刚才如果说就是信息变得更快了，因为在古代的时候，你要运输一个小件物资和你运输一个信息，这个速度是一样的，对吧？就烽火连三月，家书抵万金，就是你送黄金，对吧？你送这个送的家书是一样，你都是骑着马或者坐着船，你就得赶过去。</p>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>成本对比分析：</strong>但大家可以看见人类进入到现代社会之后，你看这个的这几个例子，就是海运的成本、空运的成本和这个全球电话的这个成本，就拿这几个作为这个实物和信息分开的一个样例，就大家可以看见这个信息成本项发展得非常快，甚至到 80 年之后，基本上信息成本跌到0，对吧？这是给信息未来的大幅度优化和大量的信息资源产生提供了一个基础的一个保证。
+                    </div>
+                    
+                    <p>但是大家可以看见这个整个国际空运和海运的成本到有 80 年以后，其实它下降的幅度就很有限了，就这个遇见了这个科技的瓶颈在信息也到零，所以这是一个信息优化。</p>
+                    
+                    <p><span class="timestamp">08:11</span>刚才我从两个角度，信息节点增加和信息优化，所以我是觉得这可能是导致这个人类历史周期的一一一个一个发生的一个事情。就为什么我讲这一段，因为我们当时在 2018 年诶。嗯嗯，放这也可以，就因为当时我为什么要思考那个科技周期？我看你不是为了纯粹从误区带误区，是因为当时到 2018 年的时候，我们这些经历了 PC 互联网和移动互联网及投资的这些都会陷入深深的思。</p>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-10">
+                <div class="chapter-number">第10章</div>
+                <h2 class="chapter-title">ToC投资的思考与机遇</h2>
+                <div class="chapter-time">🕐 08:43-10:28</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">08:43</span>到 2018 年一直到这个 GPT 的这个全球的这个爆发，思考什么呢？就说因为我们当时看见整个字节几乎以字节为代表的这个短视频的这个力量，内容平台的力量，几乎终结了这个整个 ToC 时代的这个投资，整个 ToC 时代就预算的这块是没有，那在这块呢？</p>
+                    
+                    <div class="highlight-box insight-box">
+                        <strong>投资思考：</strong>那我们当时就在这一点上，我们就想下一次的这个大的 to seed 机会来自哪里啊？因为 to seed 机会实际上是比较怎么说？较怎么说就说能创造更大的上市公司的机会，所以我们，我在这里，我这里绝大部分思考实际上是那时候产生的，并不是说判定推， AI 倒过来推，那后来等 AI 爆发之后，诶，我突然发现，特别是agent，就 AI agent 这个爆发，我当时诶突然发现这可能是一个非常这个了不起的一个一个事情，就说它可能真正实质上增加信息节点做的好。
+                    </div>
+                    
+                    <p><span class="timestamp">09:43</span>这一次的这个投资我觉得一个比较有意思的事情，就是说因为这个商业模式在早期的时候反而是更明确的，因为大家要么你是按使用量付费，要么是按这个订阅付费啊。其实对早期公司来说，他从可能创业很短时间开始，他就可以获得这个很不错的收入，所以这一次其实出现的情况就是很多公司在很早期融资，然后很快就是收入就上去了。而紧接着这个估值就一下子变得很贵，这是历史上没有出现过，就是大家原来的估值都是一点点上去的，现在就是说大家基本都是跳开，只要你能把这个片的 APP 这个做正对，在座大家都是很多都是做设计，特别是在这个设计的这个工具里面，其实是有很多的这个。</p>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>商业模式变化：</strong>很多的这个工具在早期的时候就是收费就非常不错，然后很快的时候就补上。
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter" id="chapter-11">
+                <div class="chapter-number">第11章</div>
+                <h2 class="chapter-title">ToC壁垒与双边网络效应</h2>
+                <div class="chapter-time">🕐 10:28-11:57</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">10:28</span>然后下面就是我给大家分享一下，就是从我的角度就是到底这些 to seed 壁垒在哪？在哪？这也是可能我们也综合了当年这个从互联网到移动互联网时代这个 to seed 壁垒，第一个壁垒我认为是在 PC 互联网和移动互联网时代比较重要的这个壁垒就是双边网的效率，这个其实跟我们今天使用的绝大部分产品都有关，从微信，对吧？到小红书，然后抖音，然后这些其实都是跟双边网上的，只要你两边的人，对吧？供需双方也好，还有两边聊天的人也好，对吧？或者是你这个卖东西、买东西，你只要双面网络效应上来给你做到个 100 万的DAU， 100 万的日活，实际上大厂是比较难去打理，在那个时代。</p>
+                    
+                    <div class="highlight-box quote-box">
+                        <strong>AI时代的变化：</strong>但在 AI 的时代我们就发现至少在没有 agent 的时候，当有 agent 的时候，我们现在也不知道该怎么办。比如说实际上在 AI 的时候，到目前为止我们已知的说明网络效应实际上目前是它也存在，就说因为大家都是用大模型在聊天，实际上多还是多对一的关系，没有形成像原来这样多对多的关系，所以在这个里面我就觉得就有一个很有意思的命名，就是在 to seed 这个事件里面，新的这个双面网项目应该怎么建立？ agent 应该在这个双面网项目里面起到什么样的作用啊？我觉得这点是非常值得探讨。
+                    </div>
+                </div>
+                </div>
+            
+            <div class="chapter" id="chapter-12">
+                <div class="chapter-number">第12章</div>
+                <h2 class="chapter-title">中美两国人才基础差异</h2>
+                <div class="chapter-time">🕐 17:31-20:15</div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="timestamp">17:31</span>就今天因为在座的都是这个设计师，像大家用的产品都是偏 <span class="key-phrase">ToC</span>，我这边指ToC，不仅包括娱乐，也包括这个其他的这个个人效率的产品，就是我说的ToC，包括 k 看，也包括 c 看，都在这个这里面，因为我为什么要讲这个<span class="emphasis">产品经理的人才基础</span>，就是我们可以现在这样判断这个中美两国的这个人才的这个发展就很有意思。</p>
+                    </div>
+                    
+                    <div class="comparison-table">
+                        <div class="comparison-header">中美互联网人才发展历程</div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>🇺🇸 美国主导期 (1995-2010)</h4>
+                                <p>• 雅虎、谷歌、Facebook创立<br>• 社交网络时代开启<br>• WhatsApp、Instagram、Snapchat<br>• 产品经理创造核心模式</p>
+                            </div>
+                            <div class="comparison-cell">
+                                <h4>🇨🇳 中国崛起期 (2010-2025)</h4>
+                                <p>• 内容平台时代<br>• TikTok全球流行<br>• 中国产品经理创造新模式<br>• 各种创新业务形态</p>
+                    </div>
+                </div>
+            </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">🧓</div>
+                            <div class="stat-label">美国ToC人才<br>已退出历史舞台</div>
+                    </div>
+                        <div class="stat-card">
+                            <div class="stat-number">💪</div>
+                            <div class="stat-label">中国内容平台人才<br>正值壮年</div>
+                </div>
+                        <div class="stat-card">
+                            <div class="stat-number">🚀</div>
+                            <div class="stat-label">大量进入<br>AI创业领域</div>
+                </div>
+                    </div>
+                    
+                    <div class="mind-map">
+                        <div style="text-align: center;">
+                            <div class="mind-map-center">AI时代人才优势</div>
+                        </div>
+                        <div class="mind-map-branches">
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🇨🇳 中国优势</div>
+                                <div class="branch-content">ToC人才丰富<br>产品经理正值壮年<br>内容平台经验</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🇺🇸 美国优势</div>
+                                <div class="branch-content">ToB经验丰富<br>SaaS发展成熟<br>投资生态完善</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">💰 投资偏好</div>
+                                <div class="branch-content">中国：愿赌ToC<br>美国：偏向ToB<br>确定性回报</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🎯 战略分化</div>
+                                <div class="branch-content">中美投资策略<br>出现重大分歧<br>各有所长</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            在这样的人才分布上，实际上比较有利于中国的产品经理创业。我们整个都是ToC人才比较多，再加上现在美国的整个孵化器和氛围，基本都是主张ToB的创业，因为ToB的创业对于投资人也能获得比较确定性的回报。
+                        </div>
+                        <div class="quote-attribution">— 中美投资策略差异的深层原因</div>
+                    </div>
+                    
+                    <div class="progress-indicator">
+                        <div class="progress-label">
+                            <span>中国AI创业优势</span>
+                            <span>ToC人才红利</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chapter" id="chapter-13">
+                <div class="chapter-number">第13章</div>
+                <h2 class="chapter-title">中国ToB发展的思考</h2>
+                <div class="chapter-time">🕐 20:52-24:43</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">20:52</span>嗯，到这个我讲快点，可能他跟他还关系不大，比如说Tob，我一直认为中国缺乏整个 Tob 的这个实名，就是主要原因是什么？我认为有两个比较重要。</p>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>第一个原因：</strong>第一个是因为整个西方的这个现代的企业制度其实发展非常多年，恨不得是从这个大航海时代的，从这个工业革命公司时候一直干到现在，就对这一下子是几百名的这个企业发展性，所以它也形成了很多大家共识的这种标准流程也好，或者是最佳实践也好，它确实好像这个东西，那这个东西形成之后，就大家在企业流程上企业会有相似的人，所以这是能够采用这种标准化 SaaS 产品的一个最根本的一个一个原因。
+                    </div>
+                    
+                    <div class="highlight-box insight-box">
+                        <strong>中国企业特点：</strong>但是中国的这个现代企业其实主要在放之后到现在这个时间是很短，这个时间大概也就是四五十年不到半个世纪，所以中国企业又面临着这个队列的这种激烈的竞争，也面临着这个全球的竞争，所以它其实大家以结果为导向，各自为战，你用什么样的流程，什么样的方法好，你就用什么样的，所以他那个流程解方案，在这种情况下，你要用单一的标准化的 SaaS 给你去解，实际上你都得定制化啊。
+                </div>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>第二个原因：</strong>再加上中国第二个优势，就你一个本来定制化需求很高的国家，如果你没有人就算了，大概是用有办法，嗯，那偏偏你的优质的劳动力供给又这个性价比就很高，所以说在这种情况下，那正好就是进入劳动一个可以这个跨产品，这样就导致中国形成了一要软件产品加定制一起卖的东西，那在这种情况下实际上是非常不利于大型公司的这个整治。
+            </div>
+
+                    <div class="highlight-box quote-box">
+                        <strong>AI时代机遇：</strong>那么我觉得整个 Tob 可能对中国这个 Tob 企业也可能会有优势，就是因为原有的这个流程，原有的这些最佳实践人在优质的那一层，对吧？因为他需要这样一个中间层，他也需要结构化的数据，因为原来你只有把结构化的数据做得好，无论你是做什么样的，这个底层的商业智能你才能做。那现在知道你只要确保你的这些基本的原始数据是足够清晰的，那人工智能可以解决大部分。
+                    </div>
+                </div>
+                </div>
+
+            <div class="chapter" id="chapter-14">
+                <div class="chapter-number">第14章</div>
+                <h2 class="chapter-title">全球化机遇与服务贸易</h2>
+                <div class="chapter-time">🕐 24:43-27:23</div>
+                <div class="chapter-content">
+                    <p><span class="timestamp">24:43</span>所以我就是这个东西可能也可以通过这个东西能不能有一个这个重新追，至少这上一个时代我们没有做到跟全球各地是什么一样。好，那看这个时代能不能做到整体好，下一个呢？就是说可能我们还面临一个，也有从来没有碰见过这个问。也是在传统的国际贸易理论里面存在的问题，就是说原有国际贸易是劳动力本身是区分的，尤其你是本土的供应服务于你，也很难区分你原来是属于你的。</p>
+                    
+                    <div class="highlight-box innovation-box">
+                        <strong>服务贸易变革：</strong>你美国的处理战略检查端，无论是法律、会计，对，那我们都是一国的劳动力服务，一定，另外你这样能够叫劳动力服务，所以在这个人类历史长时间是统计国际贸易的时候，是不统计这个人力的与服务，因为这个意义不大、很小。但是现在其实这个服务变得越来越大，那在人工之后产生之前，实际上是这个全球的服务贸易占了20%。
+                    </div>
+                    
+                    <div class="highlight-box data-box">
+                        <strong>全球化影响：</strong>所以我们也有理由相信，就是说整个人人工智能产生可能会深刻地便利对全球这个服务贸易进一步提高，就人力成本会在这里面占得更高，也就意味着美国的算力，对吧？美国的这个程序员，然后加中国的程序员，加中国可能未来少量或一定的算力，就这些加起来，它对全球的这个劳动历史形成了一个巨大。一个宗旨就是清楚给你就是一两个国家的这个产出会影响到全球和中等智力阶层的这样一个注意，我觉得这个是一个大的一个新的课题或者新的希望，所以说在运营里面的一个故事。
+                    </div>
+                    
+                    <div class="highlight-box quote-box">
+                        <strong>全球化建议：</strong>好，最后就是当时我们送给我们所有这个 CEO 的一块，因为原来在互联网移动互联网创业的时候，大家创业都是默认你创业就是在中国，然后你一定要说我是做出海的才能证明，诶？我是做全球市场的，因为你得加一句出海，所以当时我们这句话一说，今从今天开，可能就中国的 AI 公司，包括今天已经在全球有一定名气的大模型公司也好， AI 应用公司也好，就是实际上他们从诞生的第一天开始，他们就跟美国的创业者，跟欧洲的创业者一样，他们就是针对全球。所以我当时我们对我们的 CEO 的勉励就是可以忘记出海这句话，因为大家都去躬身前行。
+                    </div>
+                </div>
+            </div>
+
+                        <div class="chapter" id="chapter-15">
+                <div class="chapter-number">第15章</div>
+                <h2 class="chapter-title">AI时代的教育变革思考</h2>
+                <div class="chapter-time">🕐 28:43-32:50</div>
+                <div class="chapter-content">
+                    <div class="text-segment">
+                        <p><span class="timestamp">28:43</span>谢谢谢谢，谢谢。范老师，问题我是觉得就我可以回到诶，我跟范老师是<span class="key-phrase">15年认识</span>的。因为当时范老师给我们这个商业计划里面就有一点，就说这个当时是说全球有超过<span class="data-highlight">5,000万人</span>的这个设计工作者，5,000万，是吧？</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">5000万</div>
+                            <div class="stat-label">2015年全球设计工作者</div>
+                    </div>
+                        <div class="stat-card">
+                            <div class="stat-number">每个人</div>
+                            <div class="stat-label">AI时代都是设计者</div>
+                    </div>
+                        <div class="stat-card">
+                            <div class="stat-number">创新精神</div>
+                            <div class="stat-label">人类核心竞争力</div>
+                    </div>
+                </div>
+                    
+                    <div class="quote-card">
+                        <div class="quote-content">
+                            在AI时代，几乎变成可能每个人都是设计者，或者你用创新者也可以。大家都得保持作为人类的创新精神，你才能够稳定住现在这个工作，因为其他大部分都被AI取代了。
+                        </div>
+                        <div class="quote-attribution">— AI时代人才要求的根本变化</div>
+            </div>
+
+                    <div class="comparison-table">
+                        <div class="comparison-header">传统科技革命 vs AI革命对人的影响</div>
+                        <div class="comparison-row">
+                            <div class="comparison-cell">
+                                <h4>📱 传统革命 (PC/移动)</h4>
+                                <p>• <span class="emphasis">抢夺人的时间</span><br>• 每天16小时上限<br>• 提高产能有限<br>• 短视频挤占文字<br>• 眼球经济竞争</p>
+                            </div>
+                            <div class="comparison-cell">
+                                <h4>🤖 AI革命</h4>
+                                <p>• <span class="data-highlight">提升效率无上限</span><br>• 10倍→100倍→1000倍<br>• 空间可用无限衡量<br>• 重构人的能力<br>• 创新精神至关重要</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mind-map">
+                        <div style="text-align: center;">
+                            <div class="mind-map-center">AI时代教育变革</div>
+                        </div>
+                        <div class="mind-map-branches">
+                            <div class="mind-map-branch">
+                                <div class="branch-title">📝 Prompt技能</div>
+                                <div class="branch-content">自然语言=编程<br>语言越清楚<br>代码写得越好</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">📚 知识型教育</div>
+                                <div class="branch-content">逐渐退场<br>大模型掌握知识<br>重点转向应用</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🧠 逻辑能力</div>
+                                <div class="branch-content">重要性上升<br>精确表达需求<br>清晰沟通目标</div>
+                            </div>
+                            <div class="mind-map-branch">
+                                <div class="branch-title">🗂️ 目录知识</div>
+                                <div class="branch-content">知道知识位置<br>掌握检索线索<br>高效问询技巧</div>
+                            </div>
+                        </div>
+        </div>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">效率提升 10x</div>
+                            <div class="timeline-content">基础AI工具应用，个人生产力显著提升</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">效率提升 100x</div>
+                            <div class="timeline-content">深度AI集成，工作流程根本性变革</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">效率提升 1000x</div>
+                            <div class="timeline-content">人机协作达到新高度，创造力无限放大</div>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box case-box">
+                        <strong>红杉内部实践案例：</strong>我现在我看我们那几个人几乎可以，我们一开始要<span class="emphasis">全公司轮流</span>，现在我们就<span class="data-highlight">四个人</span>，那四个人就每两个人干一周就非常快，而且没有任何问题，他们就是已经把他们的<span class="key-phrase">AI工具训练得非常好</span>，就是按照我们的要求，我们的格式每周输出，然后他们就熟悉一下就可以来讲。所以我觉得像这种<span class="emphasis">超级员工</span>可能就我们就希望看到越来越多。
+                    </div>
+                    
+                    <div class="progress-indicator">
+                        <div class="progress-label">
+                            <span>组织效率提升</span>
+                            <span>全公司 → 4人团队</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>AI时代的投资思考与机遇</div>
+            <div>郑庆生 · 2025年7月26日</div>
+        </div>
+    </div>
+    
+    <script>
+        // 阅读进度条
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrolled / maxHeight) * 100;
+            document.getElementById('reading-progress').style.width = progress + '%';
+        });
+        
+        // 浮动目录平滑滚动
+        document.querySelectorAll('#floating-toc a').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // 目录高亮
+        window.addEventListener('scroll', function() {
+            const chapters = document.querySelectorAll('.chapter');
+            const tocLinks = document.querySelectorAll('#floating-toc a');
+            
+            let currentChapter = '';
+            chapters.forEach(function(chapter) {
+                const rect = chapter.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentChapter = '#' + chapter.id;
+                }
+            });
+            
+            tocLinks.forEach(function(link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentChapter) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 时间戳点击复制
+        document.querySelectorAll('.timestamp').forEach(function(timestamp) {
+            // 设置title属性
+            timestamp.setAttribute('title', '点击复制时间戳');
+            
+            timestamp.addEventListener('click', function() {
+                const text = this.textContent;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        // 简单的反馈效果
+                        const original = timestamp.style.background;
+                        timestamp.style.background = '#10b981';
+                        setTimeout(function() {
+                            timestamp.style.background = original;
+                        }, 200);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

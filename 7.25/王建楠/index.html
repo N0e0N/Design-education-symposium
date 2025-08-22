@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI教育的实践与思考 - 王建楠教授演讲实录（完整版）</title>
+    <link rel="icon" type="image/png" href="../../网站/img/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #37352f;
+            background: #ffffff;
+            min-height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* 封面样式 - Notion风格 */
+        .cover {
+            background: #ffffff;
+            color: #37352f;
+            padding: 3rem 2rem 2rem;
+            border-bottom: 1px solid #e9e9e7;
+        }
+
+        .cover-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .professor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 2px solid #e9e9e7;
+        }
+
+        .professor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #37352f;
+            line-height: 1.2;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            margin-bottom: 1rem;
+            color: #787774;
+            font-weight: 400;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .speaker-name {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #37352f;
+        }
+
+        .lecture-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: #787774;
+        }
+
+        .cover-quote {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+
+        .cover-quote blockquote {
+            font-size: 1.25rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            color: #37352f;
+            font-weight: 400;
+        }
+
+        .cover-quote cite {
+            font-size: 1rem;
+            color: #787774;
+        }
+
+        /* 内容区域样式 - Notion风格 */
+        .content {
+            padding: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .chapter {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .chapter:last-child {
+            margin-bottom: 0;
+        }
+
+        .chapter-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            font-family: "SimSun", "NSimSun", "宋体", serif;
+        }
+
+        .time-range {
+            font-size: 1rem;
+            color: #9b9a97;
+            font-weight: 400;
+        }
+
+        /* 关键词标签 - Notion风格 */
+        .keywords {
+            margin: 1rem 0 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .keyword-tag {
+            background: #f1f1ef;
+            color: #787774;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            border: none;
+        }
+
+        /* 正文段落样式 - Notion风格 */
+        .content-text {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #37352f;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .content-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-text strong {
+            color: #37352f;
+            font-weight: 600;
+        }
+
+        .content-text em {
+            font-style: italic;
+            color: #787774;
+        }
+
+        /* 重要引用样式 - Notion风格保持高亮 */
+        .important-quote {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-style: italic;
+            color: #0c4a6e;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .important-quote::before {
+            content: '💡';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1rem;
+        }
+
+        .important-quote .quote-content {
+            margin-left: 1.5rem;
+        }
+
+        /* 关键数据高亮 - Notion风格保持高亮 */
+        .key-data {
+            background: #fefce8;
+            border: 1px solid #eab308;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #713f12;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .key-data::before {
+            content: '📊';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1rem;
+        }
+
+        .key-data .data-content {
+            margin-left: 1.5rem;
+        }
+
+        /* 核心观点样式 - Notion风格保持高亮 */
+        .core-insight {
+            background: #fef2f2;
+            border: 1px solid #ef4444;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #991b1b;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .core-insight::before {
+            content: '🎯';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1rem;
+        }
+
+        .core-insight .insight-content {
+            margin-left: 1.5rem;
+        }
+
+        /* 数据卡片样式 - 现代化多样式 */
+        .data-card {
+            background: #667eea;
+            border: none;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .data-card-title {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .data-card-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .data-card-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        /* 多列数据网格 */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .data-grid-item {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .data-grid-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-grid-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-grid-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .data-grid-desc {
+            font-size: 0.75rem;
+            color: #9ca3af;
+        }
+
+        /* 时间线样式 - Notion风格保持高亮 */
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.375rem;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-date {
+            font-size: 1rem;
+            color: #3b82f6;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-text {
+            font-size: 1.125rem;
+            color: #37352f;
+            line-height: 1.6;
+        }
+
+        /* 框架展示 - Notion风格保持高亮 */
+        .framework-box {
+            background: #f0f9ff;
+            border: 1px solid #dbeafe;
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .framework-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        .framework-levels {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .framework-level {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #3b82f6;
+        }
+
+        .framework-level-title {
+            font-weight: 600;
+            color: #37352f;
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .framework-level-desc {
+            font-size: 1rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* 现代化引用块 */
+        .modern-quote {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .modern-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #3b82f6;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .modern-quote-text {
+            font-size: 1.25rem;
+            color: #1e40af;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+
+        .modern-quote-author {
+            text-align: right;
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* 分栏布局 */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .column-item {
+            background: #f0f9ff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #3b82f6;
+        }
+
+        .column-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1rem;
+        }
+
+        .column-content {
+            font-size: 1rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* 大数字展示 */
+        .big-number {
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            background: #fbbf24;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .big-number-value {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .big-number-label {
+            font-size: 1.25rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* 三栏特性展示 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* 页脚 - Notion风格 */
+        .footer {
+            background: #f7f6f3;
+            color: #37352f;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9e9e7;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #37352f;
+        }
+
+        .footer p {
+            margin-bottom: 0.25rem;
+            color: #787774;
+            font-size: 0.875rem;
+        }
+
+        /* 响应式设计 - Notion风格 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.25rem;
+            }
+
+            .subtitle {
+                font-size: 1.125rem;
+            }
+
+            .speaker-name {
+                font-size: 1rem;
+            }
+
+            .lecture-info {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .content {
+                padding: 1.5rem 1rem;
+                max-width: none;
+                margin: 0;
+            }
+
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+
+            .content-text {
+                font-size: 1.125rem;
+                line-height: 1.6;
+            }
+
+            .important-quote,
+            .key-data,
+            .core-insight {
+                margin: 1rem 0;
+                padding: 1rem;
+                font-size: 1.125rem;
+            }
+
+            .keywords {
+                margin: 0.75rem 0;
+            }
+
+            .data-card-value {
+                font-size: 1.5rem;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .big-number-value {
+                font-size: 2.5rem;
+            }
+
+            .modern-quote-text {
+                font-size: 1.125rem;
+                padding-left: 1rem;
+            }
+
+            .modern-quote::before {
+                font-size: 3rem;
+                top: -5px;
+                left: 15px;
+            }
+        }
+
+        /* 滚动条样式 - Notion风格 */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面 -->
+        <div class="cover">
+            <div class="cover-content">
+                <div class="professor-avatar">
+                    <img src="王建楠.png" alt="王建楠教授">
+                </div>
+                
+                <h1 class="main-title">AI教育的实践与思考</h1>
+                <h2 class="subtitle">王建楠教授演讲实录</h2>
+                
+                <div class="speaker-name">王建楠 · 特拉华大学商学院教授</div>
+                
+                <div class="lecture-info">
+                    <div class="info-item">
+                        📅 2025年7月25日
+                    </div>
+                    <div class="info-item">
+                        ⏱️ 25分钟9秒
+                    </div>
+                </div>
+                
+                <div class="cover-quote">
+                    <blockquote>
+                        "AI这一波来了，我觉得给了我们一个重新自我塑造的机会"
+                    </blockquote>
+                    <cite>— 王建楠教授</cite>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content">
+            <!-- 第一章：开场白与自我介绍 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第1章</div>
+                    <h2 class="chapter-title">开场白与自我介绍</h2>
+                    <div class="time-range">⏱️ 00:00-01:55</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">PPT制作</span>
+                    <span class="keyword-tag">焦虑与拖延</span>
+                    <span class="keyword-tag">Harry王</span>
+                    <span class="keyword-tag">木匠爱好</span>
+                    <span class="keyword-tag">特拉华大学</span>
+                </div>
+
+                <div class="content-text">
+                    谢谢范总的邀请，那举牌的同学在哪里？我就是那个上午，我就是那上午听完我们胡老师讲座被吓得加了PPT的，哈哈哈，然后刚才看完听完了这个吴老师的分享加少了，觉得加两张不太够啊。
+                </div>
+
+                <div class="content-text">
+                    然后我要跟大家说一下这个任务，范老师分配下来之后，我就<strong>非常的焦虑</strong>，并不知道应该讲些什么啊。然后正常的处理方式就是<strong>拖延</strong>，然后我就昨天下午实在是等不过去了，把自己搞到新天地的一个咖啡馆里面，然后憋了一个多小时，憋了一套PPT，然后结果就是，嗯，来不及翻译成中文了，这也不是故意的，的确就是晚。
+                </div>
+
+                <div class="content-text">
+                    然后大家凑合着看好那个，也没有自我介绍，我有一个小网站，大家有兴趣叫<strong>Harry王</strong>，然后丽雅可以翻一翻，有很多业余爱好的一些介绍啊。我业余还是一个不错的<strong>木匠</strong>。对，全是木匠，就是跟范老师认识很长时间了，然后个人是在特拉华大学做教授，06年去的，到现在到20年了，也就是。嗯，前两年又闲着没事就做了一家小公司，今天基本上，嗯，没有这个带货环节啊。然后给大家讲一下非常近期的一些体验和想法，不一定会跟大家来讨论。
+                </div>
+            </div>
+
+            <!-- 第二章：第一门生成式AI课程的诞生 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第2章</div>
+                    <h2 class="chapter-title">第一门生成式AI课程的诞生</h2>
+                    <div class="time-range">⏱️ 01:55-02:38</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">生成式AI</span>
+                    <span class="keyword-tag">线上线下结合</span>
+                    <span class="keyword-tag">课程爆满</span>
+                    <span class="keyword-tag">38人扩至40+</span>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        去年春天我干了啥？在特拉华大学开始了第一门整个学期的真AI的一堂课。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    给大家介绍一下这堂课，因为我想说一件事，针对这堂课来说一件事情是一个<strong>线上线下结合</strong>的课，很快就<strong>爆满</strong>了，我们课程是38个人的km，不是38人，很快就40多人了。
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">课程规模</div>
+                    <div class="data-card-value">38 → 40+人</div>
+                    <div class="data-card-desc">迅速爆满的AI课程</div>
+                </div>
+            </div>
+
+            <!-- 第三章：多元化的学生群体 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第3章</div>
+                    <h2 class="chapter-title">多元化的学生群体</h2>
+                    <div class="time-range">⏱️ 02:38-03:30</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">摩根大通</span>
+                    <span class="keyword-tag">20年经验</span>
+                    <span class="keyword-tag">排球队主力</span>
+                    <span class="keyword-tag">律师</span>
+                    <span class="keyword-tag">生物博士</span>
+                </div>
+
+                <div class="content-text">
+                    那这些学生，这是线下的一些学生，大家可以看一下我的学生的这个年龄层的分布，大概是有在40个学生，我们有30个左右是全职的员工，其中有11个是我们我跟班那块员工，包括大家看到的右边的两位学生都是在摩根大通好像超过20年工作经验的人。嗯，两位都正式的，他的比较system TPS这个设计师，那还有1/4的是我们繁殖的MDA和那个硕士生也是这个学生的组合实际上是蛮有意思的。
+                </div>
+
+                <div class="data-grid">
+                    <div class="data-grid-item">
+                        <div class="data-grid-number">40</div>
+                        <div class="data-grid-label">总学生数</div>
+                        <div class="data-grid-desc">线上线下结合</div>
+                    </div>
+                    <div class="data-grid-item">
+                        <div class="data-grid-number">30</div>
+                        <div class="data-grid-label">全职员工</div>
+                        <div class="data-grid-desc">占比75%</div>
+                    </div>
+                    <div class="data-grid-item">
+                        <div class="data-grid-number">20+年</div>
+                        <div class="data-grid-label">摩根大通员工</div>
+                        <div class="data-grid-desc">丰富工作经验</div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    我们给大家画两个线向象限理解一下。<strong>x轴左边就是完全不懂技术，右边就是特别懂技术。y轴下面就是没有工作经验，上面就是好多工作经验啊。</strong>大概其这个发布是我随意画的，找个感觉我的最主要的学生的群体在这里。嗯，右侧那个又有很多工作经验，然后我们再看看最这个地方，我有一个女生是我们学校排球队的主力，二传完全不能及时，还有一位律师，这是我可能教课教了快20年里面特别有意思的一个群体，包括我们还有一个博士生，就学生物的。
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        大家如果教过课的话，包括你干任何事情，如果是这么一个群体，实际上是不太好交的，嗯，众口难调，对吧？
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第四章：AI教育的广泛受众 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第4章</div>
+                    <h2 class="chapter-title">AI教育的广泛受众</h2>
+                    <div class="time-range">⏱️ 03:30-04:57</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">受众广泛</span>
+                    <span class="keyword-tag">亲身体验</span>
+                    <span class="keyword-tag">数据挖掘对比</span>
+                    <span class="keyword-tag">通识课程</span>
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        先说结果非常好，这边也不要吹牛。结果非常好，非常喜欢的。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    所以我想说的事情是<strong>生成式人工智能蛮有意思，受众非常广</strong>。是以前不一样，完全不一样。明显一件事情，我要给这40个人教，我其他我曾经教过的课程包括数据挖掘，包括数据分析效果不会是这样，每个人都能够亲身体验这件事情，这就是第一个思考，非常非常的清晰，很有意思。
+                </div>
+
+                <div class="content-text">
+                    嗯，今年我又刚交完，这是去年4月份，今年4月到5月又交了，一会再讲，今天不讲细节，再大概齐给大家说一下。嗯，这门课因为是。有通识课，有件事就是什么都教一下，让大家来了解一下为什么要了解东西新就需要了解，大家可以想象以前大家骑马时候出来一辆汽车，是不是得加上汽车的这个轱辘，这个方向盘等等等等，差不多的意思，很有意思的一件事是整个这个大的框架，今年去讲没有什么太大的变化。就整个题目的分布其实是没有太大的变化，但是细节里边的变化我一会在张欢那边去讲，好，很快。
+                </div>
+            </div>
+
+            <!-- 第五章：走穴之路：顶级商学院巡讲 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第5章</div>
+                    <h2 class="chapter-title">走穴之路：顶级商学院巡讲</h2>
+                    <div class="time-range">⏱️ 04:57-06:51</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">靠嘴吃饭</span>
+                    <span class="keyword-tag">长江商学院</span>
+                    <span class="keyword-tag">清华</span>
+                    <span class="keyword-tag">浙大MBA</span>
+                    <span class="keyword-tag">香港中文</span>
+                </div>
+
+                <div class="modern-quote">
+                    <div class="modern-quote-text">
+                        商学的老师和我们设计学的老师，以及我们今天这种交流和我们这个安居客的老师很不一样，我们是靠嘴吃饭的。
+                    </div>
+                    <div class="modern-quote-author">— 王建楠教授</div>
+                </div>
+
+                <div class="content-text">
+                    嗯，对，我觉得客户最好，但是我们的确是靠讲课来赚钱嘛。所以说秋天我就开始了频繁地<strong>走穴</strong>。然后是这是我开过讲座以及培训的学校的一部分logo，我觉得基本涵盖了中国的<strong>顶级的一些商学院</strong>，包括长江、清华，这都是全天的课程啊。浙大我给他们NBA做的讲座是可能是上个学的学年上座率最高的，来了110多位NBA的学生啊。香港中文大学是他们的20年的这个校园的返校日的feature的一个群演多少也做了一天，效果非常好呃。
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">浙大MBA讲座</div>
+                    <div class="data-card-value">110+人</div>
+                    <div class="data-card-desc">学年上座率最高</div>
+                </div>
+
+                <div class="content-text">
+                    年龄层从刚毕业两三年的学生，二十四五岁到第一届的学生，也就是说毕业已经20年，非常有意思，得到了一个什么结论？这个我看一下，这个稍微就是框架点的一些东西，相当于我，我觉得我在培训这个行业，或者是满大街的行业，多多少少有些想法帮助我去定位我培训的内容。
+                </div>
+            </div>
+
+            <!-- 第六章：三层次AI培训框架 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第6章</div>
+                    <h2 class="chapter-title">三层次AI培训框架</h2>
+                    <div class="time-range">⏱️ 06:51-07:59</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">三个层面</span>
+                    <span class="keyword-tag">生产力导向</span>
+                    <span class="keyword-tag">程序员培训</span>
+                    <span class="keyword-tag">MBA/EMBA</span>
+                </div>
+
+                <div class="content-text">
+                    我觉得大概齐现在这个生成式AI的培训和教育可以分成这<strong>三个层面</strong>，面向三个不同的人群。
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">生产力导向</div>
+                        <div class="feature-desc">面向任何人群，包括秘书、学生等。重点教授如何使用大语言模型，如何更好地与AI对话。</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <div class="feature-title">程序员培训</div>
+                        <div class="feature-desc">专门针对程序员群体，教授如何使用AI进行代码编写，提升开发效率。</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎓</div>
+                        <div class="feature-title">MBA/EMBA培训</div>
+                        <div class="feature-desc">面向商学院学生，利用AI重新塑造商学教育，从"只会动嘴"到"动嘴又动手"。</div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    第一个是英文，我管它叫生产率or productivity focus，就是这个可以是任何人，包括我们的秘书，包括我们的，甚至我们的学生秘书，任何不懂的人都可以来做一些培训，比如说怎么用大语言模型，你会说话，但是怎么更好地跟AI说话，还是有一些门道，等等等等。
+                </div>
+
+                <div class="content-text">
+                    第二个实际上是我正在准备的一门课，以后还有一些细节是怎么给程序员来做培训非常重要。对，为什么一会让黄明去讲，那这里面就要给他们讲怎么用AI去写代码，为什么一会在第三个就是我做了很多的EMBA和MBA的培训。
+                </div>
+            </div>
+
+            <!-- 第七章：商学院的重新塑造机会 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第7章</div>
+                    <h2 class="chapter-title">商学院的重新塑造机会</h2>
+                    <div class="time-range">⏱️ 07:59-08:47</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">PPT诟病</span>
+                    <span class="keyword-tag">重新塑造</span>
+                    <span class="keyword-tag">十年河东河西</span>
+                    <span class="keyword-tag">动嘴动手</span>
+                </div>
+
+                <div class="content-text">
+                    大家我不知道在座有多少是MBA和EMBA的，举手，那我就可以随便讲这个MBA和EMBA我们收到了很多和诟病，就是说我们就是PPT打只会动嘴，不会动手，这是我们商学院最大的一个被诟病的方面。
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        AI这一波来了，我觉得给了我们一个重新自我塑造的机会，不然你就会发现原来我们动手动嘴就可以动手，很有意思，十年河东十年河西的感觉啊。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    而且我发现往往我们训练出来的学生特别会动动嘴，然后发动场景，然后爬取到AI，反而会有优势啊。挺有意思的，一个一个发现三个层面不同的培训都可以做，学校里面可以根据这三个方向来定制不同的课程体系。具体怎么定制呢？不是我今天想要讲的，我也不知道。
+                </div>
+            </div>
+
+            <!-- 第八章：工具发展的震撼时间线 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第8章</div>
+                    <h2 class="chapter-title">工具发展的震撼时间线</h2>
+                    <div class="time-range">⏱️ 08:47-12:29</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">工具进化</span>
+                    <span class="keyword-tag">时间线对比</span>
+                    <span class="keyword-tag">课件变化</span>
+                    <span class="keyword-tag">教学挑战</span>
+                </div>
+
+                <div class="content-text">
+                    好了，讲到了2024年的秋天，那么今到了今年的春天了，大家我挑了几件事啊，去年到今年一年的时间发生了什么就带来了什么，结果我随便挑了几件事，也不叫随便挑了几件事。
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年4月8日</div>
+                        <div class="timeline-text">开始教第一门AI课程，但workflow feature才刚刚发布</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年6月17日</div>
+                        <div class="timeline-text">Microsoft两个agent对话功能发布</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年11月</div>
+                        <div class="timeline-text">AI编程工具、MCP概念相继出现</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年6月</div>
+                        <div class="timeline-text">Manus等新工具发布</div>
+                    </div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        也就说去年我上课的时候想要用这个工具还不存在，大概就这意思啊。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    11月份才出来，然后进化的速度，一会我给大家放一张放明天看看，我是最早一批付费用户，出来我就交钱，一直用到现在。我看到这个工具在这短短的半年多一点里面进化过程，<strong>吓死人了</strong>，然后同期11月份，现在MCP这个MCP那个整个这个概念11月底才出来，好吧？很多人都不知道是什么。
+                </div>
+
+                <div class="key-data">
+                    <div class="data-content">
+                        我想说的事情是什么决定了我今年同样的一门课，我去年是开第一门课，其实在美国还是挺领先的，开了这么一门课，今年我要讲他，第二次去讲他竟然我的一半以上课件都要变化，不是我想变，是必须得变，工具出现了，后发已经变了啊。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第九章：教育的紧迫感 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第9章</div>
+                    <h2 class="chapter-title">教育的紧迫感</h2>
+                    <div class="time-range">⏱️ 12:29-15:57</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">20年教学</span>
+                    <span class="keyword-tag">数据库不变</span>
+                    <span class="keyword-tag">AI变化快</span>
+                    <span class="keyword-tag">学生督促</span>
+                </div>
+
+                <div class="content-text">
+                    <strong>从教20余年，这种事情从来没有关注过。</strong>我现在还在教。那是儿童和我20年前教的。巧不巧啊？我教数据库，跟我30年前学的一样，都不是大。差不差是一样，其他领域。那就更一般了。会计50年前就这么想的，今天还能做，所以说很有意思，大家就想一想教育的核心在AI这个里边，术语的这种紧迫感是一件从来没出现。
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">教学经验对比</div>
+                    <div class="data-card-value">20年 vs 1年</div>
+                    <div class="data-card-desc">传统课程稳定 vs AI课程快速变化</div>
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        为什么你可以选择不变？那你就是一个不负责任的老师。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    嗯，再教一个没有用的东西，坏处就是逼着我改了这么多东西，我也没多拿一分钱，好处就是我的学生逼着我在进行学习，在进行自我进化啊。我觉得我感谢我的学生来督促我干这件事，因为我非常懒，大部分人我认为和我一样懒。
+                </div>
+
+                <div class="content-text">
+                    然后学习结束，5月份之后我也办了一个会，没有放老师，这个会议成功，但是我吸引了线下70多位老师。是否发现以及各个商学院的店来到我们在欧文线下参加了这么一个it提醒，网上是历史上我们这个会已经办了20多年，今年是我主办上座率最高，不是我办会能力强，是因为这个topic，大家都想知道互相都在干点什么啊？
+                </div>
+
+                <div class="data-card">
+                    <div class="data-card-title">学术会议</div>
+                    <div class="data-card-value">70+位</div>
+                    <div class="data-card-desc">20年来上座率最高</div>
+                </div>
+            </div>
+
+            <!-- 第十章：个人AI实践的震撼体验 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第10章</div>
+                    <h2 class="chapter-title">个人AI实践的震撼体验</h2>
+                    <div class="time-range">⏱️ 15:57-18:23</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">10万行代码</span>
+                    <span class="keyword-tag">150美金</span>
+                    <span class="keyword-tag">三周时间</span>
+                    <span class="keyword-tag">一个人完成</span>
+                </div>
+
+                <div class="content-text">
+                    我说我没有什么料，是吧？我还有10分钟，其实不是，我要刚开始，我还要15分钟。来，尽量十分钟，最近的一些实实在的一些感想，被吓死的一些感想，第一件事就是这样，我自己的确有个小公司，然后这都是真实的截图，是我的截图，在过去的三周里面，我在到处东奔西跑，基本上我coding是没有时间，我也没有办公室，你像今这几天就住在家啊。我办公的第一个都是新天地的，他。对，东奔西跑过去，在欧洲，在中国几天一个城市。
+                </div>
+
+                <div class="content-text">
+                    然后我们重新用AI设计了11款新的产品。不重要，我想说的是大家看一下，这是courses的背后的几，我在过去的三周里面开始已经帮我们写了超过10万行代码，10万行，而且是在我travel的一个状态下，想起来就去星巴克搞一会这个样子系统，大概其长成这个样子，从审美上来讲我觉得也可以啊。
+                </div>
+
+                <div class="big-number">
+                    <div class="big-number-value">10万行</div>
+                    <div class="big-number-label">AI辅助编程代码量</div>
+                </div>
+
+                <div class="two-column">
+                    <div class="column-item">
+                        <div class="column-title">💰 成本控制</div>
+                        <div class="column-content">仅花费不到150美金，证明AI编程的超高性价比。一美金可写1000行代码，远低于传统开发成本。</div>
+                    </div>
+                    <div class="column-item">
+                        <div class="column-title">⏱️ 时间效率</div>
+                        <div class="column-content">在3周travel状态下完成，利用碎片时间在星巴克等场所进行开发，展现了AI工具的便携性。</div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    一共花了我不到150美金，所以说以后大家如果别人再问你都说AI写程序多贵啊？很简单，一分美金替你写10行，一美金写1,000行，OK，想想程序员多贵，写10万行代码的程序有多贵？我觉得有两件事，<strong>一个人，谁？我自己一个人</strong>，这全是我写的。我会写前端的吗？我不会。我是设计师吗？我不是，我一个人诶，150美金零零散散了三周做出来这个，我觉得这在6个月之前是一个零一主播，我是不能做。
+                </div>
+
+                <div class="important-quote">
+                    <div class="quote-content">
+                        各位，在设计里面我相信也有类似于CURSOR的东西，Figma也有合适的东西。我不懂，但是我的意思就是在设计领域也应该躬身入局去使用。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第十一章：AI突破的震撼时刻 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第11章</div>
+                    <h2 class="chapter-title">AI突破的震撼时刻</h2>
+                    <div class="time-range">⏱️ 19:57-22:33</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">数学奥赛</span>
+                    <span class="keyword-tag">金牌突破</span>
+                    <span class="keyword-tag">教育未来</span>
+                    <span class="keyword-tag">老师角色</span>
+                </div>
+
+                <div class="content-text">
+                    好，我挑了两个，这是昨天编的，因为我觉得这是刚刚开始，虽然一年里面发生了这么多翻天覆地的变化，作为一个半吊子程序员，<strong>吓死我了，我觉得我要失业了</strong>，这都是几天前发生的事情。
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">7月22日</div>
+                        <div class="timeline-text">OpenAI和Google模型在数学奥赛中获得金牌（几个月前还是银牌）</div>
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    我小时候也被我妈逼着去做了一下奥数题，我是0分，那这里面肯定现在有一个，后边我想让大家思考一下，这可能是人类数学上的一个皇冠，这个AI已经从答题的角度来。
+                </div>
+
+                <div class="content-text">
+                    这个是昨天的一个访谈，这个人我不介绍了，是吧？然后这个访谈我简单看了一下，在里面倒着看，挑了一句话，这里面大家有兴趣可以去听一下，就是一个访谈访，这个主持人就问他，就是他会有个新有的孩子，对吧？这种他说你觉得你的孩子去会不会去上大学？他回答这两件事，然后话后一样大概率不会。
+                </div>
+
+                <div class="content-text">
+                    我的孩子会不会上大学？快了，还有2年了，还有四五年。yes，OK，肯定会去上大学，但是20年后包括被拉齐，我觉得打开去有可能会发生，或者我们大学的我们要干什么？是一大堆课吗？是啊，可能更像一个健身房，健身之后我的教练鼓励大家把大家融到一起去，让大家交朋友，就跟多开线下会一样。
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        老师的责任，老师的角色，我认为这个翻天覆地的变化，因为你传授知识来讲，我相信你再过五年、十年，你的AI应该远远胜过我，但是AI能像我这样给大家讲故事吗？能像胡老师的那样给大家讲单口相声吗？我觉得很难被取代。
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第十二章：品味决定未来 -->
+            <div class="chapter">
+                <div class="chapter-header">
+                    <div class="chapter-number">第12章</div>
+                    <h2 class="chapter-title">品味决定未来</h2>
+                    <div class="time-range">⏱️ 22:33-结束</div>
+                </div>
+
+                <div class="keywords">
+                    <span class="keyword-tag">UI美学</span>
+                    <span class="keyword-tag">品味培养</span>
+                    <span class="keyword-tag">设计美学</span>
+                    <span class="keyword-tag">综合提升</span>
+                </div>
+
+                <div class="content-text">
+                    最后两分钟需求还有3分钟，这是我2月份在钉钉上发了一个JSON，我发的时候就是因为cloud出了一个新东西，3.5还是3.7？我忘记了，反正我当时换成新模型的时候写代码，我突然发现我的妈呀，这个UI做得好漂亮啊。2月份之前不行就做到，做出来就已经杠他的一个，他的b丑，在我的审美里面丑，然后我什么都没变，还是我同样的命运，哪怕不差。他就one shot，他做出来的图形界面就漂亮了，我就抑制不住就发了这么一个帖子。
+                </div>
+
+                <div class="modern-quote">
+                    <div class="modern-quote-text">
+                        最终authentic就comes down to taste，品味非常玄学，对吧啊？但是我非常喜欢这句话啊。
+                    </div>
+                    <div class="modern-quote-author">— 赵老师</div>
+                </div>
+
+                <div class="content-text">
+                    然后我就去问一下GPT，昨天问，然后就截了张图片，特别好玩。我问GPT，我说how to train people to have good taste？怎么能够让我们训练人，让他们有更好的品味？嗨，GDP太懂我了。今天我们是设计学院，他的回答第一项就是设计和美学，你要去懂美，你要去懂设计，那大概实际上还有5个，但排第一的这是GDP的啊。大家可以问一下GDP，问一下BBC，问一下whatever，看看调查暗示什么，挺有意思。
+                </div>
+
+                <div class="core-insight">
+                    <div class="insight-content">
+                        让大家思考最终即多年前赵老师那时候应该快20年前他那个样子就说到了最终是你的品类决定能走多远，这个品类不是我们的编程，是对你美的认识，是对音乐的追求，是对这个宗教、艺术等等等等的综合的一个提升，比较玄学，但我的确认为是这样。
+                    </div>
+                </div>
+
+                <div class="content-text">
+                    所以我在新的课程里面决定和我们方老师要搞一门这个设计的课，放到我们商学院的核心课程里去，喜不喜欢应该我也不管，因为我负责，所以说我觉得最终就是让我们想办法怎么在AI，在各个领域里面都比你强的时候，提高我们的品味，谢谢。
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <div class="footer-content">
+                <h3>特拉华大学商学院</h3>
+                <p>王建楠教授演讲实录</p>
+                <p>AI教育的实践与思考</p>
+                <p>2025年7月25日 · 25分钟9秒</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
